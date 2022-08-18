@@ -15,7 +15,3 @@ target_include_directories(mavlink_microservices
     ${CMAKE_CURRENT_SOURCE_DIR}/mavlink
     ${CMAKE_CURRENT_SOURCE_DIR}/route
 )
-
-target_link_libraries(mavlink_microservices
-    threadx
-)
