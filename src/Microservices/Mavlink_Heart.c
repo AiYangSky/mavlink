@@ -3,10 +3,11 @@
  * @Author         : Aiyangsky
  * @Date           : 2022-08-11 20:01:11
  * @LastEditors    : Aiyangsky
- * @LastEditTime   : 2022-08-18 21:59:48
+ * @LastEditTime   : 2022-08-21 00:07:46
  * @FilePath       : \mavlink\src\Microservices\Mavlink_Heart.c
  */
 
+#include "common/mavlink.h"
 #include "minimal/mavlink_msg_heartbeat.h"
 #include "common/common.h"
 #include "mavlink_route.h"

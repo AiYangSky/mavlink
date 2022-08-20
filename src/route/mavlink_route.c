@@ -3,7 +3,7 @@
  * @Author         : Aiyangsky
  * @Date           : 2022-08-12 12:11:18
  * @LastEditors    : Aiyangsky
- * @LastEditTime   : 2022-08-20 18:33:26
+ * @LastEditTime   : 2022-08-20 20:17:15
  * @FilePath       : \mavlink\src\route\mavlink_route.c
  */
 
@@ -77,7 +77,7 @@ bool Mavlink_Register_process(void (*Process)(unsigned char, const mavlink_messa
  * @return      {*}
  * @note       :
  */
-void Mavlink_STATUSTEXT_send(MAV_SEVERITY status, unsigned short id, unsigned char *str)
+void Mavlink_STATUSTEXT_send(MAV_SEVERITY status, unsigned short id, char *str)
 {
     mavlink_statustext_t mission_statustext_temp;
     unsigned short len_temp;

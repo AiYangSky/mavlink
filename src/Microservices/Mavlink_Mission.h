@@ -3,13 +3,14 @@
  * @Author         : Aiyangsky
  * @Date           : 2022-08-18 21:57:09
  * @LastEditors    : Aiyangsky
- * @LastEditTime   : 2022-08-20 19:31:30
+ * @LastEditTime   : 2022-08-21 00:07:33
  * @FilePath       : \mavlink\src\Microservices\Mavlink_Mission.h
  */
 
 #ifndef MAVLINK_MISSION_H
 #define MAVLINK_MISSION_H
 
+#include "common/mavlink.h"
 #include "common/common.h"
 
 #define MAX_RETRY 5
@@ -35,7 +36,7 @@ typedef struct
 
     // Timer
     void *timer;
-    void (*Os_Timer_creat)(void *, unsigned char, void *);
+    void (*Os_Timer_creat)(void *, unsigned short, void *);
     void (*Os_Timer_stop_and_reset)(void *);
     unsigned char (*Os_Timer_curr)(void *);
 

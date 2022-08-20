@@ -3,7 +3,7 @@
  * @Author         : Aiyangsky
  * @Date           : 2022-08-12 12:11:31
  * @LastEditors    : Aiyangsky
- * @LastEditTime   : 2022-08-20 18:55:31
+ * @LastEditTime   : 2022-08-20 20:17:24
  * @FilePath       : \mavlink\src\route\mavlink_route.h
  */
 
@@ -58,6 +58,6 @@ void Mavlink_Chan_Set(unsigned char chan,
                       unsigned short (*Send_bytes)(unsigned char *, unsigned short));
 bool Mavlink_Register_process(void (*Process)(unsigned char, const mavlink_message_t *));
 void Mavlink_Rec_Handle(void);
-void Mavlink_STATUSTEXT_send(MAV_SEVERITY status, unsigned short id, unsigned char *str);
+void Mavlink_STATUSTEXT_send(MAV_SEVERITY status, unsigned short id, char *str);
 
 #endif //__MAVLINK_ROUTE_H
