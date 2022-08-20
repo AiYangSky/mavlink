@@ -1,3 +1,11 @@
+/*
+ * @Description    : 
+ * @Author         : Aiyangsky
+ * @Date           : 2022-08-18 19:07:27
+ * @LastEditors    : Aiyangsky
+ * @LastEditTime   : 2022-08-18 19:12:24
+ * @FilePath       : \mavlink\src\mavlink\minimal\mavlink_msg_heartbeat.h
+ */
 #pragma once
 // MESSAGE HEARTBEAT PACKING
 

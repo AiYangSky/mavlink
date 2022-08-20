@@ -3,7 +3,7 @@
  * @Author         : Aiyangsky
  * @Date           : 2022-08-12 12:11:18
  * @LastEditors    : Aiyangsky
- * @LastEditTime   : 2022-08-18 18:45:25
+ * @LastEditTime   : 2022-08-20 18:33:26
  * @FilePath       : \mavlink\src\route\mavlink_route.c
  */
 
@@ -11,40 +11,8 @@
 #include "common/common.h"
 #include "mavlink_route.h"
 
-typedef struct
-{
-    unsigned char index;
-    bool is_activity;
-    // Callback function of link the hardware implementation
-    bool (*Get_byte)(unsigned char *);
-    unsigned short (*Send_bytes)(unsigned char *, unsigned short);
-} MAVLINK_ROUTE_CHAN_T;
-
-typedef struct
-{
-    unsigned char type;
-    unsigned char chan;
-    unsigned char sysid;
-    unsigned char compid;
-} MAVLINK_ROUTE_LIST_T;
-
-typedef struct
-{
-    unsigned char sysid;
-    unsigned char compid;
-    unsigned char route_nums;
-
-    MAVLINK_ROUTE_CHAN_T chan_cb[MAVLINK_COMM_NUM_BUFFERS];
-    MAVLINK_ROUTE_LIST_T route_list[MAX_MAVLINK_ROUTE];
-
-    mavlink_status_t status_temp;
-    mavlink_message_t message_temp;
-    unsigned char buf_temp[MAVLINK_MAX_PACKET_LEN];
-    void (*Process[MAX_MAVLINK_PROCESS])(const mavlink_message_t *);
-} MAVLINK_ROUTE_CB_T;
-
 //同一个工程中只能存在一个路由 这是由mavlink底层决定的
-static MAVLINK_ROUTE_CB_T mavlink_route;
+MAVLINK_ROUTE_CB_T mavlink_route;
 
 /**
  * @description:
@@ -85,7 +53,7 @@ void Mavlink_Chan_Set(unsigned char chan,
  * @return      {*}
  * @note       :
  */
-bool Mavlink_Register_process(void (*Process)(const mavlink_message_t *))
+bool Mavlink_Register_process(void (*Process)(unsigned char, const mavlink_message_t *))
 {
     unsigned short i;
     bool ret = false;
@@ -99,6 +67,49 @@ bool Mavlink_Register_process(void (*Process)(const mavlink_message_t *))
         }
     }
     return ret;
+}
+
+/**
+ * @description:                                Sends a warning string to the system
+ * @param       {MAV_SEVERITY} status           Warning Severity
+ * @param       {unsigned short} id             Event id
+ * @param       {unsigned char} *str
+ * @return      {*}
+ * @note       :
+ */
+void Mavlink_STATUSTEXT_send(MAV_SEVERITY status, unsigned short id, unsigned char *str)
+{
+    mavlink_statustext_t mission_statustext_temp;
+    unsigned short len_temp;
+    unsigned char i = 0, j = 0;
+
+    mission_statustext_temp.severity = status;
+    mission_statustext_temp.id = id;
+
+    while (strlen(str) > 50)
+    {
+        memcpy(mission_statustext_temp.text, str, 50);
+        mission_statustext_temp.chunk_seq = i;
+        i++;
+        str += 50;
+        for (j = 0; j < MAVLINK_COMM_NUM_BUFFERS; j++)
+        {
+            mavlink_msg_mission_current_encode_chan(mavlink_route.sysid, mavlink_route.compid, j,
+                                                    &mavlink_route.tx_message, &mission_statustext_temp);
+
+            len_temp = mavlink_msg_to_send_buffer(mavlink_route.buf_temp, &mavlink_route.tx_message);
+            mavlink_route.chan_cb[j].Send_bytes(mavlink_route.buf_temp, len_temp);
+        }
+    }
+    memcpy(mission_statustext_temp.text, str, strlen(str) + 1);
+    for (j = 0; j < MAVLINK_COMM_NUM_BUFFERS; j++)
+    {
+        mavlink_msg_mission_current_encode_chan(mavlink_route.sysid, mavlink_route.compid, j,
+                                                &mavlink_route.tx_message, &mission_statustext_temp);
+
+        len_temp = mavlink_msg_to_send_buffer(mavlink_route.buf_temp, &mavlink_route.tx_message);
+        mavlink_route.chan_cb[j].Send_bytes(mavlink_route.buf_temp, len_temp);
+    }
 }
 
 /**
@@ -261,14 +272,14 @@ static bool Mavlink_Route_process(unsigned char in_chan, const mavlink_message_t
  * @return      {*}
  * @note       :
  */
-static void Mavlink_Date_process(const mavlink_message_t *message)
+static void Mavlink_Date_process(unsigned char in_chan, const mavlink_message_t *message)
 {
     unsigned short i;
     for (i = 0; i < MAX_MAVLINK_PROCESS; i++)
     {
         if (mavlink_route.Process[i] != NULL)
         {
-            mavlink_route.Process[i](message);
+            mavlink_route.Process[i](in_chan, message);
         }
         else
         {
@@ -296,7 +307,7 @@ static void Mavlink_Process_Handle(unsigned char status, unsigned char in_chan, 
         ret = Mavlink_Route_process(in_chan, message);
         if (ret)
         {
-            Mavlink_Date_process(message);
+            Mavlink_Date_process(in_chan, message);
         }
         break;
 
