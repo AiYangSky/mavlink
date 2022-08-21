@@ -3,7 +3,7 @@
  * @Author         : Aiyangsky
  * @Date           : 2022-08-18 21:57:28
  * @LastEditors    : Aiyangsky
- * @LastEditTime   : 2022-08-20 19:31:27
+ * @LastEditTime   : 2022-08-22 01:32:07
  * @FilePath       : \mavlink\src\Microservices\Mavlink_Mission.c
  */
 
@@ -12,78 +12,22 @@
 #include "Mavlink_Mission.h"
 #include <string.h>
 
-//任务列表应该存在双缓存机制
-
 static MAVLINK_MISSION_CB_T mavlink_mission;
 static void Mavlink_Mission_process(unsigned char in_chan, const mavlink_message_t *msg);
 
 /**                                 Initialize Mission CB
  * @description:
  * @return      {*}
- * @note       :                    Call to order
- *                                  {
- *                                      Mavlink_Mission_init();
- *                                      Mavlink_Mission_init_Timer(xxx);
- *                                      Mavlink_Mission_init_Storage(xxx);
- *                                  }
- *                                  The initialization must be done as per flow, or the program will crash.
+ * @note       :
  */
-void Mavlink_Mission_init(void)
+void Mavlink_Mission_init(const MAVLINK_MISSION_CB_T *Control_block)
 {
     Mavlink_Register_process(Mavlink_Mission_process);
 
     memset(&mavlink_mission, 0, sizeof(MAVLINK_MISSION_CB_T));
+    memcpy(&mavlink_mission, Control_block, sizeof(MAVLINK_MISSION_CB_T));
 
     mavlink_mission.status = MAVLINK_MISSION_STATUS_IDLE;
-}
-
-/**
- * @description:
- * @param       {void *}            timer   Handle of timer
- * @return      {*}
- * @note       :
- *                                  funtions:
- *                                  void Os_Timer_creat(void *timer, unsigned char out_time, void *callback),
- *                                  void Os_Timer_stop_and_reset(void *timer),
- *                                  unsigned char Os_Timer_curr(void *timer), //Gets the current number of timing cycles
- */
-void Mavlink_Mission_init_Timer(void *timer,
-                                void (*Os_Timer_creat)(void *, unsigned char, void *),
-                                void (*Os_Timer_stop_and_reset)(void *),
-                                unsigned char (*Os_Timer_curr)(void *))
-{
-    mavlink_mission.timer = timer;
-    mavlink_mission.Os_Timer_creat = Os_Timer_creat;
-    mavlink_mission.Os_Timer_stop_and_reset = Os_Timer_stop_and_reset;
-    mavlink_mission.Os_Timer_curr = Os_Timer_curr;
-}
-
-/**
- * @description:
- * @return      {*}
- * @note       :                    funtions:
- *                                  bool Mission_Creat(unsigned short number),
- *                                  MAV_MISSION_RESULT Mission_Append(mavlink_mission_item_int_t *mission),
- *                                  unsigned short Mission_Count(void),             //Gets the number of items in the current Mission table
- *                                  void Mission_update(void),                      //Update the mission table in the cache to the current point
- *                                  bool Mission_check(unsigned short),             //Checkout the currently executing mission point
- *                                  MAV_MISSION_RESULT Mission_Clear(void),         //clear current mission table
- */
-void Mavlink_Mission_init_Storage(bool (*Mission_Creat)(unsigned short),
-                                  MAV_MISSION_RESULT (*Mission_Append)(mavlink_mission_item_int_t *),
-                                  unsigned short (*Mission_Count)(void),
-                                  void *(*Mission_View)(unsigned short),
-                                  void (*Mission_update)(void),
-                                  bool (*Mission_check)(unsigned short),
-                                  MAV_MISSION_RESULT (*Mission_Clear)(void))
-{
-    mavlink_mission.Mission_Creat = Mission_Creat;
-    mavlink_mission.Mission_Append = Mission_Append;
-    mavlink_mission.Mission_Count = Mission_Count;
-    mavlink_mission.Mission_View = Mission_View;
-    mavlink_mission.Mission_update = Mission_update;
-    mavlink_mission.Mission_check = Mission_check;
-    mavlink_mission.Mission_Clear = Mission_Clear;
 }
 
 /**
@@ -268,6 +212,11 @@ static void Mavlink_Mission_rec_count(unsigned char in_chan, const mavlink_messa
     mavlink_mission.status = MAVLINK_MISSION_STATUS_UP_START;
 }
 
+/**
+ * @description:
+ * @return      {*}
+ * @note       :
+ */
 static void Mavlink_Mission_up_timerout_callback(void)
 {
     //获取当前触发定时器触发次数
@@ -286,6 +235,13 @@ static void Mavlink_Mission_up_timerout_callback(void)
     }
 }
 
+/**
+ * @description:
+ * @param       {unsigned char} in_chan
+ * @param       {mavlink_message_t} *msg
+ * @return      {*}
+ * @note       :
+ */
 static void Mavlink_Mission_rec_item(unsigned char in_chan, const mavlink_message_t *msg)
 {
     mavlink_mission_item_int_t mission_item_temp;
@@ -346,6 +302,13 @@ static void Mavlink_Mission_rec_item(unsigned char in_chan, const mavlink_messag
     mavlink_mission.status = MAVLINK_MISSION_STATUS_UP_LOADING;
 }
 
+/**
+ * @description:
+ * @param       {unsigned char} in_chan
+ * @param       {mavlink_message_t} *msg
+ * @return      {*}
+ * @note       :
+ */
 static void Mavlink_Mission_rec_req_list(unsigned char in_chan, const mavlink_message_t *msg)
 {
     mavlink_mission_request_list_t mission_req_list_temp;
@@ -373,6 +336,13 @@ static void Mavlink_Mission_rec_req_list(unsigned char in_chan, const mavlink_me
     mavlink_mission.status = MAVLINK_MISSION_STATUS_DOWN_START;
 }
 
+/**
+ * @description:
+ * @param       {unsigned char} in_chan
+ * @param       {mavlink_message_t} *msg
+ * @return      {*}
+ * @note       :
+ */
 static void Mavlink_Mission_rec_req_int(unsigned char in_chan, const mavlink_message_t *msg)
 {
     mavlink_mission_request_int_t mission_req_int_temp;
@@ -399,6 +369,13 @@ static void Mavlink_Mission_rec_req_int(unsigned char in_chan, const mavlink_mes
     mavlink_mission.status = MAVLINK_MISSION_STATUS_DOWN_LOADING;
 }
 
+/**
+ * @description:
+ * @param       {unsigned char} in_chan
+ * @param       {mavlink_message_t} *msg
+ * @return      {*}
+ * @note       :
+ */
 static void Mavlink_Mission_rec_ack(unsigned char in_chan, const mavlink_message_t *msg)
 {
     if (mavlink_mission.status == MAVLINK_MISSION_STATUS_IDLE)
@@ -411,6 +388,11 @@ static void Mavlink_Mission_rec_ack(unsigned char in_chan, const mavlink_message
     mavlink_mission.status = MAVLINK_MISSION_STATUS_IDLE;
 }
 
+/**
+ * @description:
+ * @return      {*}
+ * @note       :
+ */
 static void Mavlink_Mission_down_timerout_callback()
 {
     unsigned char count_temp = mavlink_mission.Os_Timer_curr(mavlink_mission.timer);
@@ -438,6 +420,13 @@ static void Mavlink_Mission_down_timerout_callback()
     }
 }
 
+/**
+ * @description:
+ * @param       {unsigned char} in_chan
+ * @param       {mavlink_message_t} *msg
+ * @return      {*}
+ * @note       :
+ */
 static void Mavlink_Mission_rec_set_curr(unsigned char in_chan, const mavlink_message_t *msg)
 {
     mavlink_mission_set_current_t mission_set_current_temp;
@@ -459,6 +448,13 @@ static void Mavlink_Mission_rec_set_curr(unsigned char in_chan, const mavlink_me
     }
 }
 
+/**
+ * @description:
+ * @param       {unsigned char} in_chan
+ * @param       {mavlink_message_t} *msg
+ * @return      {*}
+ * @note       :
+ */
 static void Mavlink_Mission_rec_clear(unsigned char in_chan, const mavlink_message_t *msg)
 {
     mavlink_mission_clear_all_t mission_clear_temp;
@@ -478,6 +474,13 @@ static void Mavlink_Mission_rec_clear(unsigned char in_chan, const mavlink_messa
     Mavlink_Mission_ack_send(mavlink_mission.Mission_Clear());
 }
 
+/**
+ * @description:
+ * @param       {unsigned char} in_chan
+ * @param       {mavlink_message_t} *msg
+ * @return      {*}
+ * @note       :
+ */
 static void Mavlink_Mission_process(unsigned char in_chan, const mavlink_message_t *msg)
 {
     switch (msg->msgid)

@@ -3,7 +3,7 @@
  * @Author         : Aiyangsky
  * @Date           : 2022-08-20 19:36:48
  * @LastEditors    : Aiyangsky
- * @LastEditTime   : 2022-08-21 00:47:32
+ * @LastEditTime   : 2022-08-22 01:33:25
  * @FilePath       : \mavlink\src\Microservices\Mavlink_Parameters.c
  */
 
@@ -18,61 +18,13 @@ static void Mavlink_Parameters_process(unsigned char in_chan, const mavlink_mess
 /**                                 Initialize Parameters CB
  * @description:
  * @return      {*}
- * @note       :                    Call to order
- *                                  {
- *                                      Mavlink_Parameters_init();
- *                                      Mavlink_Parameters_init_Timer(xxx);
- *                                      Mavlink_Parameters_init_Storage(xxx);
- *                                  }
- *                                  The initialization must be done as per flow, or the program will crash.
- */
-void Mavlink_Parameters_init(void)
-{
-    memset((void *)&mavlink_params, 0, sizeof(MAVLINK_PARAMETERS_CB_T));
-    Mavlink_Register_process(Mavlink_Parameters_process);
-}
-
-/**
- * @description:
- * @param       {void *}            timer   Handle of timer
- * @return      {*}
  * @note       :
- *                                  funtions:
- *                                  void Os_Timer_creat(void *timer, unsigned char out_time, void *callback),
- *                                  void Os_Timer_stop_and_reset(void *timer),
- *                                  unsigned char Os_Timer_curr(void *timer), //Gets the current number of timing cycles
  */
-void Mavlink_Parameters_init_Timer(void *timer,
-                                   void (*Os_Timer_creat)(void *, unsigned char, void *),
-                                   void (*Os_Timer_stop_and_reset)(void *),
-                                   unsigned char (*Os_Timer_curr)(void *))
+void Mavlink_Parameters_init(const MAVLINK_PARAMETERS_CB_T *Control_block)
 {
-    mavlink_params.timer = timer;
-    mavlink_params.Os_Timer_creat = Os_Timer_creat;
-    mavlink_params.Os_Timer_stop_and_reset = Os_Timer_stop_and_reset;
-    mavlink_params.Os_Timer_curr = Os_Timer_curr;
-}
-
-/**
- * @description: 
- * @param       {unsigned} short
- * @return      {*}
- * @note       : 
- *                                  funtions:
- *                                  unsigned short Get_numbers(void),
- *                                  unsigned char Param_Get_by_index(unsigned short index, char *name, void *value),
- *                                  unsigned char Param_Get_by_name(char *name, unsigned short *index, void *value),
- *                                  void *Param_Chanege)(char *, unsigned char type, void *value),
- */
-void Mavlink_Parameters_init_Storage(unsigned short (*Get_numbers)(void),
-                                     unsigned char (*Param_Get_by_index)(unsigned short, char *, void *),
-                                     unsigned char (*Param_Get_by_name)(char *, unsigned short *, void *),
-                                     void *(*Param_Chanege)(char *name, unsigned char, void *))
-{
-    mavlink_params.Get_numbers = Get_numbers;
-    mavlink_params.Param_Get_by_index = Param_Get_by_index;
-    mavlink_params.Param_Get_by_name = Param_Get_by_name;
-    mavlink_params.Param_Chanege = Param_Chanege;
+    Mavlink_Register_process(Mavlink_Parameters_process);
+    memset((void *)&mavlink_params, 0, sizeof(MAVLINK_PARAMETERS_CB_T));
+    memcpy(&mavlink_params, Control_block, sizeof(MAVLINK_PARAMETERS_CB_T));
 }
 
 /**
@@ -80,7 +32,7 @@ void Mavlink_Parameters_init_Storage(unsigned short (*Get_numbers)(void),
  * @param       {unsigned char} chan    The input MAVlink channel number
  * @param       {unsigned short} index  index of parameter
  * @return      {*}
- * @note       : 
+ * @note       :
  */
 static bool Mavlink_Parameters_value_send_by_index(unsigned char chan, unsigned short index)
 {
@@ -111,7 +63,7 @@ static bool Mavlink_Parameters_value_send_by_index(unsigned char chan, unsigned 
  * @param       {unsigned char} chan    The input MAVlink channel number
  * @param       {char} *name            name of parameter
  * @return      {*}
- * @note       : 
+ * @note       :
  */
 static bool Mavlink_Parameters_value_send_by_name(unsigned char chan, char *name)
 {
@@ -140,7 +92,7 @@ static bool Mavlink_Parameters_value_send_by_name(unsigned char chan, char *name
 /**
  * @description:                            Interval for parameter sending tasks
  * @return      {*}
- * @note       : 
+ * @note       :
  */
 static void Mavlink_Parameters_callback(void)
 {
@@ -160,7 +112,7 @@ static void Mavlink_Parameters_callback(void)
  * @param       {unsigned char} in_chan
  * @param       {mavlink_message_t} *msg
  * @return      {*}
- * @note       : 
+ * @note       :
  */
 static void Mavlink_Parameters_rec_req_list(unsigned char in_chan, const mavlink_message_t *msg)
 {
@@ -185,7 +137,7 @@ static void Mavlink_Parameters_rec_req_list(unsigned char in_chan, const mavlink
  * @param       {unsigned char} in_chan
  * @param       {mavlink_message_t} *msg
  * @return      {*}
- * @note       : 
+ * @note       :
  */
 static void Mavlink_Parameters_rec_req_read(unsigned char in_chan, const mavlink_message_t *msg)
 {
@@ -214,7 +166,7 @@ static void Mavlink_Parameters_rec_req_read(unsigned char in_chan, const mavlink
  * @param       {unsigned char} in_chan
  * @param       {mavlink_message_t} *msg
  * @return      {*}
- * @note       : 
+ * @note       :
  */
 void Mavlink_Parameters_rec_set(unsigned char in_chan, const mavlink_message_t *msg)
 {

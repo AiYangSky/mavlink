@@ -3,7 +3,7 @@
  * @Author         : Aiyangsky
  * @Date           : 2022-08-18 21:57:09
  * @LastEditors    : Aiyangsky
- * @LastEditTime   : 2022-08-21 00:07:33
+ * @LastEditTime   : 2022-08-22 01:31:46
  * @FilePath       : \mavlink\src\Microservices\Mavlink_Mission.h
  */
 
@@ -50,18 +50,7 @@ typedef struct
     MAV_MISSION_RESULT (*Mission_Clear)(void);
 } MAVLINK_MISSION_CB_T;
 
-void Mavlink_Mission_init(void);
-void Mavlink_Mission_init_Timer(void *timer,
-                                void (*Os_Timer_creat)(void *, unsigned char, void *),
-                                void (*Os_Timer_stop_and_reset)(void *),
-                                unsigned char (*Os_Timer_curr)(void *));
-void Mavlink_Mission_init_Storage(bool (*Mission_Creat)(unsigned short),
-                                  MAV_MISSION_RESULT (*Mission_Append)(mavlink_mission_item_int_t *),
-                                  unsigned short (*Mission_Count)(void),
-                                  void *(*Mission_View)(unsigned short),
-                                  void (*Mission_update)(void),
-                                  bool (*Mission_check)(unsigned short),
-                                  MAV_MISSION_RESULT (*Mission_Clear)(void));
+void Mavlink_Mission_init(const MAVLINK_MISSION_CB_T *Control_block);
 void Mavlink_Mission_item_reached_send(unsigned short count);
 
 #endif // MAVLINK_MISSING_H
