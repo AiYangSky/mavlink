@@ -3,11 +3,11 @@
  * @Author         : Aiyangsky
  * @Date           : 2022-08-12 12:11:18
  * @LastEditors    : Aiyangsky
- * @LastEditTime   : 2022-08-24 16:22:50
+ * @LastEditTime   : 2022-08-25 01:02:45
  * @FilePath       : \mavlink\src\route\mavlink_route.c
  */
 
-#include "minimal/minimal.h"
+#include "common/mavlink.h"
 #include "common/common.h"
 #include "mavlink_route.h"
 
@@ -23,12 +23,13 @@ MAVLINK_ROUTE_CB_T mavlink_route;
  */
 void Mavlink_Route_init(unsigned char sysid, unsigned char compid)
 {
+
+    memset((void *)&mavlink_route, 0, sizeof(MAVLINK_ROUTE_CB_T));
+
     mavlink_route.compid = compid;
     mavlink_route.sysid = sysid;
 
     mavlink_route.route_nums = 0;
-    memset(mavlink_route.route_list, 0, sizeof(mavlink_route.route_list));
-    memset(mavlink_route.Process, 0, 4 * MAX_MAVLINK_PROCESS);
 }
 
 /**
@@ -39,12 +40,27 @@ void Mavlink_Route_init(unsigned char sysid, unsigned char compid)
  * @return      {*}
  * @note       :
  */
-void Mavlink_Chan_Set(unsigned char chan,
-                      bool (*Get_byte)(unsigned char *),
-                      unsigned short (*Send_bytes)(unsigned char *, unsigned short))
+void Mavlink_Route_Chan_Set(unsigned char chan,
+                            bool (*Get_byte)(unsigned char *),
+                            unsigned short (*Send_bytes)(unsigned char *, unsigned short))
 {
     mavlink_route.chan_cb[chan].Get_byte = Get_byte;
     mavlink_route.chan_cb[chan].Send_bytes = Send_bytes;
+}
+
+void Mavlink_Route_Mutex_Set(void *mutex,
+                             void (*Mutex_Get)(void *), void (*Mutex_Put)(void *))
+{
+    mavlink_route.mutex = mutex;
+    mavlink_route.Mutex_Get = Mutex_Get;
+    mavlink_route.Mutex_Put = Mutex_Put;
+}
+
+void Mavlink_Route_timer_Set(void (*Os_Timer_activate)(void *),
+                             void (*Os_Timer_stop_and_reset)(void *))
+{
+    mavlink_route.Os_Timer_activate = Os_Timer_activate;
+    mavlink_route.Os_Timer_stop_and_reset = Os_Timer_stop_and_reset;
 }
 
 /**

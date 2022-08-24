@@ -3,7 +3,7 @@
  * @Author         : Aiyangsky
  * @Date           : 2022-08-20 19:37:17
  * @LastEditors    : Aiyangsky
- * @LastEditTime   : 2022-08-24 17:55:54
+ * @LastEditTime   : 2022-08-25 00:15:44
  * @FilePath       : \mavlink\src\Microservices\Mavlink_Parameters.h
  */
 #ifndef MAVLINK_PARAMETERS_H
@@ -26,5 +26,7 @@ typedef struct
 } MAVLINK_PARAMETERS_CB_T;
 
 void Mavlink_Parameters_init(const MAVLINK_PARAMETERS_CB_T *Control_block);
+
+void Mavlink_Parameters_callback(void);
 
 #endif

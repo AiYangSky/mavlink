@@ -3,10 +3,11 @@
  * @Author         : Aiyangsky
  * @Date           : 2022-08-18 21:57:28
  * @LastEditors    : Aiyangsky
- * @LastEditTime   : 2022-08-24 17:33:50
+ * @LastEditTime   : 2022-08-25 00:48:23
  * @FilePath       : \mavlink\src\Microservices\Mavlink_Mission.c
  */
 
+#include "common/mavlink.h"
 #include "common/common.h"
 #include "mavlink_route.h"
 #include "Mavlink_Mission.h"
@@ -135,57 +136,35 @@ static void Mavlink_Mission_curr_send(unsigned short count)
 }
 
 /**
- * @description:
+ * @description: 
  * @return      {*}
- * @note       :
+ * @note       : 
  */
-static void Mavlink_Mission_up_timerout_callback(void)
+void Mavlink_Mission_timerout_callback(void)
 {
-    //获取当前触发定时器触发次数
-    unsigned char count_temp = mavlink_route.Os_Timer_curr(mavlink_mission.timer);
-
-    // retry
-    if (count_temp < MAX_RETRY)
+    if (mavlink_mission.retry_count > MAX_RETRY)
     {
-        Mavlink_Mission_req_int_send(mavlink_mission.retry_tar_sys, mavlink_mission.retry_tar_comp, mavlink_mission.curr_count);
+        mavlink_mission.status = MAVLINK_MISSION_STATUS_IDLE;
+        mavlink_mission.retry_count = 0;
+        mavlink_route.Os_Timer_stop_and_reset(mavlink_mission.timer);
     }
     else
     {
-        mavlink_mission.status = MAVLINK_MISSION_STATUS_IDLE;
-        //关闭并复位超时计时器
-        mavlink_route.Os_Timer_stop_and_reset(mavlink_mission.timer);
-    }
-}
-
-/**
- * @description:
- * @return      {*}
- * @note       :
- */
-static void Mavlink_Mission_down_timerout_callback()
-{
-    unsigned char count_temp = mavlink_route.Os_Timer_curr(mavlink_mission.timer);
-
-    if (count_temp < MAX_RETRY)
-    {
-        if (mavlink_mission.status == MAVLINK_MISSION_STATUS_DOWN_START)
+        if (mavlink_mission.status == MAVLINK_MISSION_STATUS_UP_LOADING)
+        {
+            Mavlink_Mission_req_int_send(mavlink_mission.retry_tar_sys, mavlink_mission.retry_tar_comp, mavlink_mission.curr_count);
+        }
+        else if (mavlink_mission.status == MAVLINK_MISSION_STATUS_DOWN_START)
         {
             Mavlink_Mission_count_send(mavlink_mission.retry_tar_sys, mavlink_mission.retry_tar_comp, mavlink_mission.count);
         }
-        else if (mavlink_mission.status == MAVLINK_MISSION_STATUS_DOWN_START)
+        else if (mavlink_mission.status == MAVLINK_MISSION_STATUS_DOWN_LOADING)
         {
             Mavlink_Mission_item_send(mavlink_mission.retry_tar_sys, mavlink_mission.retry_tar_comp, mavlink_mission.curr_count);
         }
         else
         {
-            //不应该运行到这里
         }
-    }
-    else
-    {
-        mavlink_mission.status = MAVLINK_MISSION_STATUS_IDLE;
-        //关闭并复位超时计时器
-        mavlink_route.Os_Timer_stop_and_reset(mavlink_mission.timer);
     }
 }
 
@@ -200,8 +179,7 @@ static void Mavlink_Mission_rec_count(unsigned char in_chan, const mavlink_messa
 {
     mavlink_mission_count_t mission_count_temp;
 
-    if (mavlink_mission.status != MAVLINK_MISSION_STATUS_IDLE &&
-        mavlink_mission.status != MAVLINK_MISSION_STATUS_UP_START)
+    if (mavlink_mission.status != MAVLINK_MISSION_STATUS_IDLE)
     {
         return;
     }
@@ -221,10 +199,11 @@ static void Mavlink_Mission_rec_count(unsigned char in_chan, const mavlink_messa
     Mavlink_Mission_req_int_send(msg->sysid, msg->compid, mavlink_mission.curr_count);
 
     //开启系统定时器 等待超时 或者下一帧ITEM数据到达
-    mavlink_route.Os_Timer_creat(mavlink_mission.timer, 1500, Mavlink_Mission_up_timerout_callback);
+    mavlink_mission.retry_count = 0;
+    mavlink_route.Os_Timer_activate(mavlink_mission.timer);
 
     //回传 MAVLINK_MSG_ID_MISSION_REQUEST_INT 帧
-    mavlink_mission.status = MAVLINK_MISSION_STATUS_UP_START;
+    mavlink_mission.status = MAVLINK_MISSION_STATUS_UP_LOADING;
 }
 
 /**
@@ -239,13 +218,13 @@ static void Mavlink_Mission_rec_item(unsigned char in_chan, const mavlink_messag
     mavlink_mission_item_int_t mission_item_temp;
     MAV_MISSION_RESULT ret;
 
-    if (mavlink_mission.status != MAVLINK_MISSION_STATUS_UP_LOADING &&
-        mavlink_mission.status != MAVLINK_MISSION_STATUS_UP_START)
+    if (mavlink_mission.status != MAVLINK_MISSION_STATUS_UP_LOADING)
     {
         return;
     }
 
     //已接收到数据帧 不需要重传或超时
+    mavlink_mission.retry_count = 0;
     mavlink_route.Os_Timer_stop_and_reset(mavlink_mission.timer);
 
     mavlink_msg_mission_item_int_decode(msg, &mission_item_temp);
@@ -270,7 +249,7 @@ static void Mavlink_Mission_rec_item(unsigned char in_chan, const mavlink_messag
             else
             {
                 Mavlink_Mission_req_int_send(msg->sysid, msg->compid, mavlink_mission.curr_count);
-                mavlink_route.Os_Timer_creat(mavlink_mission.timer, 1500, Mavlink_Mission_up_timerout_callback);
+                mavlink_route.Os_Timer_activate(mavlink_mission.timer);
             }
         }
         else
@@ -283,7 +262,7 @@ static void Mavlink_Mission_rec_item(unsigned char in_chan, const mavlink_messag
     {
         //乱序 重新按当前的索引进行请求
         Mavlink_Mission_req_int_send(msg->sysid, msg->compid, mavlink_mission.curr_count);
-        mavlink_route.Os_Timer_creat(mavlink_mission.timer, 1500, Mavlink_Mission_up_timerout_callback);
+        mavlink_route.Os_Timer_activate(mavlink_mission.timer);
     }
 
     mavlink_mission.status = MAVLINK_MISSION_STATUS_UP_LOADING;
@@ -317,7 +296,8 @@ static void Mavlink_Mission_rec_req_list(unsigned char in_chan, const mavlink_me
 
     Mavlink_Mission_count_send(msg->sysid, msg->compid, mavlink_mission.count);
 
-    mavlink_route.Os_Timer_creat(mavlink_mission.timer, 1500, Mavlink_Mission_down_timerout_callback);
+    mavlink_mission.retry_count = 0;
+    mavlink_route.Os_Timer_activate(mavlink_mission.timer);
 
     mavlink_mission.status = MAVLINK_MISSION_STATUS_DOWN_START;
 }
@@ -339,6 +319,7 @@ static void Mavlink_Mission_rec_req_int(unsigned char in_chan, const mavlink_mes
         return;
     }
 
+    mavlink_mission.retry_count = 0;
     mavlink_route.Os_Timer_stop_and_reset(mavlink_mission.timer);
 
     mavlink_msg_mission_request_int_decode(msg, &mission_req_int_temp);
@@ -346,7 +327,7 @@ static void Mavlink_Mission_rec_req_int(unsigned char in_chan, const mavlink_mes
     mavlink_mission.curr_count = mission_req_int_temp.seq;
 
     Mavlink_Mission_item_send(msg->sysid, msg->compid, mavlink_mission.curr_count);
-    mavlink_route.Os_Timer_creat(mavlink_mission.timer, 1500, Mavlink_Mission_down_timerout_callback);
+    mavlink_route.Os_Timer_activate(mavlink_mission.timer);
     mavlink_mission.status = MAVLINK_MISSION_STATUS_DOWN_LOADING;
 }
 
@@ -364,6 +345,7 @@ static void Mavlink_Mission_rec_ack(unsigned char in_chan, const mavlink_message
         return;
     }
 
+    mavlink_mission.retry_count = 0;
     mavlink_route.Os_Timer_stop_and_reset(mavlink_mission.timer);
 
     mavlink_mission.status = MAVLINK_MISSION_STATUS_IDLE;
@@ -415,6 +397,7 @@ static void Mavlink_Mission_rec_clear(unsigned char in_chan, const mavlink_messa
 
     mavlink_msg_mission_clear_all_decode(msg, &mission_clear_temp);
 
+    mavlink_mission.retry_count = 0;
     mavlink_route.Os_Timer_stop_and_reset(mavlink_mission.timer);
 
     Mavlink_Mission_ack_send(msg->sysid, msg->compid, mavlink_mission.Mission_Clear());

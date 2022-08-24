@@ -3,7 +3,7 @@
  * @Author         : Aiyangsky
  * @Date           : 2022-08-20 19:36:48
  * @LastEditors    : Aiyangsky
- * @LastEditTime   : 2022-08-24 18:11:57
+ * @LastEditTime   : 2022-08-25 00:15:49
  * @FilePath       : \mavlink\src\Microservices\Mavlink_Parameters.c
  */
 
@@ -82,7 +82,7 @@ static bool Mavlink_Parameters_value_send_by_name(unsigned char tar_sys, unsigne
  * @return      {*}
  * @note       :
  */
-static void Mavlink_Parameters_callback(void)
+void Mavlink_Parameters_callback(void)
 {
     if (mavlink_params.curr_count < mavlink_params.Get_numbers())
     {
@@ -114,9 +114,9 @@ static void Mavlink_Parameters_rec_req_list(unsigned char in_chan, const mavlink
 
     if (mavlink_params.curr_count < mavlink_params.Get_numbers())
     {
-        Mavlink_Parameters_value_send(mavlink_params.req_sys, mavlink_params.req_comp, mavlink_params.curr_count);
+        Mavlink_Parameters_value_send_by_index(mavlink_params.req_sys, mavlink_params.req_comp, mavlink_params.curr_count);
         mavlink_params.curr_count++;
-        mavlink_route.Os_Timer_creat(mavlink_params.timer, 100, Mavlink_Parameters_callback);
+        mavlink_route.Os_Timer_activate(mavlink_params.timer);
     }
 }
 

@@ -3,10 +3,11 @@
  * @Author         : Aiyangsky
  * @Date           : 2022-08-21 20:27:59
  * @LastEditors    : Aiyangsky
- * @LastEditTime   : 2022-08-24 18:16:45
+ * @LastEditTime   : 2022-08-25 00:48:14
  * @FilePath       : \mavlink\src\Microservices\Mavlink_Command.c
  */
 
+#include "common/mavlink.h"
 #include "common/common.h"
 #include "mavlink_route.h"
 #include "Mavlink_Command.h"
@@ -28,7 +29,7 @@ void Mavlink_Command_completed(void)
     mavlink_route.Os_Timer_stop_and_reset(mavlink_command.timer);
 }
 
-static void Mavlink_Command_callback(void)
+void Mavlink_Command_callback(void)
 {
     mavlink_command_ack_t command_ack_temp;
 
@@ -56,7 +57,7 @@ static void Mavlink_Command_rec_int(unsigned char in_chan, const mavlink_message
         mavlink_command.long_req_command = command_int_temp.command;
         mavlink_command.long_req_sysid = msg->sysid;
         mavlink_command.long_req_compid = msg->compid;
-        mavlink_route.Os_Timer_creat(mavlink_command.timer, 1000, Mavlink_Command_callback);
+        mavlink_route.Os_Timer_activate(mavlink_command.timer);
     }
 
     command_ack_temp.command = command_int_temp.command;
@@ -90,7 +91,7 @@ static void Mavlink_Command_rec_long(unsigned char in_chan, const mavlink_messag
         mavlink_command.long_req_command = command_long_temp.command;
         mavlink_command.long_req_sysid = msg->sysid;
         mavlink_command.long_req_compid = msg->compid;
-        mavlink_route.Os_Timer_creat(mavlink_command.timer, 1000, Mavlink_Command_callback);
+        mavlink_route.Os_Timer_activate(mavlink_command.timer);
     }
 
     command_ack_temp.command = command_long_temp.command;

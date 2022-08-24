@@ -3,7 +3,7 @@
  * @Author         : Aiyangsky
  * @Date           : 2022-08-18 21:57:09
  * @LastEditors    : Aiyangsky
- * @LastEditTime   : 2022-08-24 16:52:33
+ * @LastEditTime   : 2022-08-25 00:50:52
  * @FilePath       : \mavlink\src\Microservices\Mavlink_Mission.h
  */
 
@@ -18,7 +18,6 @@
 typedef enum
 {
     MAVLINK_MISSION_STATUS_IDLE = 1,
-    MAVLINK_MISSION_STATUS_UP_START,
     MAVLINK_MISSION_STATUS_UP_LOADING,
     MAVLINK_MISSION_STATUS_DOWN_START,
     MAVLINK_MISSION_STATUS_DOWN_LOADING,
@@ -27,6 +26,7 @@ typedef enum
 typedef struct
 {
     MAVLINK_MISSION_STATUS_T status;
+    unsigned char retry_count;
     unsigned short count;
     unsigned short curr_count;
     unsigned char retry_tar_sys;
@@ -48,5 +48,7 @@ typedef struct
 
 void Mavlink_Mission_init(const MAVLINK_MISSION_CB_T *Control_block);
 void Mavlink_Mission_item_reached_send(unsigned short count);
+
+void Mavlink_Mission_timerout_callback(void);
 
 #endif // MAVLINK_MISSING_H

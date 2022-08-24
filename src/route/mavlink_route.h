@@ -3,7 +3,7 @@
  * @Author         : Aiyangsky
  * @Date           : 2022-08-12 12:11:31
  * @LastEditors    : Aiyangsky
- * @LastEditTime   : 2022-08-24 16:23:27
+ * @LastEditTime   : 2022-08-25 01:29:17
  * @FilePath       : \mavlink\src\route\mavlink_route.h
  */
 
@@ -56,21 +56,25 @@ typedef struct
     void (*Mutex_Get)(void *);
     void (*Mutex_Put)(void *);
 
-    //timer 
-    void (*Os_Timer_creat)(void *, unsigned short, void *);
+    //timer
+    void (*Os_Timer_activate)(void *);
     void (*Os_Timer_stop_and_reset)(void *);
-    unsigned char (*Os_Timer_curr)(void *); 
 } MAVLINK_ROUTE_CB_T;
 
 extern MAVLINK_ROUTE_CB_T mavlink_route;
 
 void Mavlink_Route_init(unsigned char sysid, unsigned char compid);
-void Mavlink_Chan_Set(unsigned char chan,
-                      bool (*Get_byte)(unsigned char *),
-                      unsigned short (*Send_bytes)(unsigned char *, unsigned short));
+void Mavlink_Route_Chan_Set(unsigned char chan,
+                            bool (*Get_byte)(unsigned char *),
+                            unsigned short (*Send_bytes)(unsigned char *, unsigned short));
+void Mavlink_Route_Mutex_Set(void *mutex,
+                             void (*Mutex_Get)(void *), void (*Mutex_Put)(void *));
+void Mavlink_Route_timer_Set(void (*Os_Timer_activate)(void *),
+                             void (*Os_Timer_stop_and_reset)(void *));
 bool Mavlink_Route_send(unsigned char tar_sysid, unsigned char tar_compid, const void *msg,
                         unsigned short (*Pack)(unsigned char, unsigned char, unsigned char, mavlink_message_t *, const void *));
 bool Mavlink_Register_process(void (*Process)(unsigned char, const mavlink_message_t *));
+
 void Mavlink_Rec_Handle(void);
 void Mavlink_STATUSTEXT_send(MAV_SEVERITY status, unsigned short id, char *str);
 
