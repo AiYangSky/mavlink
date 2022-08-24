@@ -147,9 +147,9 @@ static inline uint16_t mavlink_msg_protocol_version_encode(uint8_t system_id, ui
  * @param msg The MAVLink message to compress the data into
  * @param protocol_version C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_protocol_version_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_protocol_version_t* protocol_version)
+static inline uint16_t mavlink_msg_protocol_version_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* protocol_version)
 {
-    return mavlink_msg_protocol_version_pack_chan(system_id, component_id, chan, msg, protocol_version->version, protocol_version->min_version, protocol_version->max_version, protocol_version->spec_version_hash, protocol_version->library_version_hash);
+    return mavlink_msg_protocol_version_pack_chan(system_id, component_id, chan, msg, ((mavlink_protocol_version_t*)protocol_version)->version, ((mavlink_protocol_version_t*)protocol_version)->min_version, ((mavlink_protocol_version_t*)protocol_version)->max_version, ((mavlink_protocol_version_t*)protocol_version)->spec_version_hash, ((mavlink_protocol_version_t*)protocol_version)->library_version_hash);
 }
 
 /**

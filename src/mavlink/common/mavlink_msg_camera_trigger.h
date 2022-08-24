@@ -123,9 +123,9 @@ static inline uint16_t mavlink_msg_camera_trigger_encode(uint8_t system_id, uint
  * @param msg The MAVLink message to compress the data into
  * @param camera_trigger C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_camera_trigger_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_camera_trigger_t* camera_trigger)
+static inline uint16_t mavlink_msg_camera_trigger_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* camera_trigger)
 {
-    return mavlink_msg_camera_trigger_pack_chan(system_id, component_id, chan, msg, camera_trigger->time_usec, camera_trigger->seq);
+    return mavlink_msg_camera_trigger_pack_chan(system_id, component_id, chan, msg, ((mavlink_camera_trigger_t*)camera_trigger)->time_usec, ((mavlink_camera_trigger_t*)camera_trigger)->seq);
 }
 
 /**

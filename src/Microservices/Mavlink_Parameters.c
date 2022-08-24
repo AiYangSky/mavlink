@@ -3,7 +3,7 @@
  * @Author         : Aiyangsky
  * @Date           : 2022-08-20 19:36:48
  * @LastEditors    : Aiyangsky
- * @LastEditTime   : 2022-08-22 01:33:25
+ * @LastEditTime   : 2022-08-24 18:11:57
  * @FilePath       : \mavlink\src\Microservices\Mavlink_Parameters.c
  */
 
@@ -34,10 +34,9 @@ void Mavlink_Parameters_init(const MAVLINK_PARAMETERS_CB_T *Control_block)
  * @return      {*}
  * @note       :
  */
-static bool Mavlink_Parameters_value_send_by_index(unsigned char chan, unsigned short index)
+static bool Mavlink_Parameters_value_send_by_index(unsigned char tar_sys, unsigned char tar_comp, unsigned short index)
 {
     mavlink_param_value_t param_value_temp;
-    unsigned short len_temp;
 
     memset((unsigned char *)&param_value_temp.param_value, 0, 4);
     param_value_temp.param_type = mavlink_params.Param_Get_by_index(index, param_value_temp.param_id,
@@ -50,12 +49,7 @@ static bool Mavlink_Parameters_value_send_by_index(unsigned char chan, unsigned 
     param_value_temp.param_index = index;
     param_value_temp.param_index = mavlink_params.Get_numbers();
 
-    mavlink_msg_param_value_encode_chan(mavlink_route.sysid, mavlink_route.compid, chan,
-                                        &mavlink_route.tx_message, &param_value_temp);
-
-    len_temp = mavlink_msg_to_send_buffer(mavlink_route.buf_temp, &mavlink_route.tx_message);
-
-    mavlink_route.chan_cb[chan].Send_bytes(mavlink_route.buf_temp, len_temp);
+    Mavlink_Route_send(tar_sys, tar_comp, (void *)&param_value_temp, mavlink_msg_param_value_encode_chan);
 }
 
 /**
@@ -65,10 +59,9 @@ static bool Mavlink_Parameters_value_send_by_index(unsigned char chan, unsigned 
  * @return      {*}
  * @note       :
  */
-static bool Mavlink_Parameters_value_send_by_name(unsigned char chan, char *name)
+static bool Mavlink_Parameters_value_send_by_name(unsigned char tar_sys, unsigned char tar_comp, char *name)
 {
     mavlink_param_value_t param_value_temp;
-    unsigned short len_temp;
 
     memset((unsigned char *)&param_value_temp.param_value, 0, 4);
     param_value_temp.param_type = mavlink_params.Param_Get_by_name(name, &param_value_temp.param_index,
@@ -81,12 +74,7 @@ static bool Mavlink_Parameters_value_send_by_name(unsigned char chan, char *name
     memcpy(param_value_temp.param_id, name, 16);
     param_value_temp.param_index = mavlink_params.Get_numbers();
 
-    mavlink_msg_param_value_encode_chan(mavlink_route.sysid, mavlink_route.compid, chan,
-                                        &mavlink_route.tx_message, &param_value_temp);
-
-    len_temp = mavlink_msg_to_send_buffer(mavlink_route.buf_temp, &mavlink_route.tx_message);
-
-    mavlink_route.chan_cb[chan].Send_bytes(mavlink_route.buf_temp, len_temp);
+    Mavlink_Route_send(tar_sys, tar_comp, (void *)&param_value_temp, mavlink_msg_param_value_encode_chan);
 }
 
 /**
@@ -96,14 +84,14 @@ static bool Mavlink_Parameters_value_send_by_name(unsigned char chan, char *name
  */
 static void Mavlink_Parameters_callback(void)
 {
-    if (mavlink_params.curr_count < mavlink_params.number)
+    if (mavlink_params.curr_count < mavlink_params.Get_numbers())
     {
-        Mavlink_Parameters_value_send_by_index(mavlink_params.in_chan, mavlink_params.curr_count);
+        Mavlink_Parameters_value_send_by_index(mavlink_params.req_sys, mavlink_params.req_comp, mavlink_params.curr_count);
         mavlink_params.curr_count++;
     }
     else
     {
-        mavlink_params.Os_Timer_stop_and_reset(mavlink_params.timer);
+        mavlink_route.Os_Timer_stop_and_reset(mavlink_params.timer);
     }
 }
 
@@ -120,15 +108,15 @@ static void Mavlink_Parameters_rec_req_list(unsigned char in_chan, const mavlink
 
     mavlink_msg_param_request_list_decode(msg, &param_list_temp);
 
-    mavlink_params.number = mavlink_params.Get_numbers();
     mavlink_params.curr_count = 0;
-    mavlink_params.in_chan = in_chan;
+    mavlink_params.req_sys = msg->sysid;
+    mavlink_params.req_comp = msg->compid;
 
-    if (mavlink_params.curr_count < mavlink_params.number)
+    if (mavlink_params.curr_count < mavlink_params.Get_numbers())
     {
-        Mavlink_Parameters_value_send(mavlink_params.in_chan, mavlink_params.curr_count);
+        Mavlink_Parameters_value_send(mavlink_params.req_sys, mavlink_params.req_comp, mavlink_params.curr_count);
         mavlink_params.curr_count++;
-        mavlink_params.Os_Timer_creat(mavlink_params.timer, 100, Mavlink_Parameters_callback);
+        mavlink_route.Os_Timer_creat(mavlink_params.timer, 100, Mavlink_Parameters_callback);
     }
 }
 
@@ -148,11 +136,11 @@ static void Mavlink_Parameters_rec_req_read(unsigned char in_chan, const mavlink
 
     if (param_read_temp.param_index == -1)
     {
-        ret = Mavlink_Parameters_value_send_by_name(in_chan, param_read_temp.param_id);
+        ret = Mavlink_Parameters_value_send_by_name(msg->sysid, msg->compid, param_read_temp.param_id);
     }
     else
     {
-        ret = Mavlink_Parameters_value_send_by_index(mavlink_params.in_chan, param_read_temp.param_index);
+        ret = Mavlink_Parameters_value_send_by_index(msg->sysid, msg->compid, param_read_temp.param_index);
     }
 
     if (!ret)
@@ -177,7 +165,7 @@ void Mavlink_Parameters_rec_set(unsigned char in_chan, const mavlink_message_t *
     if (mavlink_params.Param_Chanege(param_set_temp.param_id, param_set_temp.param_type,
                                      (void *)&param_set_temp.param_value) != NULL)
     {
-        Mavlink_Parameters_value_send_by_name(in_chan, param_set_temp.param_id);
+        Mavlink_Parameters_value_send_by_name(msg->sysid, msg->compid, param_set_temp.param_id);
     }
     else
     {

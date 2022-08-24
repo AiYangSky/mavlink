@@ -114,9 +114,9 @@ static inline uint16_t mavlink_msg_auth_key_encode(uint8_t system_id, uint8_t co
  * @param msg The MAVLink message to compress the data into
  * @param auth_key C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_auth_key_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_auth_key_t* auth_key)
+static inline uint16_t mavlink_msg_auth_key_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* auth_key)
 {
-    return mavlink_msg_auth_key_pack_chan(system_id, component_id, chan, msg, auth_key->key);
+    return mavlink_msg_auth_key_pack_chan(system_id, component_id, chan, msg, ((mavlink_auth_key_t*)auth_key)->key);
 }
 
 /**

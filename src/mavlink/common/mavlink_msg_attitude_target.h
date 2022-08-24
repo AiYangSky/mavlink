@@ -164,9 +164,9 @@ static inline uint16_t mavlink_msg_attitude_target_encode(uint8_t system_id, uin
  * @param msg The MAVLink message to compress the data into
  * @param attitude_target C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_attitude_target_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_attitude_target_t* attitude_target)
+static inline uint16_t mavlink_msg_attitude_target_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* attitude_target)
 {
-    return mavlink_msg_attitude_target_pack_chan(system_id, component_id, chan, msg, attitude_target->time_boot_ms, attitude_target->type_mask, attitude_target->q, attitude_target->body_roll_rate, attitude_target->body_pitch_rate, attitude_target->body_yaw_rate, attitude_target->thrust);
+    return mavlink_msg_attitude_target_pack_chan(system_id, component_id, chan, msg, ((mavlink_attitude_target_t*)attitude_target)->time_boot_ms, ((mavlink_attitude_target_t*)attitude_target)->type_mask, ((mavlink_attitude_target_t*)attitude_target)->q, ((mavlink_attitude_target_t*)attitude_target)->body_roll_rate, ((mavlink_attitude_target_t*)attitude_target)->body_pitch_rate, ((mavlink_attitude_target_t*)attitude_target)->body_yaw_rate, ((mavlink_attitude_target_t*)attitude_target)->thrust);
 }
 
 /**

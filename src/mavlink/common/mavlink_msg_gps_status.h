@@ -159,9 +159,9 @@ static inline uint16_t mavlink_msg_gps_status_encode(uint8_t system_id, uint8_t 
  * @param msg The MAVLink message to compress the data into
  * @param gps_status C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_gps_status_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_gps_status_t* gps_status)
+static inline uint16_t mavlink_msg_gps_status_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* gps_status)
 {
-    return mavlink_msg_gps_status_pack_chan(system_id, component_id, chan, msg, gps_status->satellites_visible, gps_status->satellite_prn, gps_status->satellite_used, gps_status->satellite_elevation, gps_status->satellite_azimuth, gps_status->satellite_snr);
+    return mavlink_msg_gps_status_pack_chan(system_id, component_id, chan, msg, ((mavlink_gps_status_t*)gps_status)->satellites_visible, ((mavlink_gps_status_t*)gps_status)->satellite_prn, ((mavlink_gps_status_t*)gps_status)->satellite_used, ((mavlink_gps_status_t*)gps_status)->satellite_elevation, ((mavlink_gps_status_t*)gps_status)->satellite_azimuth, ((mavlink_gps_status_t*)gps_status)->satellite_snr);
 }
 
 /**

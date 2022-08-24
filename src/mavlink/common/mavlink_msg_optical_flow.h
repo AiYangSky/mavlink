@@ -195,9 +195,9 @@ static inline uint16_t mavlink_msg_optical_flow_encode(uint8_t system_id, uint8_
  * @param msg The MAVLink message to compress the data into
  * @param optical_flow C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_optical_flow_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_optical_flow_t* optical_flow)
+static inline uint16_t mavlink_msg_optical_flow_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* optical_flow)
 {
-    return mavlink_msg_optical_flow_pack_chan(system_id, component_id, chan, msg, optical_flow->time_usec, optical_flow->sensor_id, optical_flow->flow_x, optical_flow->flow_y, optical_flow->flow_comp_m_x, optical_flow->flow_comp_m_y, optical_flow->quality, optical_flow->ground_distance, optical_flow->flow_rate_x, optical_flow->flow_rate_y);
+    return mavlink_msg_optical_flow_pack_chan(system_id, component_id, chan, msg, ((mavlink_optical_flow_t*)optical_flow)->time_usec, ((mavlink_optical_flow_t*)optical_flow)->sensor_id, ((mavlink_optical_flow_t*)optical_flow)->flow_x, ((mavlink_optical_flow_t*)optical_flow)->flow_y, ((mavlink_optical_flow_t*)optical_flow)->flow_comp_m_x, ((mavlink_optical_flow_t*)optical_flow)->flow_comp_m_y, ((mavlink_optical_flow_t*)optical_flow)->quality, ((mavlink_optical_flow_t*)optical_flow)->ground_distance, ((mavlink_optical_flow_t*)optical_flow)->flow_rate_x, ((mavlink_optical_flow_t*)optical_flow)->flow_rate_y);
 }
 
 /**

@@ -240,9 +240,9 @@ static inline uint16_t mavlink_msg_mission_item_int_encode(uint8_t system_id, ui
  * @param msg The MAVLink message to compress the data into
  * @param mission_item_int C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_mission_item_int_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_mission_item_int_t* mission_item_int)
+static inline uint16_t mavlink_msg_mission_item_int_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* mission_item_int)
 {
-    return mavlink_msg_mission_item_int_pack_chan(system_id, component_id, chan, msg, mission_item_int->target_system, mission_item_int->target_component, mission_item_int->seq, mission_item_int->frame, mission_item_int->command, mission_item_int->current, mission_item_int->autocontinue, mission_item_int->param1, mission_item_int->param2, mission_item_int->param3, mission_item_int->param4, mission_item_int->x, mission_item_int->y, mission_item_int->z, mission_item_int->mission_type);
+    return mavlink_msg_mission_item_int_pack_chan(system_id, component_id, chan, msg, ((mavlink_mission_item_int_t*)mission_item_int)->target_system, ((mavlink_mission_item_int_t*)mission_item_int)->target_component, ((mavlink_mission_item_int_t*)mission_item_int)->seq, ((mavlink_mission_item_int_t*)mission_item_int)->frame, ((mavlink_mission_item_int_t*)mission_item_int)->command, ((mavlink_mission_item_int_t*)mission_item_int)->current, ((mavlink_mission_item_int_t*)mission_item_int)->autocontinue, ((mavlink_mission_item_int_t*)mission_item_int)->param1, ((mavlink_mission_item_int_t*)mission_item_int)->param2, ((mavlink_mission_item_int_t*)mission_item_int)->param3, ((mavlink_mission_item_int_t*)mission_item_int)->param4, ((mavlink_mission_item_int_t*)mission_item_int)->x, ((mavlink_mission_item_int_t*)mission_item_int)->y, ((mavlink_mission_item_int_t*)mission_item_int)->z, ((mavlink_mission_item_int_t*)mission_item_int)->mission_type);
 }
 
 /**

@@ -176,9 +176,9 @@ static inline uint16_t mavlink_msg_cellular_config_encode(uint8_t system_id, uin
  * @param msg The MAVLink message to compress the data into
  * @param cellular_config C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_cellular_config_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_cellular_config_t* cellular_config)
+static inline uint16_t mavlink_msg_cellular_config_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* cellular_config)
 {
-    return mavlink_msg_cellular_config_pack_chan(system_id, component_id, chan, msg, cellular_config->enable_lte, cellular_config->enable_pin, cellular_config->pin, cellular_config->new_pin, cellular_config->apn, cellular_config->puk, cellular_config->roaming, cellular_config->response);
+    return mavlink_msg_cellular_config_pack_chan(system_id, component_id, chan, msg, ((mavlink_cellular_config_t*)cellular_config)->enable_lte, ((mavlink_cellular_config_t*)cellular_config)->enable_pin, ((mavlink_cellular_config_t*)cellular_config)->pin, ((mavlink_cellular_config_t*)cellular_config)->new_pin, ((mavlink_cellular_config_t*)cellular_config)->apn, ((mavlink_cellular_config_t*)cellular_config)->puk, ((mavlink_cellular_config_t*)cellular_config)->roaming, ((mavlink_cellular_config_t*)cellular_config)->response);
 }
 
 /**

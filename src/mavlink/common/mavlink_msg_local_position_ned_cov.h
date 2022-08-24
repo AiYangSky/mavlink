@@ -209,9 +209,9 @@ static inline uint16_t mavlink_msg_local_position_ned_cov_encode(uint8_t system_
  * @param msg The MAVLink message to compress the data into
  * @param local_position_ned_cov C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_local_position_ned_cov_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_local_position_ned_cov_t* local_position_ned_cov)
+static inline uint16_t mavlink_msg_local_position_ned_cov_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* local_position_ned_cov)
 {
-    return mavlink_msg_local_position_ned_cov_pack_chan(system_id, component_id, chan, msg, local_position_ned_cov->time_usec, local_position_ned_cov->estimator_type, local_position_ned_cov->x, local_position_ned_cov->y, local_position_ned_cov->z, local_position_ned_cov->vx, local_position_ned_cov->vy, local_position_ned_cov->vz, local_position_ned_cov->ax, local_position_ned_cov->ay, local_position_ned_cov->az, local_position_ned_cov->covariance);
+    return mavlink_msg_local_position_ned_cov_pack_chan(system_id, component_id, chan, msg, ((mavlink_local_position_ned_cov_t*)local_position_ned_cov)->time_usec, ((mavlink_local_position_ned_cov_t*)local_position_ned_cov)->estimator_type, ((mavlink_local_position_ned_cov_t*)local_position_ned_cov)->x, ((mavlink_local_position_ned_cov_t*)local_position_ned_cov)->y, ((mavlink_local_position_ned_cov_t*)local_position_ned_cov)->z, ((mavlink_local_position_ned_cov_t*)local_position_ned_cov)->vx, ((mavlink_local_position_ned_cov_t*)local_position_ned_cov)->vy, ((mavlink_local_position_ned_cov_t*)local_position_ned_cov)->vz, ((mavlink_local_position_ned_cov_t*)local_position_ned_cov)->ax, ((mavlink_local_position_ned_cov_t*)local_position_ned_cov)->ay, ((mavlink_local_position_ned_cov_t*)local_position_ned_cov)->az, ((mavlink_local_position_ned_cov_t*)local_position_ned_cov)->covariance);
 }
 
 /**

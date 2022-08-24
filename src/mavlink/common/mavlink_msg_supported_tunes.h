@@ -132,9 +132,9 @@ static inline uint16_t mavlink_msg_supported_tunes_encode(uint8_t system_id, uin
  * @param msg The MAVLink message to compress the data into
  * @param supported_tunes C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_supported_tunes_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_supported_tunes_t* supported_tunes)
+static inline uint16_t mavlink_msg_supported_tunes_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* supported_tunes)
 {
-    return mavlink_msg_supported_tunes_pack_chan(system_id, component_id, chan, msg, supported_tunes->target_system, supported_tunes->target_component, supported_tunes->format);
+    return mavlink_msg_supported_tunes_pack_chan(system_id, component_id, chan, msg, ((mavlink_supported_tunes_t*)supported_tunes)->target_system, ((mavlink_supported_tunes_t*)supported_tunes)->target_component, ((mavlink_supported_tunes_t*)supported_tunes)->format);
 }
 
 /**

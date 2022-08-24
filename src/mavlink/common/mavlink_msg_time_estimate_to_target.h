@@ -150,9 +150,9 @@ static inline uint16_t mavlink_msg_time_estimate_to_target_encode(uint8_t system
  * @param msg The MAVLink message to compress the data into
  * @param time_estimate_to_target C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_time_estimate_to_target_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_time_estimate_to_target_t* time_estimate_to_target)
+static inline uint16_t mavlink_msg_time_estimate_to_target_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* time_estimate_to_target)
 {
-    return mavlink_msg_time_estimate_to_target_pack_chan(system_id, component_id, chan, msg, time_estimate_to_target->safe_return, time_estimate_to_target->land, time_estimate_to_target->mission_next_item, time_estimate_to_target->mission_end, time_estimate_to_target->commanded_action);
+    return mavlink_msg_time_estimate_to_target_pack_chan(system_id, component_id, chan, msg, ((mavlink_time_estimate_to_target_t*)time_estimate_to_target)->safe_return, ((mavlink_time_estimate_to_target_t*)time_estimate_to_target)->land, ((mavlink_time_estimate_to_target_t*)time_estimate_to_target)->mission_next_item, ((mavlink_time_estimate_to_target_t*)time_estimate_to_target)->mission_end, ((mavlink_time_estimate_to_target_t*)time_estimate_to_target)->commanded_action);
 }
 
 /**

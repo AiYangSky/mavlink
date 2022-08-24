@@ -132,9 +132,9 @@ static inline uint16_t mavlink_msg_mission_set_current_encode(uint8_t system_id,
  * @param msg The MAVLink message to compress the data into
  * @param mission_set_current C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_mission_set_current_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_mission_set_current_t* mission_set_current)
+static inline uint16_t mavlink_msg_mission_set_current_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* mission_set_current)
 {
-    return mavlink_msg_mission_set_current_pack_chan(system_id, component_id, chan, msg, mission_set_current->target_system, mission_set_current->target_component, mission_set_current->seq);
+    return mavlink_msg_mission_set_current_pack_chan(system_id, component_id, chan, msg, ((mavlink_mission_set_current_t*)mission_set_current)->target_system, ((mavlink_mission_set_current_t*)mission_set_current)->target_component, ((mavlink_mission_set_current_t*)mission_set_current)->seq);
 }
 
 /**

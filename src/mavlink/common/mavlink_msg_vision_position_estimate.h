@@ -182,9 +182,9 @@ static inline uint16_t mavlink_msg_vision_position_estimate_encode(uint8_t syste
  * @param msg The MAVLink message to compress the data into
  * @param vision_position_estimate C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_vision_position_estimate_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_vision_position_estimate_t* vision_position_estimate)
+static inline uint16_t mavlink_msg_vision_position_estimate_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* vision_position_estimate)
 {
-    return mavlink_msg_vision_position_estimate_pack_chan(system_id, component_id, chan, msg, vision_position_estimate->usec, vision_position_estimate->x, vision_position_estimate->y, vision_position_estimate->z, vision_position_estimate->roll, vision_position_estimate->pitch, vision_position_estimate->yaw, vision_position_estimate->covariance, vision_position_estimate->reset_counter);
+    return mavlink_msg_vision_position_estimate_pack_chan(system_id, component_id, chan, msg, ((mavlink_vision_position_estimate_t*)vision_position_estimate)->usec, ((mavlink_vision_position_estimate_t*)vision_position_estimate)->x, ((mavlink_vision_position_estimate_t*)vision_position_estimate)->y, ((mavlink_vision_position_estimate_t*)vision_position_estimate)->z, ((mavlink_vision_position_estimate_t*)vision_position_estimate)->roll, ((mavlink_vision_position_estimate_t*)vision_position_estimate)->pitch, ((mavlink_vision_position_estimate_t*)vision_position_estimate)->yaw, ((mavlink_vision_position_estimate_t*)vision_position_estimate)->covariance, ((mavlink_vision_position_estimate_t*)vision_position_estimate)->reset_counter);
 }
 
 /**

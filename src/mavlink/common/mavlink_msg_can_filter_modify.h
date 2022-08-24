@@ -155,9 +155,9 @@ static inline uint16_t mavlink_msg_can_filter_modify_encode(uint8_t system_id, u
  * @param msg The MAVLink message to compress the data into
  * @param can_filter_modify C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_can_filter_modify_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_can_filter_modify_t* can_filter_modify)
+static inline uint16_t mavlink_msg_can_filter_modify_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* can_filter_modify)
 {
-    return mavlink_msg_can_filter_modify_pack_chan(system_id, component_id, chan, msg, can_filter_modify->target_system, can_filter_modify->target_component, can_filter_modify->bus, can_filter_modify->operation, can_filter_modify->num_ids, can_filter_modify->ids);
+    return mavlink_msg_can_filter_modify_pack_chan(system_id, component_id, chan, msg, ((mavlink_can_filter_modify_t*)can_filter_modify)->target_system, ((mavlink_can_filter_modify_t*)can_filter_modify)->target_component, ((mavlink_can_filter_modify_t*)can_filter_modify)->bus, ((mavlink_can_filter_modify_t*)can_filter_modify)->operation, ((mavlink_can_filter_modify_t*)can_filter_modify)->num_ids, ((mavlink_can_filter_modify_t*)can_filter_modify)->ids);
 }
 
 /**

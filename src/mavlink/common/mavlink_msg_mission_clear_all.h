@@ -132,9 +132,9 @@ static inline uint16_t mavlink_msg_mission_clear_all_encode(uint8_t system_id, u
  * @param msg The MAVLink message to compress the data into
  * @param mission_clear_all C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_mission_clear_all_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_mission_clear_all_t* mission_clear_all)
+static inline uint16_t mavlink_msg_mission_clear_all_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* mission_clear_all)
 {
-    return mavlink_msg_mission_clear_all_pack_chan(system_id, component_id, chan, msg, mission_clear_all->target_system, mission_clear_all->target_component, mission_clear_all->mission_type);
+    return mavlink_msg_mission_clear_all_pack_chan(system_id, component_id, chan, msg, ((mavlink_mission_clear_all_t*)mission_clear_all)->target_system, ((mavlink_mission_clear_all_t*)mission_clear_all)->target_component, ((mavlink_mission_clear_all_t*)mission_clear_all)->mission_type);
 }
 
 /**

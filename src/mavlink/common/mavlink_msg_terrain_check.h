@@ -123,9 +123,9 @@ static inline uint16_t mavlink_msg_terrain_check_encode(uint8_t system_id, uint8
  * @param msg The MAVLink message to compress the data into
  * @param terrain_check C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_terrain_check_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_terrain_check_t* terrain_check)
+static inline uint16_t mavlink_msg_terrain_check_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* terrain_check)
 {
-    return mavlink_msg_terrain_check_pack_chan(system_id, component_id, chan, msg, terrain_check->lat, terrain_check->lon);
+    return mavlink_msg_terrain_check_pack_chan(system_id, component_id, chan, msg, ((mavlink_terrain_check_t*)terrain_check)->lat, ((mavlink_terrain_check_t*)terrain_check)->lon);
 }
 
 /**

@@ -218,9 +218,9 @@ static inline uint16_t mavlink_msg_storage_information_encode(uint8_t system_id,
  * @param msg The MAVLink message to compress the data into
  * @param storage_information C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_storage_information_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_storage_information_t* storage_information)
+static inline uint16_t mavlink_msg_storage_information_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* storage_information)
 {
-    return mavlink_msg_storage_information_pack_chan(system_id, component_id, chan, msg, storage_information->time_boot_ms, storage_information->storage_id, storage_information->storage_count, storage_information->status, storage_information->total_capacity, storage_information->used_capacity, storage_information->available_capacity, storage_information->read_speed, storage_information->write_speed, storage_information->type, storage_information->name, storage_information->storage_usage);
+    return mavlink_msg_storage_information_pack_chan(system_id, component_id, chan, msg, ((mavlink_storage_information_t*)storage_information)->time_boot_ms, ((mavlink_storage_information_t*)storage_information)->storage_id, ((mavlink_storage_information_t*)storage_information)->storage_count, ((mavlink_storage_information_t*)storage_information)->status, ((mavlink_storage_information_t*)storage_information)->total_capacity, ((mavlink_storage_information_t*)storage_information)->used_capacity, ((mavlink_storage_information_t*)storage_information)->available_capacity, ((mavlink_storage_information_t*)storage_information)->read_speed, ((mavlink_storage_information_t*)storage_information)->write_speed, ((mavlink_storage_information_t*)storage_information)->type, ((mavlink_storage_information_t*)storage_information)->name, ((mavlink_storage_information_t*)storage_information)->storage_usage);
 }
 
 /**

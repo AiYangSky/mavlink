@@ -132,9 +132,9 @@ static inline uint16_t mavlink_msg_power_status_encode(uint8_t system_id, uint8_
  * @param msg The MAVLink message to compress the data into
  * @param power_status C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_power_status_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_power_status_t* power_status)
+static inline uint16_t mavlink_msg_power_status_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* power_status)
 {
-    return mavlink_msg_power_status_pack_chan(system_id, component_id, chan, msg, power_status->Vcc, power_status->Vservo, power_status->flags);
+    return mavlink_msg_power_status_pack_chan(system_id, component_id, chan, msg, ((mavlink_power_status_t*)power_status)->Vcc, ((mavlink_power_status_t*)power_status)->Vservo, ((mavlink_power_status_t*)power_status)->flags);
 }
 
 /**

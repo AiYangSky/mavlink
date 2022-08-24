@@ -204,9 +204,9 @@ static inline uint16_t mavlink_msg_rc_channels_scaled_encode(uint8_t system_id, 
  * @param msg The MAVLink message to compress the data into
  * @param rc_channels_scaled C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_rc_channels_scaled_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_rc_channels_scaled_t* rc_channels_scaled)
+static inline uint16_t mavlink_msg_rc_channels_scaled_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* rc_channels_scaled)
 {
-    return mavlink_msg_rc_channels_scaled_pack_chan(system_id, component_id, chan, msg, rc_channels_scaled->time_boot_ms, rc_channels_scaled->port, rc_channels_scaled->chan1_scaled, rc_channels_scaled->chan2_scaled, rc_channels_scaled->chan3_scaled, rc_channels_scaled->chan4_scaled, rc_channels_scaled->chan5_scaled, rc_channels_scaled->chan6_scaled, rc_channels_scaled->chan7_scaled, rc_channels_scaled->chan8_scaled, rc_channels_scaled->rssi);
+    return mavlink_msg_rc_channels_scaled_pack_chan(system_id, component_id, chan, msg, ((mavlink_rc_channels_scaled_t*)rc_channels_scaled)->time_boot_ms, ((mavlink_rc_channels_scaled_t*)rc_channels_scaled)->port, ((mavlink_rc_channels_scaled_t*)rc_channels_scaled)->chan1_scaled, ((mavlink_rc_channels_scaled_t*)rc_channels_scaled)->chan2_scaled, ((mavlink_rc_channels_scaled_t*)rc_channels_scaled)->chan3_scaled, ((mavlink_rc_channels_scaled_t*)rc_channels_scaled)->chan4_scaled, ((mavlink_rc_channels_scaled_t*)rc_channels_scaled)->chan5_scaled, ((mavlink_rc_channels_scaled_t*)rc_channels_scaled)->chan6_scaled, ((mavlink_rc_channels_scaled_t*)rc_channels_scaled)->chan7_scaled, ((mavlink_rc_channels_scaled_t*)rc_channels_scaled)->chan8_scaled, ((mavlink_rc_channels_scaled_t*)rc_channels_scaled)->rssi);
 }
 
 /**

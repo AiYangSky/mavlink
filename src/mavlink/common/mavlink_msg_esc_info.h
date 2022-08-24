@@ -184,9 +184,9 @@ static inline uint16_t mavlink_msg_esc_info_encode(uint8_t system_id, uint8_t co
  * @param msg The MAVLink message to compress the data into
  * @param esc_info C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_esc_info_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_esc_info_t* esc_info)
+static inline uint16_t mavlink_msg_esc_info_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* esc_info)
 {
-    return mavlink_msg_esc_info_pack_chan(system_id, component_id, chan, msg, esc_info->index, esc_info->time_usec, esc_info->counter, esc_info->count, esc_info->connection_type, esc_info->info, esc_info->failure_flags, esc_info->error_count, esc_info->temperature);
+    return mavlink_msg_esc_info_pack_chan(system_id, component_id, chan, msg, ((mavlink_esc_info_t*)esc_info)->index, ((mavlink_esc_info_t*)esc_info)->time_usec, ((mavlink_esc_info_t*)esc_info)->counter, ((mavlink_esc_info_t*)esc_info)->count, ((mavlink_esc_info_t*)esc_info)->connection_type, ((mavlink_esc_info_t*)esc_info)->info, ((mavlink_esc_info_t*)esc_info)->failure_flags, ((mavlink_esc_info_t*)esc_info)->error_count, ((mavlink_esc_info_t*)esc_info)->temperature);
 }
 
 /**

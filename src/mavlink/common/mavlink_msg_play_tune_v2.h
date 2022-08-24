@@ -137,9 +137,9 @@ static inline uint16_t mavlink_msg_play_tune_v2_encode(uint8_t system_id, uint8_
  * @param msg The MAVLink message to compress the data into
  * @param play_tune_v2 C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_play_tune_v2_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_play_tune_v2_t* play_tune_v2)
+static inline uint16_t mavlink_msg_play_tune_v2_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* play_tune_v2)
 {
-    return mavlink_msg_play_tune_v2_pack_chan(system_id, component_id, chan, msg, play_tune_v2->target_system, play_tune_v2->target_component, play_tune_v2->format, play_tune_v2->tune);
+    return mavlink_msg_play_tune_v2_pack_chan(system_id, component_id, chan, msg, ((mavlink_play_tune_v2_t*)play_tune_v2)->target_system, ((mavlink_play_tune_v2_t*)play_tune_v2)->target_component, ((mavlink_play_tune_v2_t*)play_tune_v2)->format, ((mavlink_play_tune_v2_t*)play_tune_v2)->tune);
 }
 
 /**

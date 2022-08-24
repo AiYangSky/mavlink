@@ -255,9 +255,9 @@ static inline uint16_t mavlink_msg_ais_vessel_encode(uint8_t system_id, uint8_t 
  * @param msg The MAVLink message to compress the data into
  * @param ais_vessel C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_ais_vessel_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_ais_vessel_t* ais_vessel)
+static inline uint16_t mavlink_msg_ais_vessel_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* ais_vessel)
 {
-    return mavlink_msg_ais_vessel_pack_chan(system_id, component_id, chan, msg, ais_vessel->MMSI, ais_vessel->lat, ais_vessel->lon, ais_vessel->COG, ais_vessel->heading, ais_vessel->velocity, ais_vessel->turn_rate, ais_vessel->navigational_status, ais_vessel->type, ais_vessel->dimension_bow, ais_vessel->dimension_stern, ais_vessel->dimension_port, ais_vessel->dimension_starboard, ais_vessel->callsign, ais_vessel->name, ais_vessel->tslc, ais_vessel->flags);
+    return mavlink_msg_ais_vessel_pack_chan(system_id, component_id, chan, msg, ((mavlink_ais_vessel_t*)ais_vessel)->MMSI, ((mavlink_ais_vessel_t*)ais_vessel)->lat, ((mavlink_ais_vessel_t*)ais_vessel)->lon, ((mavlink_ais_vessel_t*)ais_vessel)->COG, ((mavlink_ais_vessel_t*)ais_vessel)->heading, ((mavlink_ais_vessel_t*)ais_vessel)->velocity, ((mavlink_ais_vessel_t*)ais_vessel)->turn_rate, ((mavlink_ais_vessel_t*)ais_vessel)->navigational_status, ((mavlink_ais_vessel_t*)ais_vessel)->type, ((mavlink_ais_vessel_t*)ais_vessel)->dimension_bow, ((mavlink_ais_vessel_t*)ais_vessel)->dimension_stern, ((mavlink_ais_vessel_t*)ais_vessel)->dimension_port, ((mavlink_ais_vessel_t*)ais_vessel)->dimension_starboard, ((mavlink_ais_vessel_t*)ais_vessel)->callsign, ((mavlink_ais_vessel_t*)ais_vessel)->name, ((mavlink_ais_vessel_t*)ais_vessel)->tslc, ((mavlink_ais_vessel_t*)ais_vessel)->flags);
 }
 
 /**

@@ -212,9 +212,9 @@ static inline uint16_t mavlink_msg_autopilot_version_encode(uint8_t system_id, u
  * @param msg The MAVLink message to compress the data into
  * @param autopilot_version C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_autopilot_version_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_autopilot_version_t* autopilot_version)
+static inline uint16_t mavlink_msg_autopilot_version_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* autopilot_version)
 {
-    return mavlink_msg_autopilot_version_pack_chan(system_id, component_id, chan, msg, autopilot_version->capabilities, autopilot_version->flight_sw_version, autopilot_version->middleware_sw_version, autopilot_version->os_sw_version, autopilot_version->board_version, autopilot_version->flight_custom_version, autopilot_version->middleware_custom_version, autopilot_version->os_custom_version, autopilot_version->vendor_id, autopilot_version->product_id, autopilot_version->uid, autopilot_version->uid2);
+    return mavlink_msg_autopilot_version_pack_chan(system_id, component_id, chan, msg, ((mavlink_autopilot_version_t*)autopilot_version)->capabilities, ((mavlink_autopilot_version_t*)autopilot_version)->flight_sw_version, ((mavlink_autopilot_version_t*)autopilot_version)->middleware_sw_version, ((mavlink_autopilot_version_t*)autopilot_version)->os_sw_version, ((mavlink_autopilot_version_t*)autopilot_version)->board_version, ((mavlink_autopilot_version_t*)autopilot_version)->flight_custom_version, ((mavlink_autopilot_version_t*)autopilot_version)->middleware_custom_version, ((mavlink_autopilot_version_t*)autopilot_version)->os_custom_version, ((mavlink_autopilot_version_t*)autopilot_version)->vendor_id, ((mavlink_autopilot_version_t*)autopilot_version)->product_id, ((mavlink_autopilot_version_t*)autopilot_version)->uid, ((mavlink_autopilot_version_t*)autopilot_version)->uid2);
 }
 
 /**

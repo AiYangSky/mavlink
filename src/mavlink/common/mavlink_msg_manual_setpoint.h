@@ -168,9 +168,9 @@ static inline uint16_t mavlink_msg_manual_setpoint_encode(uint8_t system_id, uin
  * @param msg The MAVLink message to compress the data into
  * @param manual_setpoint C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_manual_setpoint_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_manual_setpoint_t* manual_setpoint)
+static inline uint16_t mavlink_msg_manual_setpoint_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* manual_setpoint)
 {
-    return mavlink_msg_manual_setpoint_pack_chan(system_id, component_id, chan, msg, manual_setpoint->time_boot_ms, manual_setpoint->roll, manual_setpoint->pitch, manual_setpoint->yaw, manual_setpoint->thrust, manual_setpoint->mode_switch, manual_setpoint->manual_override_switch);
+    return mavlink_msg_manual_setpoint_pack_chan(system_id, component_id, chan, msg, ((mavlink_manual_setpoint_t*)manual_setpoint)->time_boot_ms, ((mavlink_manual_setpoint_t*)manual_setpoint)->roll, ((mavlink_manual_setpoint_t*)manual_setpoint)->pitch, ((mavlink_manual_setpoint_t*)manual_setpoint)->yaw, ((mavlink_manual_setpoint_t*)manual_setpoint)->thrust, ((mavlink_manual_setpoint_t*)manual_setpoint)->mode_switch, ((mavlink_manual_setpoint_t*)manual_setpoint)->manual_override_switch);
 }
 
 /**

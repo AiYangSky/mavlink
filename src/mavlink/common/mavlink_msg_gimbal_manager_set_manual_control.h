@@ -177,9 +177,9 @@ static inline uint16_t mavlink_msg_gimbal_manager_set_manual_control_encode(uint
  * @param msg The MAVLink message to compress the data into
  * @param gimbal_manager_set_manual_control C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_gimbal_manager_set_manual_control_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_gimbal_manager_set_manual_control_t* gimbal_manager_set_manual_control)
+static inline uint16_t mavlink_msg_gimbal_manager_set_manual_control_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* gimbal_manager_set_manual_control)
 {
-    return mavlink_msg_gimbal_manager_set_manual_control_pack_chan(system_id, component_id, chan, msg, gimbal_manager_set_manual_control->target_system, gimbal_manager_set_manual_control->target_component, gimbal_manager_set_manual_control->flags, gimbal_manager_set_manual_control->gimbal_device_id, gimbal_manager_set_manual_control->pitch, gimbal_manager_set_manual_control->yaw, gimbal_manager_set_manual_control->pitch_rate, gimbal_manager_set_manual_control->yaw_rate);
+    return mavlink_msg_gimbal_manager_set_manual_control_pack_chan(system_id, component_id, chan, msg, ((mavlink_gimbal_manager_set_manual_control_t*)gimbal_manager_set_manual_control)->target_system, ((mavlink_gimbal_manager_set_manual_control_t*)gimbal_manager_set_manual_control)->target_component, ((mavlink_gimbal_manager_set_manual_control_t*)gimbal_manager_set_manual_control)->flags, ((mavlink_gimbal_manager_set_manual_control_t*)gimbal_manager_set_manual_control)->gimbal_device_id, ((mavlink_gimbal_manager_set_manual_control_t*)gimbal_manager_set_manual_control)->pitch, ((mavlink_gimbal_manager_set_manual_control_t*)gimbal_manager_set_manual_control)->yaw, ((mavlink_gimbal_manager_set_manual_control_t*)gimbal_manager_set_manual_control)->pitch_rate, ((mavlink_gimbal_manager_set_manual_control_t*)gimbal_manager_set_manual_control)->yaw_rate);
 }
 
 /**

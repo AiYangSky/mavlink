@@ -3,7 +3,7 @@
  * @Author         : Aiyangsky
  * @Date           : 2022-08-12 12:11:18
  * @LastEditors    : Aiyangsky
- * @LastEditTime   : 2022-08-20 20:17:15
+ * @LastEditTime   : 2022-08-24 16:22:50
  * @FilePath       : \mavlink\src\route\mavlink_route.c
  */
 
@@ -48,6 +48,79 @@ void Mavlink_Chan_Set(unsigned char chan,
 }
 
 /**
+ * @description:                                The MAVLink dataframe is issued via the MAvLink route
+ * @param       {unsigned char} sysid           target sysid    <0> broadcast
+ * @param       {unsigned char} compid          target compid   <0> broadcast
+ * @param       {void} *msg                     mavlink pack msg
+ * @return      {*}
+ * @note       :
+ * funtion:
+ *              unsigned short (*Pack)(unsigned char, unsigned char, unsigned char, mavlink_message_t *, const void *)
+ * Prototype:
+ *              unsigned short mavlink_msg_##msgname##_encode_chan(unsigned char sysid, unsigned char compid, unsigned char chan,
+ *                                                                 mavlink_message_t *txmsg, const void *msg)
+ */
+bool Mavlink_Route_send(unsigned char tar_sysid, unsigned char tar_compid, const void *msg,
+                        unsigned short (*Pack)(unsigned char, unsigned char, unsigned char, mavlink_message_t *, const void *))
+{
+    unsigned short len_temp;
+    unsigned char i;
+    bool sent_flag[MAVLINK_COMM_NUM_BUFFERS];
+    bool ret = false;
+
+    mavlink_route.Mutex_Get(mavlink_route.mutex);
+
+    memset(sent_flag, 0, sizeof(sent_flag));
+
+    // broadcast
+    if (tar_sysid == 0)
+    {
+        for (i = 0; i < MAVLINK_COMM_NUM_BUFFERS; i++)
+        {
+            Pack(mavlink_route.sysid, mavlink_route.compid, i, &mavlink_route.tx_message, msg);
+            len_temp = mavlink_msg_to_send_buffer(mavlink_route.buf_temp, &mavlink_route.tx_message);
+            mavlink_route.chan_cb[i].Send_bytes(mavlink_route.buf_temp, len_temp);
+        }
+        ret = true;
+    }
+    else
+    {
+        for (i = 0; i < mavlink_route.route_nums; i++)
+        {
+            if (mavlink_route.route_list[i].sysid == tar_sysid)
+            {
+                // broadcast of system
+                if (tar_compid == 0)
+                {
+                    // once sent
+                    if (sent_flag[i] == false)
+                    {
+                        Pack(mavlink_route.sysid, mavlink_route.compid, i, &mavlink_route.tx_message, msg);
+                        len_temp = mavlink_msg_to_send_buffer(mavlink_route.buf_temp, &mavlink_route.tx_message);
+                        mavlink_route.chan_cb[i].Send_bytes(mavlink_route.buf_temp, len_temp);
+                        sent_flag[i] == true;
+                        ret = true;
+                    }
+                }
+                // p2p sent
+                else if (mavlink_route.route_list[i].compid == tar_compid)
+                {
+                    Pack(mavlink_route.sysid, mavlink_route.compid, i, &mavlink_route.tx_message, msg);
+                    len_temp = mavlink_msg_to_send_buffer(mavlink_route.buf_temp, &mavlink_route.tx_message);
+                    mavlink_route.chan_cb[i].Send_bytes(mavlink_route.buf_temp, len_temp);
+                    ret = true;
+                    break;
+                }
+            }
+        }
+    }
+
+    mavlink_route.Mutex_Put(mavlink_route.mutex);
+
+    return ret;
+}
+
+/**
  * @description:                                Register a callback to process mavlink frame
  * @param       {void} *Process                 callback to process MAVLink data frame
  * @return      {*}
@@ -80,8 +153,7 @@ bool Mavlink_Register_process(void (*Process)(unsigned char, const mavlink_messa
 void Mavlink_STATUSTEXT_send(MAV_SEVERITY status, unsigned short id, char *str)
 {
     mavlink_statustext_t mission_statustext_temp;
-    unsigned short len_temp;
-    unsigned char i = 0, j = 0;
+    unsigned char i = 0;
 
     mission_statustext_temp.severity = status;
     mission_statustext_temp.id = id;
@@ -92,24 +164,10 @@ void Mavlink_STATUSTEXT_send(MAV_SEVERITY status, unsigned short id, char *str)
         mission_statustext_temp.chunk_seq = i;
         i++;
         str += 50;
-        for (j = 0; j < MAVLINK_COMM_NUM_BUFFERS; j++)
-        {
-            mavlink_msg_mission_current_encode_chan(mavlink_route.sysid, mavlink_route.compid, j,
-                                                    &mavlink_route.tx_message, &mission_statustext_temp);
-
-            len_temp = mavlink_msg_to_send_buffer(mavlink_route.buf_temp, &mavlink_route.tx_message);
-            mavlink_route.chan_cb[j].Send_bytes(mavlink_route.buf_temp, len_temp);
-        }
+        Mavlink_Route_send(0, 0, (void *)&mission_statustext_temp, mavlink_msg_statustext_encode_chan);
     }
     memcpy(mission_statustext_temp.text, str, strlen(str) + 1);
-    for (j = 0; j < MAVLINK_COMM_NUM_BUFFERS; j++)
-    {
-        mavlink_msg_mission_current_encode_chan(mavlink_route.sysid, mavlink_route.compid, j,
-                                                &mavlink_route.tx_message, &mission_statustext_temp);
-
-        len_temp = mavlink_msg_to_send_buffer(mavlink_route.buf_temp, &mavlink_route.tx_message);
-        mavlink_route.chan_cb[j].Send_bytes(mavlink_route.buf_temp, len_temp);
-    }
+    Mavlink_Route_send(0, 0, (void *)&mission_statustext_temp, mavlink_msg_statustext_encode_chan);
 }
 
 /**
@@ -300,12 +358,11 @@ static void Mavlink_Process_Handle(unsigned char status, unsigned char in_chan, 
 {
     unsigned char i;
     unsigned short len_temp;
-    bool ret;
+
     switch (status)
     {
     case MAVLINK_FRAMING_OK:
-        ret = Mavlink_Route_process(in_chan, message);
-        if (ret)
+        if (Mavlink_Route_process(in_chan, message))
         {
             Mavlink_Date_process(in_chan, message);
         }

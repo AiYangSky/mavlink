@@ -168,9 +168,9 @@ static inline uint16_t mavlink_msg_local_position_ned_encode(uint8_t system_id, 
  * @param msg The MAVLink message to compress the data into
  * @param local_position_ned C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_local_position_ned_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_local_position_ned_t* local_position_ned)
+static inline uint16_t mavlink_msg_local_position_ned_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* local_position_ned)
 {
-    return mavlink_msg_local_position_ned_pack_chan(system_id, component_id, chan, msg, local_position_ned->time_boot_ms, local_position_ned->x, local_position_ned->y, local_position_ned->z, local_position_ned->vx, local_position_ned->vy, local_position_ned->vz);
+    return mavlink_msg_local_position_ned_pack_chan(system_id, component_id, chan, msg, ((mavlink_local_position_ned_t*)local_position_ned)->time_boot_ms, ((mavlink_local_position_ned_t*)local_position_ned)->x, ((mavlink_local_position_ned_t*)local_position_ned)->y, ((mavlink_local_position_ned_t*)local_position_ned)->z, ((mavlink_local_position_ned_t*)local_position_ned)->vx, ((mavlink_local_position_ned_t*)local_position_ned)->vy, ((mavlink_local_position_ned_t*)local_position_ned)->vz);
 }
 
 /**

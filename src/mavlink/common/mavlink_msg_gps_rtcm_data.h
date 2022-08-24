@@ -128,9 +128,9 @@ static inline uint16_t mavlink_msg_gps_rtcm_data_encode(uint8_t system_id, uint8
  * @param msg The MAVLink message to compress the data into
  * @param gps_rtcm_data C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_gps_rtcm_data_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_gps_rtcm_data_t* gps_rtcm_data)
+static inline uint16_t mavlink_msg_gps_rtcm_data_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* gps_rtcm_data)
 {
-    return mavlink_msg_gps_rtcm_data_pack_chan(system_id, component_id, chan, msg, gps_rtcm_data->flags, gps_rtcm_data->len, gps_rtcm_data->data);
+    return mavlink_msg_gps_rtcm_data_pack_chan(system_id, component_id, chan, msg, ((mavlink_gps_rtcm_data_t*)gps_rtcm_data)->flags, ((mavlink_gps_rtcm_data_t*)gps_rtcm_data)->len, ((mavlink_gps_rtcm_data_t*)gps_rtcm_data)->data);
 }
 
 /**

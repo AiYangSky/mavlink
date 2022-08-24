@@ -123,9 +123,9 @@ static inline uint16_t mavlink_msg_log_erase_encode(uint8_t system_id, uint8_t c
  * @param msg The MAVLink message to compress the data into
  * @param log_erase C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_log_erase_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_log_erase_t* log_erase)
+static inline uint16_t mavlink_msg_log_erase_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* log_erase)
 {
-    return mavlink_msg_log_erase_pack_chan(system_id, component_id, chan, msg, log_erase->target_system, log_erase->target_component);
+    return mavlink_msg_log_erase_pack_chan(system_id, component_id, chan, msg, ((mavlink_log_erase_t*)log_erase)->target_system, ((mavlink_log_erase_t*)log_erase)->target_component);
 }
 
 /**

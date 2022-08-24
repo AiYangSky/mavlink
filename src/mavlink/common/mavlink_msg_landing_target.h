@@ -227,9 +227,9 @@ static inline uint16_t mavlink_msg_landing_target_encode(uint8_t system_id, uint
  * @param msg The MAVLink message to compress the data into
  * @param landing_target C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_landing_target_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_landing_target_t* landing_target)
+static inline uint16_t mavlink_msg_landing_target_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* landing_target)
 {
-    return mavlink_msg_landing_target_pack_chan(system_id, component_id, chan, msg, landing_target->time_usec, landing_target->target_num, landing_target->frame, landing_target->angle_x, landing_target->angle_y, landing_target->distance, landing_target->size_x, landing_target->size_y, landing_target->x, landing_target->y, landing_target->z, landing_target->q, landing_target->type, landing_target->position_valid);
+    return mavlink_msg_landing_target_pack_chan(system_id, component_id, chan, msg, ((mavlink_landing_target_t*)landing_target)->time_usec, ((mavlink_landing_target_t*)landing_target)->target_num, ((mavlink_landing_target_t*)landing_target)->frame, ((mavlink_landing_target_t*)landing_target)->angle_x, ((mavlink_landing_target_t*)landing_target)->angle_y, ((mavlink_landing_target_t*)landing_target)->distance, ((mavlink_landing_target_t*)landing_target)->size_x, ((mavlink_landing_target_t*)landing_target)->size_y, ((mavlink_landing_target_t*)landing_target)->x, ((mavlink_landing_target_t*)landing_target)->y, ((mavlink_landing_target_t*)landing_target)->z, ((mavlink_landing_target_t*)landing_target)->q, ((mavlink_landing_target_t*)landing_target)->type, ((mavlink_landing_target_t*)landing_target)->position_valid);
 }
 
 /**

@@ -137,9 +137,9 @@ static inline uint16_t mavlink_msg_setup_signing_encode(uint8_t system_id, uint8
  * @param msg The MAVLink message to compress the data into
  * @param setup_signing C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_setup_signing_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_setup_signing_t* setup_signing)
+static inline uint16_t mavlink_msg_setup_signing_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* setup_signing)
 {
-    return mavlink_msg_setup_signing_pack_chan(system_id, component_id, chan, msg, setup_signing->target_system, setup_signing->target_component, setup_signing->secret_key, setup_signing->initial_timestamp);
+    return mavlink_msg_setup_signing_pack_chan(system_id, component_id, chan, msg, ((mavlink_setup_signing_t*)setup_signing)->target_system, ((mavlink_setup_signing_t*)setup_signing)->target_component, ((mavlink_setup_signing_t*)setup_signing)->secret_key, ((mavlink_setup_signing_t*)setup_signing)->initial_timestamp);
 }
 
 /**

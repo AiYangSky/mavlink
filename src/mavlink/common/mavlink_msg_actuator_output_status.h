@@ -128,9 +128,9 @@ static inline uint16_t mavlink_msg_actuator_output_status_encode(uint8_t system_
  * @param msg The MAVLink message to compress the data into
  * @param actuator_output_status C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_actuator_output_status_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_actuator_output_status_t* actuator_output_status)
+static inline uint16_t mavlink_msg_actuator_output_status_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* actuator_output_status)
 {
-    return mavlink_msg_actuator_output_status_pack_chan(system_id, component_id, chan, msg, actuator_output_status->time_usec, actuator_output_status->active, actuator_output_status->actuator);
+    return mavlink_msg_actuator_output_status_pack_chan(system_id, component_id, chan, msg, ((mavlink_actuator_output_status_t*)actuator_output_status)->time_usec, ((mavlink_actuator_output_status_t*)actuator_output_status)->active, ((mavlink_actuator_output_status_t*)actuator_output_status)->actuator);
 }
 
 /**

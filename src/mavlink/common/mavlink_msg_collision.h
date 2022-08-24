@@ -168,9 +168,9 @@ static inline uint16_t mavlink_msg_collision_encode(uint8_t system_id, uint8_t c
  * @param msg The MAVLink message to compress the data into
  * @param collision C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_collision_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_collision_t* collision)
+static inline uint16_t mavlink_msg_collision_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* collision)
 {
-    return mavlink_msg_collision_pack_chan(system_id, component_id, chan, msg, collision->src, collision->id, collision->action, collision->threat_level, collision->time_to_minimum_delta, collision->altitude_minimum_delta, collision->horizontal_minimum_delta);
+    return mavlink_msg_collision_pack_chan(system_id, component_id, chan, msg, ((mavlink_collision_t*)collision)->src, ((mavlink_collision_t*)collision)->id, ((mavlink_collision_t*)collision)->action, ((mavlink_collision_t*)collision)->threat_level, ((mavlink_collision_t*)collision)->time_to_minimum_delta, ((mavlink_collision_t*)collision)->altitude_minimum_delta, ((mavlink_collision_t*)collision)->horizontal_minimum_delta);
 }
 
 /**

@@ -249,9 +249,9 @@ static inline uint16_t mavlink_msg_highres_imu_encode(uint8_t system_id, uint8_t
  * @param msg The MAVLink message to compress the data into
  * @param highres_imu C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_highres_imu_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_highres_imu_t* highres_imu)
+static inline uint16_t mavlink_msg_highres_imu_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* highres_imu)
 {
-    return mavlink_msg_highres_imu_pack_chan(system_id, component_id, chan, msg, highres_imu->time_usec, highres_imu->xacc, highres_imu->yacc, highres_imu->zacc, highres_imu->xgyro, highres_imu->ygyro, highres_imu->zgyro, highres_imu->xmag, highres_imu->ymag, highres_imu->zmag, highres_imu->abs_pressure, highres_imu->diff_pressure, highres_imu->pressure_alt, highres_imu->temperature, highres_imu->fields_updated, highres_imu->id);
+    return mavlink_msg_highres_imu_pack_chan(system_id, component_id, chan, msg, ((mavlink_highres_imu_t*)highres_imu)->time_usec, ((mavlink_highres_imu_t*)highres_imu)->xacc, ((mavlink_highres_imu_t*)highres_imu)->yacc, ((mavlink_highres_imu_t*)highres_imu)->zacc, ((mavlink_highres_imu_t*)highres_imu)->xgyro, ((mavlink_highres_imu_t*)highres_imu)->ygyro, ((mavlink_highres_imu_t*)highres_imu)->zgyro, ((mavlink_highres_imu_t*)highres_imu)->xmag, ((mavlink_highres_imu_t*)highres_imu)->ymag, ((mavlink_highres_imu_t*)highres_imu)->zmag, ((mavlink_highres_imu_t*)highres_imu)->abs_pressure, ((mavlink_highres_imu_t*)highres_imu)->diff_pressure, ((mavlink_highres_imu_t*)highres_imu)->pressure_alt, ((mavlink_highres_imu_t*)highres_imu)->temperature, ((mavlink_highres_imu_t*)highres_imu)->fields_updated, ((mavlink_highres_imu_t*)highres_imu)->id);
 }
 
 /**

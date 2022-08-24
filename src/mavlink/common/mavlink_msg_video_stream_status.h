@@ -177,9 +177,9 @@ static inline uint16_t mavlink_msg_video_stream_status_encode(uint8_t system_id,
  * @param msg The MAVLink message to compress the data into
  * @param video_stream_status C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_video_stream_status_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_video_stream_status_t* video_stream_status)
+static inline uint16_t mavlink_msg_video_stream_status_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* video_stream_status)
 {
-    return mavlink_msg_video_stream_status_pack_chan(system_id, component_id, chan, msg, video_stream_status->stream_id, video_stream_status->flags, video_stream_status->framerate, video_stream_status->resolution_h, video_stream_status->resolution_v, video_stream_status->bitrate, video_stream_status->rotation, video_stream_status->hfov);
+    return mavlink_msg_video_stream_status_pack_chan(system_id, component_id, chan, msg, ((mavlink_video_stream_status_t*)video_stream_status)->stream_id, ((mavlink_video_stream_status_t*)video_stream_status)->flags, ((mavlink_video_stream_status_t*)video_stream_status)->framerate, ((mavlink_video_stream_status_t*)video_stream_status)->resolution_h, ((mavlink_video_stream_status_t*)video_stream_status)->resolution_v, ((mavlink_video_stream_status_t*)video_stream_status)->bitrate, ((mavlink_video_stream_status_t*)video_stream_status)->rotation, ((mavlink_video_stream_status_t*)video_stream_status)->hfov);
 }
 
 /**

@@ -182,9 +182,9 @@ static inline uint16_t mavlink_msg_param_map_rc_encode(uint8_t system_id, uint8_
  * @param msg The MAVLink message to compress the data into
  * @param param_map_rc C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_param_map_rc_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_param_map_rc_t* param_map_rc)
+static inline uint16_t mavlink_msg_param_map_rc_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* param_map_rc)
 {
-    return mavlink_msg_param_map_rc_pack_chan(system_id, component_id, chan, msg, param_map_rc->target_system, param_map_rc->target_component, param_map_rc->param_id, param_map_rc->param_index, param_map_rc->parameter_rc_channel_index, param_map_rc->param_value0, param_map_rc->scale, param_map_rc->param_value_min, param_map_rc->param_value_max);
+    return mavlink_msg_param_map_rc_pack_chan(system_id, component_id, chan, msg, ((mavlink_param_map_rc_t*)param_map_rc)->target_system, ((mavlink_param_map_rc_t*)param_map_rc)->target_component, ((mavlink_param_map_rc_t*)param_map_rc)->param_id, ((mavlink_param_map_rc_t*)param_map_rc)->param_index, ((mavlink_param_map_rc_t*)param_map_rc)->parameter_rc_channel_index, ((mavlink_param_map_rc_t*)param_map_rc)->param_value0, ((mavlink_param_map_rc_t*)param_map_rc)->scale, ((mavlink_param_map_rc_t*)param_map_rc)->param_value_min, ((mavlink_param_map_rc_t*)param_map_rc)->param_value_max);
 }
 
 /**

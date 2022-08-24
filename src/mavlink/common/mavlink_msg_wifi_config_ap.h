@@ -138,9 +138,9 @@ static inline uint16_t mavlink_msg_wifi_config_ap_encode(uint8_t system_id, uint
  * @param msg The MAVLink message to compress the data into
  * @param wifi_config_ap C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_wifi_config_ap_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_wifi_config_ap_t* wifi_config_ap)
+static inline uint16_t mavlink_msg_wifi_config_ap_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* wifi_config_ap)
 {
-    return mavlink_msg_wifi_config_ap_pack_chan(system_id, component_id, chan, msg, wifi_config_ap->ssid, wifi_config_ap->password, wifi_config_ap->mode, wifi_config_ap->response);
+    return mavlink_msg_wifi_config_ap_pack_chan(system_id, component_id, chan, msg, ((mavlink_wifi_config_ap_t*)wifi_config_ap)->ssid, ((mavlink_wifi_config_ap_t*)wifi_config_ap)->password, ((mavlink_wifi_config_ap_t*)wifi_config_ap)->mode, ((mavlink_wifi_config_ap_t*)wifi_config_ap)->response);
 }
 
 /**

@@ -146,9 +146,9 @@ static inline uint16_t mavlink_msg_set_actuator_control_target_encode(uint8_t sy
  * @param msg The MAVLink message to compress the data into
  * @param set_actuator_control_target C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_set_actuator_control_target_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_set_actuator_control_target_t* set_actuator_control_target)
+static inline uint16_t mavlink_msg_set_actuator_control_target_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* set_actuator_control_target)
 {
-    return mavlink_msg_set_actuator_control_target_pack_chan(system_id, component_id, chan, msg, set_actuator_control_target->time_usec, set_actuator_control_target->group_mlx, set_actuator_control_target->target_system, set_actuator_control_target->target_component, set_actuator_control_target->controls);
+    return mavlink_msg_set_actuator_control_target_pack_chan(system_id, component_id, chan, msg, ((mavlink_set_actuator_control_target_t*)set_actuator_control_target)->time_usec, ((mavlink_set_actuator_control_target_t*)set_actuator_control_target)->group_mlx, ((mavlink_set_actuator_control_target_t*)set_actuator_control_target)->target_system, ((mavlink_set_actuator_control_target_t*)set_actuator_control_target)->target_component, ((mavlink_set_actuator_control_target_t*)set_actuator_control_target)->controls);
 }
 
 /**

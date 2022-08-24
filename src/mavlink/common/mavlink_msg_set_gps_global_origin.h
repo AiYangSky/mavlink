@@ -150,9 +150,9 @@ static inline uint16_t mavlink_msg_set_gps_global_origin_encode(uint8_t system_i
  * @param msg The MAVLink message to compress the data into
  * @param set_gps_global_origin C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_set_gps_global_origin_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_set_gps_global_origin_t* set_gps_global_origin)
+static inline uint16_t mavlink_msg_set_gps_global_origin_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* set_gps_global_origin)
 {
-    return mavlink_msg_set_gps_global_origin_pack_chan(system_id, component_id, chan, msg, set_gps_global_origin->target_system, set_gps_global_origin->latitude, set_gps_global_origin->longitude, set_gps_global_origin->altitude, set_gps_global_origin->time_usec);
+    return mavlink_msg_set_gps_global_origin_pack_chan(system_id, component_id, chan, msg, ((mavlink_set_gps_global_origin_t*)set_gps_global_origin)->target_system, ((mavlink_set_gps_global_origin_t*)set_gps_global_origin)->latitude, ((mavlink_set_gps_global_origin_t*)set_gps_global_origin)->longitude, ((mavlink_set_gps_global_origin_t*)set_gps_global_origin)->altitude, ((mavlink_set_gps_global_origin_t*)set_gps_global_origin)->time_usec);
 }
 
 /**

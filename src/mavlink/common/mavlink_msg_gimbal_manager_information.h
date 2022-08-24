@@ -186,9 +186,9 @@ static inline uint16_t mavlink_msg_gimbal_manager_information_encode(uint8_t sys
  * @param msg The MAVLink message to compress the data into
  * @param gimbal_manager_information C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_gimbal_manager_information_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_gimbal_manager_information_t* gimbal_manager_information)
+static inline uint16_t mavlink_msg_gimbal_manager_information_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* gimbal_manager_information)
 {
-    return mavlink_msg_gimbal_manager_information_pack_chan(system_id, component_id, chan, msg, gimbal_manager_information->time_boot_ms, gimbal_manager_information->cap_flags, gimbal_manager_information->gimbal_device_id, gimbal_manager_information->roll_min, gimbal_manager_information->roll_max, gimbal_manager_information->pitch_min, gimbal_manager_information->pitch_max, gimbal_manager_information->yaw_min, gimbal_manager_information->yaw_max);
+    return mavlink_msg_gimbal_manager_information_pack_chan(system_id, component_id, chan, msg, ((mavlink_gimbal_manager_information_t*)gimbal_manager_information)->time_boot_ms, ((mavlink_gimbal_manager_information_t*)gimbal_manager_information)->cap_flags, ((mavlink_gimbal_manager_information_t*)gimbal_manager_information)->gimbal_device_id, ((mavlink_gimbal_manager_information_t*)gimbal_manager_information)->roll_min, ((mavlink_gimbal_manager_information_t*)gimbal_manager_information)->roll_max, ((mavlink_gimbal_manager_information_t*)gimbal_manager_information)->pitch_min, ((mavlink_gimbal_manager_information_t*)gimbal_manager_information)->pitch_max, ((mavlink_gimbal_manager_information_t*)gimbal_manager_information)->yaw_min, ((mavlink_gimbal_manager_information_t*)gimbal_manager_information)->yaw_max);
 }
 
 /**

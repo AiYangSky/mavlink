@@ -186,9 +186,9 @@ static inline uint16_t mavlink_msg_global_position_int_encode(uint8_t system_id,
  * @param msg The MAVLink message to compress the data into
  * @param global_position_int C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_global_position_int_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_global_position_int_t* global_position_int)
+static inline uint16_t mavlink_msg_global_position_int_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* global_position_int)
 {
-    return mavlink_msg_global_position_int_pack_chan(system_id, component_id, chan, msg, global_position_int->time_boot_ms, global_position_int->lat, global_position_int->lon, global_position_int->alt, global_position_int->relative_alt, global_position_int->vx, global_position_int->vy, global_position_int->vz, global_position_int->hdg);
+    return mavlink_msg_global_position_int_pack_chan(system_id, component_id, chan, msg, ((mavlink_global_position_int_t*)global_position_int)->time_boot_ms, ((mavlink_global_position_int_t*)global_position_int)->lat, ((mavlink_global_position_int_t*)global_position_int)->lon, ((mavlink_global_position_int_t*)global_position_int)->alt, ((mavlink_global_position_int_t*)global_position_int)->relative_alt, ((mavlink_global_position_int_t*)global_position_int)->vx, ((mavlink_global_position_int_t*)global_position_int)->vy, ((mavlink_global_position_int_t*)global_position_int)->vz, ((mavlink_global_position_int_t*)global_position_int)->hdg);
 }
 
 /**

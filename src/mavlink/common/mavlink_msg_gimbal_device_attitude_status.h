@@ -182,9 +182,9 @@ static inline uint16_t mavlink_msg_gimbal_device_attitude_status_encode(uint8_t 
  * @param msg The MAVLink message to compress the data into
  * @param gimbal_device_attitude_status C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_gimbal_device_attitude_status_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_gimbal_device_attitude_status_t* gimbal_device_attitude_status)
+static inline uint16_t mavlink_msg_gimbal_device_attitude_status_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* gimbal_device_attitude_status)
 {
-    return mavlink_msg_gimbal_device_attitude_status_pack_chan(system_id, component_id, chan, msg, gimbal_device_attitude_status->target_system, gimbal_device_attitude_status->target_component, gimbal_device_attitude_status->time_boot_ms, gimbal_device_attitude_status->flags, gimbal_device_attitude_status->q, gimbal_device_attitude_status->angular_velocity_x, gimbal_device_attitude_status->angular_velocity_y, gimbal_device_attitude_status->angular_velocity_z, gimbal_device_attitude_status->failure_flags);
+    return mavlink_msg_gimbal_device_attitude_status_pack_chan(system_id, component_id, chan, msg, ((mavlink_gimbal_device_attitude_status_t*)gimbal_device_attitude_status)->target_system, ((mavlink_gimbal_device_attitude_status_t*)gimbal_device_attitude_status)->target_component, ((mavlink_gimbal_device_attitude_status_t*)gimbal_device_attitude_status)->time_boot_ms, ((mavlink_gimbal_device_attitude_status_t*)gimbal_device_attitude_status)->flags, ((mavlink_gimbal_device_attitude_status_t*)gimbal_device_attitude_status)->q, ((mavlink_gimbal_device_attitude_status_t*)gimbal_device_attitude_status)->angular_velocity_x, ((mavlink_gimbal_device_attitude_status_t*)gimbal_device_attitude_status)->angular_velocity_y, ((mavlink_gimbal_device_attitude_status_t*)gimbal_device_attitude_status)->angular_velocity_z, ((mavlink_gimbal_device_attitude_status_t*)gimbal_device_attitude_status)->failure_flags);
 }
 
 /**

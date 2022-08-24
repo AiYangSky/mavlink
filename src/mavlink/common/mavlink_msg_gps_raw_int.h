@@ -249,9 +249,9 @@ static inline uint16_t mavlink_msg_gps_raw_int_encode(uint8_t system_id, uint8_t
  * @param msg The MAVLink message to compress the data into
  * @param gps_raw_int C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_gps_raw_int_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_gps_raw_int_t* gps_raw_int)
+static inline uint16_t mavlink_msg_gps_raw_int_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* gps_raw_int)
 {
-    return mavlink_msg_gps_raw_int_pack_chan(system_id, component_id, chan, msg, gps_raw_int->time_usec, gps_raw_int->fix_type, gps_raw_int->lat, gps_raw_int->lon, gps_raw_int->alt, gps_raw_int->eph, gps_raw_int->epv, gps_raw_int->vel, gps_raw_int->cog, gps_raw_int->satellites_visible, gps_raw_int->alt_ellipsoid, gps_raw_int->h_acc, gps_raw_int->v_acc, gps_raw_int->vel_acc, gps_raw_int->hdg_acc, gps_raw_int->yaw);
+    return mavlink_msg_gps_raw_int_pack_chan(system_id, component_id, chan, msg, ((mavlink_gps_raw_int_t*)gps_raw_int)->time_usec, ((mavlink_gps_raw_int_t*)gps_raw_int)->fix_type, ((mavlink_gps_raw_int_t*)gps_raw_int)->lat, ((mavlink_gps_raw_int_t*)gps_raw_int)->lon, ((mavlink_gps_raw_int_t*)gps_raw_int)->alt, ((mavlink_gps_raw_int_t*)gps_raw_int)->eph, ((mavlink_gps_raw_int_t*)gps_raw_int)->epv, ((mavlink_gps_raw_int_t*)gps_raw_int)->vel, ((mavlink_gps_raw_int_t*)gps_raw_int)->cog, ((mavlink_gps_raw_int_t*)gps_raw_int)->satellites_visible, ((mavlink_gps_raw_int_t*)gps_raw_int)->alt_ellipsoid, ((mavlink_gps_raw_int_t*)gps_raw_int)->h_acc, ((mavlink_gps_raw_int_t*)gps_raw_int)->v_acc, ((mavlink_gps_raw_int_t*)gps_raw_int)->vel_acc, ((mavlink_gps_raw_int_t*)gps_raw_int)->hdg_acc, ((mavlink_gps_raw_int_t*)gps_raw_int)->yaw);
 }
 
 /**

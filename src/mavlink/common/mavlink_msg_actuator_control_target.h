@@ -128,9 +128,9 @@ static inline uint16_t mavlink_msg_actuator_control_target_encode(uint8_t system
  * @param msg The MAVLink message to compress the data into
  * @param actuator_control_target C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_actuator_control_target_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_actuator_control_target_t* actuator_control_target)
+static inline uint16_t mavlink_msg_actuator_control_target_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* actuator_control_target)
 {
-    return mavlink_msg_actuator_control_target_pack_chan(system_id, component_id, chan, msg, actuator_control_target->time_usec, actuator_control_target->group_mlx, actuator_control_target->controls);
+    return mavlink_msg_actuator_control_target_pack_chan(system_id, component_id, chan, msg, ((mavlink_actuator_control_target_t*)actuator_control_target)->time_usec, ((mavlink_actuator_control_target_t*)actuator_control_target)->group_mlx, ((mavlink_actuator_control_target_t*)actuator_control_target)->controls);
 }
 
 /**

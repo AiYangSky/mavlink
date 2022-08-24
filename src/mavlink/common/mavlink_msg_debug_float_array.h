@@ -138,9 +138,9 @@ static inline uint16_t mavlink_msg_debug_float_array_encode(uint8_t system_id, u
  * @param msg The MAVLink message to compress the data into
  * @param debug_float_array C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_debug_float_array_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_debug_float_array_t* debug_float_array)
+static inline uint16_t mavlink_msg_debug_float_array_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* debug_float_array)
 {
-    return mavlink_msg_debug_float_array_pack_chan(system_id, component_id, chan, msg, debug_float_array->time_usec, debug_float_array->name, debug_float_array->array_id, debug_float_array->data);
+    return mavlink_msg_debug_float_array_pack_chan(system_id, component_id, chan, msg, ((mavlink_debug_float_array_t*)debug_float_array)->time_usec, ((mavlink_debug_float_array_t*)debug_float_array)->name, ((mavlink_debug_float_array_t*)debug_float_array)->array_id, ((mavlink_debug_float_array_t*)debug_float_array)->data);
 }
 
 /**

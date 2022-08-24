@@ -204,9 +204,9 @@ static inline uint16_t mavlink_msg_link_node_status_encode(uint8_t system_id, ui
  * @param msg The MAVLink message to compress the data into
  * @param link_node_status C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_link_node_status_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_link_node_status_t* link_node_status)
+static inline uint16_t mavlink_msg_link_node_status_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* link_node_status)
 {
-    return mavlink_msg_link_node_status_pack_chan(system_id, component_id, chan, msg, link_node_status->timestamp, link_node_status->tx_buf, link_node_status->rx_buf, link_node_status->tx_rate, link_node_status->rx_rate, link_node_status->rx_parse_err, link_node_status->tx_overflows, link_node_status->rx_overflows, link_node_status->messages_sent, link_node_status->messages_received, link_node_status->messages_lost);
+    return mavlink_msg_link_node_status_pack_chan(system_id, component_id, chan, msg, ((mavlink_link_node_status_t*)link_node_status)->timestamp, ((mavlink_link_node_status_t*)link_node_status)->tx_buf, ((mavlink_link_node_status_t*)link_node_status)->rx_buf, ((mavlink_link_node_status_t*)link_node_status)->tx_rate, ((mavlink_link_node_status_t*)link_node_status)->rx_rate, ((mavlink_link_node_status_t*)link_node_status)->rx_parse_err, ((mavlink_link_node_status_t*)link_node_status)->tx_overflows, ((mavlink_link_node_status_t*)link_node_status)->rx_overflows, ((mavlink_link_node_status_t*)link_node_status)->messages_sent, ((mavlink_link_node_status_t*)link_node_status)->messages_received, ((mavlink_link_node_status_t*)link_node_status)->messages_lost);
 }
 
 /**

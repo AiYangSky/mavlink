@@ -164,9 +164,9 @@ static inline uint16_t mavlink_msg_gimbal_device_set_attitude_encode(uint8_t sys
  * @param msg The MAVLink message to compress the data into
  * @param gimbal_device_set_attitude C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_gimbal_device_set_attitude_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_gimbal_device_set_attitude_t* gimbal_device_set_attitude)
+static inline uint16_t mavlink_msg_gimbal_device_set_attitude_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* gimbal_device_set_attitude)
 {
-    return mavlink_msg_gimbal_device_set_attitude_pack_chan(system_id, component_id, chan, msg, gimbal_device_set_attitude->target_system, gimbal_device_set_attitude->target_component, gimbal_device_set_attitude->flags, gimbal_device_set_attitude->q, gimbal_device_set_attitude->angular_velocity_x, gimbal_device_set_attitude->angular_velocity_y, gimbal_device_set_attitude->angular_velocity_z);
+    return mavlink_msg_gimbal_device_set_attitude_pack_chan(system_id, component_id, chan, msg, ((mavlink_gimbal_device_set_attitude_t*)gimbal_device_set_attitude)->target_system, ((mavlink_gimbal_device_set_attitude_t*)gimbal_device_set_attitude)->target_component, ((mavlink_gimbal_device_set_attitude_t*)gimbal_device_set_attitude)->flags, ((mavlink_gimbal_device_set_attitude_t*)gimbal_device_set_attitude)->q, ((mavlink_gimbal_device_set_attitude_t*)gimbal_device_set_attitude)->angular_velocity_x, ((mavlink_gimbal_device_set_attitude_t*)gimbal_device_set_attitude)->angular_velocity_y, ((mavlink_gimbal_device_set_attitude_t*)gimbal_device_set_attitude)->angular_velocity_z);
 }
 
 /**

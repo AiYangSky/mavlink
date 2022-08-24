@@ -3,7 +3,7 @@
  * @Author         : Aiyangsky
  * @Date           : 2022-08-18 21:57:09
  * @LastEditors    : Aiyangsky
- * @LastEditTime   : 2022-08-22 01:31:46
+ * @LastEditTime   : 2022-08-24 16:52:33
  * @FilePath       : \mavlink\src\Microservices\Mavlink_Mission.h
  */
 
@@ -29,24 +29,20 @@ typedef struct
     MAVLINK_MISSION_STATUS_T status;
     unsigned short count;
     unsigned short curr_count;
-    unsigned char upload_tar_sys;
-    unsigned char upload_tar_comp;
-    unsigned char upload_tar_chan;
+    unsigned char retry_tar_sys;
+    unsigned char retry_tar_comp;
     MAV_MISSION_TYPE type;
 
     // Timer
     void *timer;
-    void (*Os_Timer_creat)(void *, unsigned short, void *);
-    void (*Os_Timer_stop_and_reset)(void *);
-    unsigned char (*Os_Timer_curr)(void *);
 
     // Mission storage
     bool (*Mission_Creat)(unsigned short);
     MAV_MISSION_RESULT (*Mission_Append)(mavlink_mission_item_int_t *);
     unsigned short (*Mission_Count)(void);
-    void *(*Mission_View)(unsigned short);
-    void (*Mission_update)(void);
-    bool (*Mission_check)(unsigned short);
+    void (*Mission_Get)(unsigned short, mavlink_mission_item_int_t *);
+    void (*Mission_Update)(void);
+    bool (*Mission_Check)(unsigned short);
     MAV_MISSION_RESULT (*Mission_Clear)(void);
 } MAVLINK_MISSION_CB_T;
 

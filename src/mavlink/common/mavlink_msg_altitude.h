@@ -168,9 +168,9 @@ static inline uint16_t mavlink_msg_altitude_encode(uint8_t system_id, uint8_t co
  * @param msg The MAVLink message to compress the data into
  * @param altitude C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_altitude_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_altitude_t* altitude)
+static inline uint16_t mavlink_msg_altitude_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* altitude)
 {
-    return mavlink_msg_altitude_pack_chan(system_id, component_id, chan, msg, altitude->time_usec, altitude->altitude_monotonic, altitude->altitude_amsl, altitude->altitude_local, altitude->altitude_relative, altitude->altitude_terrain, altitude->bottom_clearance);
+    return mavlink_msg_altitude_pack_chan(system_id, component_id, chan, msg, ((mavlink_altitude_t*)altitude)->time_usec, ((mavlink_altitude_t*)altitude)->altitude_monotonic, ((mavlink_altitude_t*)altitude)->altitude_amsl, ((mavlink_altitude_t*)altitude)->altitude_local, ((mavlink_altitude_t*)altitude)->altitude_relative, ((mavlink_altitude_t*)altitude)->altitude_terrain, ((mavlink_altitude_t*)altitude)->bottom_clearance);
 }
 
 /**

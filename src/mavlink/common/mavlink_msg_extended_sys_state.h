@@ -123,9 +123,9 @@ static inline uint16_t mavlink_msg_extended_sys_state_encode(uint8_t system_id, 
  * @param msg The MAVLink message to compress the data into
  * @param extended_sys_state C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_extended_sys_state_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_extended_sys_state_t* extended_sys_state)
+static inline uint16_t mavlink_msg_extended_sys_state_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* extended_sys_state)
 {
-    return mavlink_msg_extended_sys_state_pack_chan(system_id, component_id, chan, msg, extended_sys_state->vtol_state, extended_sys_state->landed_state);
+    return mavlink_msg_extended_sys_state_pack_chan(system_id, component_id, chan, msg, ((mavlink_extended_sys_state_t*)extended_sys_state)->vtol_state, ((mavlink_extended_sys_state_t*)extended_sys_state)->landed_state);
 }
 
 /**

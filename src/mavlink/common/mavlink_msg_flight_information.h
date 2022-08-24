@@ -141,9 +141,9 @@ static inline uint16_t mavlink_msg_flight_information_encode(uint8_t system_id, 
  * @param msg The MAVLink message to compress the data into
  * @param flight_information C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_flight_information_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_flight_information_t* flight_information)
+static inline uint16_t mavlink_msg_flight_information_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* flight_information)
 {
-    return mavlink_msg_flight_information_pack_chan(system_id, component_id, chan, msg, flight_information->time_boot_ms, flight_information->arming_time_utc, flight_information->takeoff_time_utc, flight_information->flight_uuid);
+    return mavlink_msg_flight_information_pack_chan(system_id, component_id, chan, msg, ((mavlink_flight_information_t*)flight_information)->time_boot_ms, ((mavlink_flight_information_t*)flight_information)->arming_time_utc, ((mavlink_flight_information_t*)flight_information)->takeoff_time_utc, ((mavlink_flight_information_t*)flight_information)->flight_uuid);
 }
 
 /**

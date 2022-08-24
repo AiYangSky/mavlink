@@ -249,9 +249,9 @@ static inline uint16_t mavlink_msg_hil_state_encode(uint8_t system_id, uint8_t c
  * @param msg The MAVLink message to compress the data into
  * @param hil_state C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_hil_state_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_hil_state_t* hil_state)
+static inline uint16_t mavlink_msg_hil_state_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* hil_state)
 {
-    return mavlink_msg_hil_state_pack_chan(system_id, component_id, chan, msg, hil_state->time_usec, hil_state->roll, hil_state->pitch, hil_state->yaw, hil_state->rollspeed, hil_state->pitchspeed, hil_state->yawspeed, hil_state->lat, hil_state->lon, hil_state->alt, hil_state->vx, hil_state->vy, hil_state->vz, hil_state->xacc, hil_state->yacc, hil_state->zacc);
+    return mavlink_msg_hil_state_pack_chan(system_id, component_id, chan, msg, ((mavlink_hil_state_t*)hil_state)->time_usec, ((mavlink_hil_state_t*)hil_state)->roll, ((mavlink_hil_state_t*)hil_state)->pitch, ((mavlink_hil_state_t*)hil_state)->yaw, ((mavlink_hil_state_t*)hil_state)->rollspeed, ((mavlink_hil_state_t*)hil_state)->pitchspeed, ((mavlink_hil_state_t*)hil_state)->yawspeed, ((mavlink_hil_state_t*)hil_state)->lat, ((mavlink_hil_state_t*)hil_state)->lon, ((mavlink_hil_state_t*)hil_state)->alt, ((mavlink_hil_state_t*)hil_state)->vx, ((mavlink_hil_state_t*)hil_state)->vy, ((mavlink_hil_state_t*)hil_state)->vz, ((mavlink_hil_state_t*)hil_state)->xacc, ((mavlink_hil_state_t*)hil_state)->yacc, ((mavlink_hil_state_t*)hil_state)->zacc);
 }
 
 /**

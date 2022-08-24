@@ -132,9 +132,9 @@ static inline uint16_t mavlink_msg_debug_encode(uint8_t system_id, uint8_t compo
  * @param msg The MAVLink message to compress the data into
  * @param debug C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_debug_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_debug_t* debug)
+static inline uint16_t mavlink_msg_debug_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* debug)
 {
-    return mavlink_msg_debug_pack_chan(system_id, component_id, chan, msg, debug->time_boot_ms, debug->ind, debug->value);
+    return mavlink_msg_debug_pack_chan(system_id, component_id, chan, msg, ((mavlink_debug_t*)debug)->time_boot_ms, ((mavlink_debug_t*)debug)->ind, ((mavlink_debug_t*)debug)->value);
 }
 
 /**

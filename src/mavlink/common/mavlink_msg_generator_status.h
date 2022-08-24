@@ -204,9 +204,9 @@ static inline uint16_t mavlink_msg_generator_status_encode(uint8_t system_id, ui
  * @param msg The MAVLink message to compress the data into
  * @param generator_status C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_generator_status_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_generator_status_t* generator_status)
+static inline uint16_t mavlink_msg_generator_status_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* generator_status)
 {
-    return mavlink_msg_generator_status_pack_chan(system_id, component_id, chan, msg, generator_status->status, generator_status->generator_speed, generator_status->battery_current, generator_status->load_current, generator_status->power_generated, generator_status->bus_voltage, generator_status->rectifier_temperature, generator_status->bat_current_setpoint, generator_status->generator_temperature, generator_status->runtime, generator_status->time_until_maintenance);
+    return mavlink_msg_generator_status_pack_chan(system_id, component_id, chan, msg, ((mavlink_generator_status_t*)generator_status)->status, ((mavlink_generator_status_t*)generator_status)->generator_speed, ((mavlink_generator_status_t*)generator_status)->battery_current, ((mavlink_generator_status_t*)generator_status)->load_current, ((mavlink_generator_status_t*)generator_status)->power_generated, ((mavlink_generator_status_t*)generator_status)->bus_voltage, ((mavlink_generator_status_t*)generator_status)->rectifier_temperature, ((mavlink_generator_status_t*)generator_status)->bat_current_setpoint, ((mavlink_generator_status_t*)generator_status)->generator_temperature, ((mavlink_generator_status_t*)generator_status)->runtime, ((mavlink_generator_status_t*)generator_status)->time_until_maintenance);
 }
 
 /**

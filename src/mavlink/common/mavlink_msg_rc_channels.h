@@ -294,9 +294,9 @@ static inline uint16_t mavlink_msg_rc_channels_encode(uint8_t system_id, uint8_t
  * @param msg The MAVLink message to compress the data into
  * @param rc_channels C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_rc_channels_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_rc_channels_t* rc_channels)
+static inline uint16_t mavlink_msg_rc_channels_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* rc_channels)
 {
-    return mavlink_msg_rc_channels_pack_chan(system_id, component_id, chan, msg, rc_channels->time_boot_ms, rc_channels->chancount, rc_channels->chan1_raw, rc_channels->chan2_raw, rc_channels->chan3_raw, rc_channels->chan4_raw, rc_channels->chan5_raw, rc_channels->chan6_raw, rc_channels->chan7_raw, rc_channels->chan8_raw, rc_channels->chan9_raw, rc_channels->chan10_raw, rc_channels->chan11_raw, rc_channels->chan12_raw, rc_channels->chan13_raw, rc_channels->chan14_raw, rc_channels->chan15_raw, rc_channels->chan16_raw, rc_channels->chan17_raw, rc_channels->chan18_raw, rc_channels->rssi);
+    return mavlink_msg_rc_channels_pack_chan(system_id, component_id, chan, msg, ((mavlink_rc_channels_t*)rc_channels)->time_boot_ms, ((mavlink_rc_channels_t*)rc_channels)->chancount, ((mavlink_rc_channels_t*)rc_channels)->chan1_raw, ((mavlink_rc_channels_t*)rc_channels)->chan2_raw, ((mavlink_rc_channels_t*)rc_channels)->chan3_raw, ((mavlink_rc_channels_t*)rc_channels)->chan4_raw, ((mavlink_rc_channels_t*)rc_channels)->chan5_raw, ((mavlink_rc_channels_t*)rc_channels)->chan6_raw, ((mavlink_rc_channels_t*)rc_channels)->chan7_raw, ((mavlink_rc_channels_t*)rc_channels)->chan8_raw, ((mavlink_rc_channels_t*)rc_channels)->chan9_raw, ((mavlink_rc_channels_t*)rc_channels)->chan10_raw, ((mavlink_rc_channels_t*)rc_channels)->chan11_raw, ((mavlink_rc_channels_t*)rc_channels)->chan12_raw, ((mavlink_rc_channels_t*)rc_channels)->chan13_raw, ((mavlink_rc_channels_t*)rc_channels)->chan14_raw, ((mavlink_rc_channels_t*)rc_channels)->chan15_raw, ((mavlink_rc_channels_t*)rc_channels)->chan16_raw, ((mavlink_rc_channels_t*)rc_channels)->chan17_raw, ((mavlink_rc_channels_t*)rc_channels)->chan18_raw, ((mavlink_rc_channels_t*)rc_channels)->rssi);
 }
 
 /**

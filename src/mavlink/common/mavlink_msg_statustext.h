@@ -137,9 +137,9 @@ static inline uint16_t mavlink_msg_statustext_encode(uint8_t system_id, uint8_t 
  * @param msg The MAVLink message to compress the data into
  * @param statustext C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_statustext_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_statustext_t* statustext)
+static inline uint16_t mavlink_msg_statustext_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* statustext)
 {
-    return mavlink_msg_statustext_pack_chan(system_id, component_id, chan, msg, statustext->severity, statustext->text, statustext->id, statustext->chunk_seq);
+    return mavlink_msg_statustext_pack_chan(system_id, component_id, chan, msg, ((mavlink_statustext_t*)statustext)->severity, ((mavlink_statustext_t*)statustext)->text, ((mavlink_statustext_t*)statustext)->id, ((mavlink_statustext_t*)statustext)->chunk_seq);
 }
 
 /**

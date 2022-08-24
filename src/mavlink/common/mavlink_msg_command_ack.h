@@ -159,9 +159,9 @@ static inline uint16_t mavlink_msg_command_ack_encode(uint8_t system_id, uint8_t
  * @param msg The MAVLink message to compress the data into
  * @param command_ack C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_command_ack_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_command_ack_t* command_ack)
+static inline uint16_t mavlink_msg_command_ack_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* command_ack)
 {
-    return mavlink_msg_command_ack_pack_chan(system_id, component_id, chan, msg, command_ack->command, command_ack->result, command_ack->progress, command_ack->result_param2, command_ack->target_system, command_ack->target_component);
+    return mavlink_msg_command_ack_pack_chan(system_id, component_id, chan, msg, ((mavlink_command_ack_t*)command_ack)->command, ((mavlink_command_ack_t*)command_ack)->result, ((mavlink_command_ack_t*)command_ack)->progress, ((mavlink_command_ack_t*)command_ack)->result_param2, ((mavlink_command_ack_t*)command_ack)->target_system, ((mavlink_command_ack_t*)command_ack)->target_component);
 }
 
 /**

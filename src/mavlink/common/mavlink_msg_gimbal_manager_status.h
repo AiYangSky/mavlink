@@ -168,9 +168,9 @@ static inline uint16_t mavlink_msg_gimbal_manager_status_encode(uint8_t system_i
  * @param msg The MAVLink message to compress the data into
  * @param gimbal_manager_status C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_gimbal_manager_status_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_gimbal_manager_status_t* gimbal_manager_status)
+static inline uint16_t mavlink_msg_gimbal_manager_status_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* gimbal_manager_status)
 {
-    return mavlink_msg_gimbal_manager_status_pack_chan(system_id, component_id, chan, msg, gimbal_manager_status->time_boot_ms, gimbal_manager_status->flags, gimbal_manager_status->gimbal_device_id, gimbal_manager_status->primary_control_sysid, gimbal_manager_status->primary_control_compid, gimbal_manager_status->secondary_control_sysid, gimbal_manager_status->secondary_control_compid);
+    return mavlink_msg_gimbal_manager_status_pack_chan(system_id, component_id, chan, msg, ((mavlink_gimbal_manager_status_t*)gimbal_manager_status)->time_boot_ms, ((mavlink_gimbal_manager_status_t*)gimbal_manager_status)->flags, ((mavlink_gimbal_manager_status_t*)gimbal_manager_status)->gimbal_device_id, ((mavlink_gimbal_manager_status_t*)gimbal_manager_status)->primary_control_sysid, ((mavlink_gimbal_manager_status_t*)gimbal_manager_status)->primary_control_compid, ((mavlink_gimbal_manager_status_t*)gimbal_manager_status)->secondary_control_sysid, ((mavlink_gimbal_manager_status_t*)gimbal_manager_status)->secondary_control_compid);
 }
 
 /**

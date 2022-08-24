@@ -204,9 +204,9 @@ static inline uint16_t mavlink_msg_follow_target_encode(uint8_t system_id, uint8
  * @param msg The MAVLink message to compress the data into
  * @param follow_target C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_follow_target_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_follow_target_t* follow_target)
+static inline uint16_t mavlink_msg_follow_target_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* follow_target)
 {
-    return mavlink_msg_follow_target_pack_chan(system_id, component_id, chan, msg, follow_target->timestamp, follow_target->est_capabilities, follow_target->lat, follow_target->lon, follow_target->alt, follow_target->vel, follow_target->acc, follow_target->attitude_q, follow_target->rates, follow_target->position_cov, follow_target->custom_state);
+    return mavlink_msg_follow_target_pack_chan(system_id, component_id, chan, msg, ((mavlink_follow_target_t*)follow_target)->timestamp, ((mavlink_follow_target_t*)follow_target)->est_capabilities, ((mavlink_follow_target_t*)follow_target)->lat, ((mavlink_follow_target_t*)follow_target)->lon, ((mavlink_follow_target_t*)follow_target)->alt, ((mavlink_follow_target_t*)follow_target)->vel, ((mavlink_follow_target_t*)follow_target)->acc, ((mavlink_follow_target_t*)follow_target)->attitude_q, ((mavlink_follow_target_t*)follow_target)->rates, ((mavlink_follow_target_t*)follow_target)->position_cov, ((mavlink_follow_target_t*)follow_target)->custom_state);
 }
 
 /**

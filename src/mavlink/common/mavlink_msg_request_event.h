@@ -141,9 +141,9 @@ static inline uint16_t mavlink_msg_request_event_encode(uint8_t system_id, uint8
  * @param msg The MAVLink message to compress the data into
  * @param request_event C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_request_event_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_request_event_t* request_event)
+static inline uint16_t mavlink_msg_request_event_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* request_event)
 {
-    return mavlink_msg_request_event_pack_chan(system_id, component_id, chan, msg, request_event->target_system, request_event->target_component, request_event->first_sequence, request_event->last_sequence);
+    return mavlink_msg_request_event_pack_chan(system_id, component_id, chan, msg, ((mavlink_request_event_t*)request_event)->target_system, ((mavlink_request_event_t*)request_event)->target_component, ((mavlink_request_event_t*)request_event)->first_sequence, ((mavlink_request_event_t*)request_event)->last_sequence);
 }
 
 /**

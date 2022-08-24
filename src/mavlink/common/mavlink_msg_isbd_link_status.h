@@ -177,9 +177,9 @@ static inline uint16_t mavlink_msg_isbd_link_status_encode(uint8_t system_id, ui
  * @param msg The MAVLink message to compress the data into
  * @param isbd_link_status C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_isbd_link_status_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_isbd_link_status_t* isbd_link_status)
+static inline uint16_t mavlink_msg_isbd_link_status_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* isbd_link_status)
 {
-    return mavlink_msg_isbd_link_status_pack_chan(system_id, component_id, chan, msg, isbd_link_status->timestamp, isbd_link_status->last_heartbeat, isbd_link_status->failed_sessions, isbd_link_status->successful_sessions, isbd_link_status->signal_quality, isbd_link_status->ring_pending, isbd_link_status->tx_session_pending, isbd_link_status->rx_session_pending);
+    return mavlink_msg_isbd_link_status_pack_chan(system_id, component_id, chan, msg, ((mavlink_isbd_link_status_t*)isbd_link_status)->timestamp, ((mavlink_isbd_link_status_t*)isbd_link_status)->last_heartbeat, ((mavlink_isbd_link_status_t*)isbd_link_status)->failed_sessions, ((mavlink_isbd_link_status_t*)isbd_link_status)->successful_sessions, ((mavlink_isbd_link_status_t*)isbd_link_status)->signal_quality, ((mavlink_isbd_link_status_t*)isbd_link_status)->ring_pending, ((mavlink_isbd_link_status_t*)isbd_link_status)->tx_session_pending, ((mavlink_isbd_link_status_t*)isbd_link_status)->rx_session_pending);
 }
 
 /**

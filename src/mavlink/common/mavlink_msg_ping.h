@@ -141,9 +141,9 @@ static inline uint16_t mavlink_msg_ping_encode(uint8_t system_id, uint8_t compon
  * @param msg The MAVLink message to compress the data into
  * @param ping C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_ping_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_ping_t* ping)
+static inline uint16_t mavlink_msg_ping_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* ping)
 {
-    return mavlink_msg_ping_pack_chan(system_id, component_id, chan, msg, ping->time_usec, ping->seq, ping->target_system, ping->target_component);
+    return mavlink_msg_ping_pack_chan(system_id, component_id, chan, msg, ((mavlink_ping_t*)ping)->time_usec, ((mavlink_ping_t*)ping)->seq, ((mavlink_ping_t*)ping)->target_system, ((mavlink_ping_t*)ping)->target_component);
 }
 
 /**

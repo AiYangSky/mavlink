@@ -276,9 +276,9 @@ static inline uint16_t mavlink_msg_gps_input_encode(uint8_t system_id, uint8_t c
  * @param msg The MAVLink message to compress the data into
  * @param gps_input C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_gps_input_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_gps_input_t* gps_input)
+static inline uint16_t mavlink_msg_gps_input_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* gps_input)
 {
-    return mavlink_msg_gps_input_pack_chan(system_id, component_id, chan, msg, gps_input->time_usec, gps_input->gps_id, gps_input->ignore_flags, gps_input->time_week_ms, gps_input->time_week, gps_input->fix_type, gps_input->lat, gps_input->lon, gps_input->alt, gps_input->hdop, gps_input->vdop, gps_input->vn, gps_input->ve, gps_input->vd, gps_input->speed_accuracy, gps_input->horiz_accuracy, gps_input->vert_accuracy, gps_input->satellites_visible, gps_input->yaw);
+    return mavlink_msg_gps_input_pack_chan(system_id, component_id, chan, msg, ((mavlink_gps_input_t*)gps_input)->time_usec, ((mavlink_gps_input_t*)gps_input)->gps_id, ((mavlink_gps_input_t*)gps_input)->ignore_flags, ((mavlink_gps_input_t*)gps_input)->time_week_ms, ((mavlink_gps_input_t*)gps_input)->time_week, ((mavlink_gps_input_t*)gps_input)->fix_type, ((mavlink_gps_input_t*)gps_input)->lat, ((mavlink_gps_input_t*)gps_input)->lon, ((mavlink_gps_input_t*)gps_input)->alt, ((mavlink_gps_input_t*)gps_input)->hdop, ((mavlink_gps_input_t*)gps_input)->vdop, ((mavlink_gps_input_t*)gps_input)->vn, ((mavlink_gps_input_t*)gps_input)->ve, ((mavlink_gps_input_t*)gps_input)->vd, ((mavlink_gps_input_t*)gps_input)->speed_accuracy, ((mavlink_gps_input_t*)gps_input)->horiz_accuracy, ((mavlink_gps_input_t*)gps_input)->vert_accuracy, ((mavlink_gps_input_t*)gps_input)->satellites_visible, ((mavlink_gps_input_t*)gps_input)->yaw);
 }
 
 /**

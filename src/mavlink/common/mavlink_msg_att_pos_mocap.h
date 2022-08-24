@@ -156,9 +156,9 @@ static inline uint16_t mavlink_msg_att_pos_mocap_encode(uint8_t system_id, uint8
  * @param msg The MAVLink message to compress the data into
  * @param att_pos_mocap C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_att_pos_mocap_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_att_pos_mocap_t* att_pos_mocap)
+static inline uint16_t mavlink_msg_att_pos_mocap_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* att_pos_mocap)
 {
-    return mavlink_msg_att_pos_mocap_pack_chan(system_id, component_id, chan, msg, att_pos_mocap->time_usec, att_pos_mocap->q, att_pos_mocap->x, att_pos_mocap->y, att_pos_mocap->z, att_pos_mocap->covariance);
+    return mavlink_msg_att_pos_mocap_pack_chan(system_id, component_id, chan, msg, ((mavlink_att_pos_mocap_t*)att_pos_mocap)->time_usec, ((mavlink_att_pos_mocap_t*)att_pos_mocap)->q, ((mavlink_att_pos_mocap_t*)att_pos_mocap)->x, ((mavlink_att_pos_mocap_t*)att_pos_mocap)->y, ((mavlink_att_pos_mocap_t*)att_pos_mocap)->z, ((mavlink_att_pos_mocap_t*)att_pos_mocap)->covariance);
 }
 
 /**

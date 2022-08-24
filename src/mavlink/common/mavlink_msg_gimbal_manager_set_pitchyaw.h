@@ -177,9 +177,9 @@ static inline uint16_t mavlink_msg_gimbal_manager_set_pitchyaw_encode(uint8_t sy
  * @param msg The MAVLink message to compress the data into
  * @param gimbal_manager_set_pitchyaw C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_gimbal_manager_set_pitchyaw_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_gimbal_manager_set_pitchyaw_t* gimbal_manager_set_pitchyaw)
+static inline uint16_t mavlink_msg_gimbal_manager_set_pitchyaw_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* gimbal_manager_set_pitchyaw)
 {
-    return mavlink_msg_gimbal_manager_set_pitchyaw_pack_chan(system_id, component_id, chan, msg, gimbal_manager_set_pitchyaw->target_system, gimbal_manager_set_pitchyaw->target_component, gimbal_manager_set_pitchyaw->flags, gimbal_manager_set_pitchyaw->gimbal_device_id, gimbal_manager_set_pitchyaw->pitch, gimbal_manager_set_pitchyaw->yaw, gimbal_manager_set_pitchyaw->pitch_rate, gimbal_manager_set_pitchyaw->yaw_rate);
+    return mavlink_msg_gimbal_manager_set_pitchyaw_pack_chan(system_id, component_id, chan, msg, ((mavlink_gimbal_manager_set_pitchyaw_t*)gimbal_manager_set_pitchyaw)->target_system, ((mavlink_gimbal_manager_set_pitchyaw_t*)gimbal_manager_set_pitchyaw)->target_component, ((mavlink_gimbal_manager_set_pitchyaw_t*)gimbal_manager_set_pitchyaw)->flags, ((mavlink_gimbal_manager_set_pitchyaw_t*)gimbal_manager_set_pitchyaw)->gimbal_device_id, ((mavlink_gimbal_manager_set_pitchyaw_t*)gimbal_manager_set_pitchyaw)->pitch, ((mavlink_gimbal_manager_set_pitchyaw_t*)gimbal_manager_set_pitchyaw)->yaw, ((mavlink_gimbal_manager_set_pitchyaw_t*)gimbal_manager_set_pitchyaw)->pitch_rate, ((mavlink_gimbal_manager_set_pitchyaw_t*)gimbal_manager_set_pitchyaw)->yaw_rate);
 }
 
 /**

@@ -231,9 +231,9 @@ static inline uint16_t mavlink_msg_position_target_local_ned_encode(uint8_t syst
  * @param msg The MAVLink message to compress the data into
  * @param position_target_local_ned C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_position_target_local_ned_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_position_target_local_ned_t* position_target_local_ned)
+static inline uint16_t mavlink_msg_position_target_local_ned_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* position_target_local_ned)
 {
-    return mavlink_msg_position_target_local_ned_pack_chan(system_id, component_id, chan, msg, position_target_local_ned->time_boot_ms, position_target_local_ned->coordinate_frame, position_target_local_ned->type_mask, position_target_local_ned->x, position_target_local_ned->y, position_target_local_ned->z, position_target_local_ned->vx, position_target_local_ned->vy, position_target_local_ned->vz, position_target_local_ned->afx, position_target_local_ned->afy, position_target_local_ned->afz, position_target_local_ned->yaw, position_target_local_ned->yaw_rate);
+    return mavlink_msg_position_target_local_ned_pack_chan(system_id, component_id, chan, msg, ((mavlink_position_target_local_ned_t*)position_target_local_ned)->time_boot_ms, ((mavlink_position_target_local_ned_t*)position_target_local_ned)->coordinate_frame, ((mavlink_position_target_local_ned_t*)position_target_local_ned)->type_mask, ((mavlink_position_target_local_ned_t*)position_target_local_ned)->x, ((mavlink_position_target_local_ned_t*)position_target_local_ned)->y, ((mavlink_position_target_local_ned_t*)position_target_local_ned)->z, ((mavlink_position_target_local_ned_t*)position_target_local_ned)->vx, ((mavlink_position_target_local_ned_t*)position_target_local_ned)->vy, ((mavlink_position_target_local_ned_t*)position_target_local_ned)->vz, ((mavlink_position_target_local_ned_t*)position_target_local_ned)->afx, ((mavlink_position_target_local_ned_t*)position_target_local_ned)->afy, ((mavlink_position_target_local_ned_t*)position_target_local_ned)->afz, ((mavlink_position_target_local_ned_t*)position_target_local_ned)->yaw, ((mavlink_position_target_local_ned_t*)position_target_local_ned)->yaw_rate);
 }
 
 /**

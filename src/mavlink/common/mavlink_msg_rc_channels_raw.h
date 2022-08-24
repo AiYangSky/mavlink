@@ -204,9 +204,9 @@ static inline uint16_t mavlink_msg_rc_channels_raw_encode(uint8_t system_id, uin
  * @param msg The MAVLink message to compress the data into
  * @param rc_channels_raw C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_rc_channels_raw_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_rc_channels_raw_t* rc_channels_raw)
+static inline uint16_t mavlink_msg_rc_channels_raw_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* rc_channels_raw)
 {
-    return mavlink_msg_rc_channels_raw_pack_chan(system_id, component_id, chan, msg, rc_channels_raw->time_boot_ms, rc_channels_raw->port, rc_channels_raw->chan1_raw, rc_channels_raw->chan2_raw, rc_channels_raw->chan3_raw, rc_channels_raw->chan4_raw, rc_channels_raw->chan5_raw, rc_channels_raw->chan6_raw, rc_channels_raw->chan7_raw, rc_channels_raw->chan8_raw, rc_channels_raw->rssi);
+    return mavlink_msg_rc_channels_raw_pack_chan(system_id, component_id, chan, msg, ((mavlink_rc_channels_raw_t*)rc_channels_raw)->time_boot_ms, ((mavlink_rc_channels_raw_t*)rc_channels_raw)->port, ((mavlink_rc_channels_raw_t*)rc_channels_raw)->chan1_raw, ((mavlink_rc_channels_raw_t*)rc_channels_raw)->chan2_raw, ((mavlink_rc_channels_raw_t*)rc_channels_raw)->chan3_raw, ((mavlink_rc_channels_raw_t*)rc_channels_raw)->chan4_raw, ((mavlink_rc_channels_raw_t*)rc_channels_raw)->chan5_raw, ((mavlink_rc_channels_raw_t*)rc_channels_raw)->chan6_raw, ((mavlink_rc_channels_raw_t*)rc_channels_raw)->chan7_raw, ((mavlink_rc_channels_raw_t*)rc_channels_raw)->chan8_raw, ((mavlink_rc_channels_raw_t*)rc_channels_raw)->rssi);
 }
 
 /**

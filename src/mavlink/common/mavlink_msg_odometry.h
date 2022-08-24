@@ -265,9 +265,9 @@ static inline uint16_t mavlink_msg_odometry_encode(uint8_t system_id, uint8_t co
  * @param msg The MAVLink message to compress the data into
  * @param odometry C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_odometry_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_odometry_t* odometry)
+static inline uint16_t mavlink_msg_odometry_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* odometry)
 {
-    return mavlink_msg_odometry_pack_chan(system_id, component_id, chan, msg, odometry->time_usec, odometry->frame_id, odometry->child_frame_id, odometry->x, odometry->y, odometry->z, odometry->q, odometry->vx, odometry->vy, odometry->vz, odometry->rollspeed, odometry->pitchspeed, odometry->yawspeed, odometry->pose_covariance, odometry->velocity_covariance, odometry->reset_counter, odometry->estimator_type, odometry->quality);
+    return mavlink_msg_odometry_pack_chan(system_id, component_id, chan, msg, ((mavlink_odometry_t*)odometry)->time_usec, ((mavlink_odometry_t*)odometry)->frame_id, ((mavlink_odometry_t*)odometry)->child_frame_id, ((mavlink_odometry_t*)odometry)->x, ((mavlink_odometry_t*)odometry)->y, ((mavlink_odometry_t*)odometry)->z, ((mavlink_odometry_t*)odometry)->q, ((mavlink_odometry_t*)odometry)->vx, ((mavlink_odometry_t*)odometry)->vy, ((mavlink_odometry_t*)odometry)->vz, ((mavlink_odometry_t*)odometry)->rollspeed, ((mavlink_odometry_t*)odometry)->pitchspeed, ((mavlink_odometry_t*)odometry)->yawspeed, ((mavlink_odometry_t*)odometry)->pose_covariance, ((mavlink_odometry_t*)odometry)->velocity_covariance, ((mavlink_odometry_t*)odometry)->reset_counter, ((mavlink_odometry_t*)odometry)->estimator_type, ((mavlink_odometry_t*)odometry)->quality);
 }
 
 /**

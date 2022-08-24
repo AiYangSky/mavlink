@@ -123,9 +123,9 @@ static inline uint16_t mavlink_msg_timesync_encode(uint8_t system_id, uint8_t co
  * @param msg The MAVLink message to compress the data into
  * @param timesync C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_timesync_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_timesync_t* timesync)
+static inline uint16_t mavlink_msg_timesync_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* timesync)
 {
-    return mavlink_msg_timesync_pack_chan(system_id, component_id, chan, msg, timesync->tc1, timesync->ts1);
+    return mavlink_msg_timesync_pack_chan(system_id, component_id, chan, msg, ((mavlink_timesync_t*)timesync)->tc1, ((mavlink_timesync_t*)timesync)->ts1);
 }
 
 /**

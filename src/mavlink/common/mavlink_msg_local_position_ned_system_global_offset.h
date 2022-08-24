@@ -168,9 +168,9 @@ static inline uint16_t mavlink_msg_local_position_ned_system_global_offset_encod
  * @param msg The MAVLink message to compress the data into
  * @param local_position_ned_system_global_offset C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_local_position_ned_system_global_offset_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_local_position_ned_system_global_offset_t* local_position_ned_system_global_offset)
+static inline uint16_t mavlink_msg_local_position_ned_system_global_offset_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* local_position_ned_system_global_offset)
 {
-    return mavlink_msg_local_position_ned_system_global_offset_pack_chan(system_id, component_id, chan, msg, local_position_ned_system_global_offset->time_boot_ms, local_position_ned_system_global_offset->x, local_position_ned_system_global_offset->y, local_position_ned_system_global_offset->z, local_position_ned_system_global_offset->roll, local_position_ned_system_global_offset->pitch, local_position_ned_system_global_offset->yaw);
+    return mavlink_msg_local_position_ned_system_global_offset_pack_chan(system_id, component_id, chan, msg, ((mavlink_local_position_ned_system_global_offset_t*)local_position_ned_system_global_offset)->time_boot_ms, ((mavlink_local_position_ned_system_global_offset_t*)local_position_ned_system_global_offset)->x, ((mavlink_local_position_ned_system_global_offset_t*)local_position_ned_system_global_offset)->y, ((mavlink_local_position_ned_system_global_offset_t*)local_position_ned_system_global_offset)->z, ((mavlink_local_position_ned_system_global_offset_t*)local_position_ned_system_global_offset)->roll, ((mavlink_local_position_ned_system_global_offset_t*)local_position_ned_system_global_offset)->pitch, ((mavlink_local_position_ned_system_global_offset_t*)local_position_ned_system_global_offset)->yaw);
 }
 
 /**

@@ -132,9 +132,9 @@ static inline uint16_t mavlink_msg_command_cancel_encode(uint8_t system_id, uint
  * @param msg The MAVLink message to compress the data into
  * @param command_cancel C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_command_cancel_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_command_cancel_t* command_cancel)
+static inline uint16_t mavlink_msg_command_cancel_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* command_cancel)
 {
-    return mavlink_msg_command_cancel_pack_chan(system_id, component_id, chan, msg, command_cancel->target_system, command_cancel->target_component, command_cancel->command);
+    return mavlink_msg_command_cancel_pack_chan(system_id, component_id, chan, msg, ((mavlink_command_cancel_t*)command_cancel)->target_system, ((mavlink_command_cancel_t*)command_cancel)->target_component, ((mavlink_command_cancel_t*)command_cancel)->command);
 }
 
 /**

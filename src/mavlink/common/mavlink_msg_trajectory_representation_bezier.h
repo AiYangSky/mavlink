@@ -168,9 +168,9 @@ static inline uint16_t mavlink_msg_trajectory_representation_bezier_encode(uint8
  * @param msg The MAVLink message to compress the data into
  * @param trajectory_representation_bezier C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_trajectory_representation_bezier_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_trajectory_representation_bezier_t* trajectory_representation_bezier)
+static inline uint16_t mavlink_msg_trajectory_representation_bezier_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* trajectory_representation_bezier)
 {
-    return mavlink_msg_trajectory_representation_bezier_pack_chan(system_id, component_id, chan, msg, trajectory_representation_bezier->time_usec, trajectory_representation_bezier->valid_points, trajectory_representation_bezier->pos_x, trajectory_representation_bezier->pos_y, trajectory_representation_bezier->pos_z, trajectory_representation_bezier->delta, trajectory_representation_bezier->pos_yaw);
+    return mavlink_msg_trajectory_representation_bezier_pack_chan(system_id, component_id, chan, msg, ((mavlink_trajectory_representation_bezier_t*)trajectory_representation_bezier)->time_usec, ((mavlink_trajectory_representation_bezier_t*)trajectory_representation_bezier)->valid_points, ((mavlink_trajectory_representation_bezier_t*)trajectory_representation_bezier)->pos_x, ((mavlink_trajectory_representation_bezier_t*)trajectory_representation_bezier)->pos_y, ((mavlink_trajectory_representation_bezier_t*)trajectory_representation_bezier)->pos_z, ((mavlink_trajectory_representation_bezier_t*)trajectory_representation_bezier)->delta, ((mavlink_trajectory_representation_bezier_t*)trajectory_representation_bezier)->pos_yaw);
 }
 
 /**

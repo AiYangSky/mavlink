@@ -114,9 +114,9 @@ static inline uint16_t mavlink_msg_mission_item_reached_encode(uint8_t system_id
  * @param msg The MAVLink message to compress the data into
  * @param mission_item_reached C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_mission_item_reached_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_mission_item_reached_t* mission_item_reached)
+static inline uint16_t mavlink_msg_mission_item_reached_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* mission_item_reached)
 {
-    return mavlink_msg_mission_item_reached_pack_chan(system_id, component_id, chan, msg, mission_item_reached->seq);
+    return mavlink_msg_mission_item_reached_pack_chan(system_id, component_id, chan, msg, ((mavlink_mission_item_reached_t*)mission_item_reached)->seq);
 }
 
 /**

@@ -218,9 +218,9 @@ static inline uint16_t mavlink_msg_adsb_vehicle_encode(uint8_t system_id, uint8_
  * @param msg The MAVLink message to compress the data into
  * @param adsb_vehicle C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_adsb_vehicle_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_adsb_vehicle_t* adsb_vehicle)
+static inline uint16_t mavlink_msg_adsb_vehicle_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* adsb_vehicle)
 {
-    return mavlink_msg_adsb_vehicle_pack_chan(system_id, component_id, chan, msg, adsb_vehicle->ICAO_address, adsb_vehicle->lat, adsb_vehicle->lon, adsb_vehicle->altitude_type, adsb_vehicle->altitude, adsb_vehicle->heading, adsb_vehicle->hor_velocity, adsb_vehicle->ver_velocity, adsb_vehicle->callsign, adsb_vehicle->emitter_type, adsb_vehicle->tslc, adsb_vehicle->flags, adsb_vehicle->squawk);
+    return mavlink_msg_adsb_vehicle_pack_chan(system_id, component_id, chan, msg, ((mavlink_adsb_vehicle_t*)adsb_vehicle)->ICAO_address, ((mavlink_adsb_vehicle_t*)adsb_vehicle)->lat, ((mavlink_adsb_vehicle_t*)adsb_vehicle)->lon, ((mavlink_adsb_vehicle_t*)adsb_vehicle)->altitude_type, ((mavlink_adsb_vehicle_t*)adsb_vehicle)->altitude, ((mavlink_adsb_vehicle_t*)adsb_vehicle)->heading, ((mavlink_adsb_vehicle_t*)adsb_vehicle)->hor_velocity, ((mavlink_adsb_vehicle_t*)adsb_vehicle)->ver_velocity, ((mavlink_adsb_vehicle_t*)adsb_vehicle)->callsign, ((mavlink_adsb_vehicle_t*)adsb_vehicle)->emitter_type, ((mavlink_adsb_vehicle_t*)adsb_vehicle)->tslc, ((mavlink_adsb_vehicle_t*)adsb_vehicle)->flags, ((mavlink_adsb_vehicle_t*)adsb_vehicle)->squawk);
 }
 
 /**

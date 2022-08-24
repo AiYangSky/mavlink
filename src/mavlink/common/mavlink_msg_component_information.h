@@ -147,9 +147,9 @@ static inline uint16_t mavlink_msg_component_information_encode(uint8_t system_i
  * @param msg The MAVLink message to compress the data into
  * @param component_information C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_component_information_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_component_information_t* component_information)
+static inline uint16_t mavlink_msg_component_information_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* component_information)
 {
-    return mavlink_msg_component_information_pack_chan(system_id, component_id, chan, msg, component_information->time_boot_ms, component_information->general_metadata_file_crc, component_information->general_metadata_uri, component_information->peripherals_metadata_file_crc, component_information->peripherals_metadata_uri);
+    return mavlink_msg_component_information_pack_chan(system_id, component_id, chan, msg, ((mavlink_component_information_t*)component_information)->time_boot_ms, ((mavlink_component_information_t*)component_information)->general_metadata_file_crc, ((mavlink_component_information_t*)component_information)->general_metadata_uri, ((mavlink_component_information_t*)component_information)->peripherals_metadata_file_crc, ((mavlink_component_information_t*)component_information)->peripherals_metadata_uri);
 }
 
 /**

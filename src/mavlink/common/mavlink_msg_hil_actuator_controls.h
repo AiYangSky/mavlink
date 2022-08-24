@@ -137,9 +137,9 @@ static inline uint16_t mavlink_msg_hil_actuator_controls_encode(uint8_t system_i
  * @param msg The MAVLink message to compress the data into
  * @param hil_actuator_controls C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_hil_actuator_controls_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_hil_actuator_controls_t* hil_actuator_controls)
+static inline uint16_t mavlink_msg_hil_actuator_controls_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* hil_actuator_controls)
 {
-    return mavlink_msg_hil_actuator_controls_pack_chan(system_id, component_id, chan, msg, hil_actuator_controls->time_usec, hil_actuator_controls->controls, hil_actuator_controls->mode, hil_actuator_controls->flags);
+    return mavlink_msg_hil_actuator_controls_pack_chan(system_id, component_id, chan, msg, ((mavlink_hil_actuator_controls_t*)hil_actuator_controls)->time_usec, ((mavlink_hil_actuator_controls_t*)hil_actuator_controls)->controls, ((mavlink_hil_actuator_controls_t*)hil_actuator_controls)->mode, ((mavlink_hil_actuator_controls_t*)hil_actuator_controls)->flags);
 }
 
 /**

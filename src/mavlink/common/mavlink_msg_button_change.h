@@ -132,9 +132,9 @@ static inline uint16_t mavlink_msg_button_change_encode(uint8_t system_id, uint8
  * @param msg The MAVLink message to compress the data into
  * @param button_change C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_button_change_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_button_change_t* button_change)
+static inline uint16_t mavlink_msg_button_change_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* button_change)
 {
-    return mavlink_msg_button_change_pack_chan(system_id, component_id, chan, msg, button_change->time_boot_ms, button_change->last_change_ms, button_change->state);
+    return mavlink_msg_button_change_pack_chan(system_id, component_id, chan, msg, ((mavlink_button_change_t*)button_change)->time_boot_ms, ((mavlink_button_change_t*)button_change)->last_change_ms, ((mavlink_button_change_t*)button_change)->state);
 }
 
 /**

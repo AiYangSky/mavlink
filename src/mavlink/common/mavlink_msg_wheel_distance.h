@@ -128,9 +128,9 @@ static inline uint16_t mavlink_msg_wheel_distance_encode(uint8_t system_id, uint
  * @param msg The MAVLink message to compress the data into
  * @param wheel_distance C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_wheel_distance_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_wheel_distance_t* wheel_distance)
+static inline uint16_t mavlink_msg_wheel_distance_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* wheel_distance)
 {
-    return mavlink_msg_wheel_distance_pack_chan(system_id, component_id, chan, msg, wheel_distance->time_usec, wheel_distance->count, wheel_distance->distance);
+    return mavlink_msg_wheel_distance_pack_chan(system_id, component_id, chan, msg, ((mavlink_wheel_distance_t*)wheel_distance)->time_usec, ((mavlink_wheel_distance_t*)wheel_distance)->count, ((mavlink_wheel_distance_t*)wheel_distance)->distance);
 }
 
 /**

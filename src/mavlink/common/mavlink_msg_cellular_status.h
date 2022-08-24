@@ -168,9 +168,9 @@ static inline uint16_t mavlink_msg_cellular_status_encode(uint8_t system_id, uin
  * @param msg The MAVLink message to compress the data into
  * @param cellular_status C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_cellular_status_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_cellular_status_t* cellular_status)
+static inline uint16_t mavlink_msg_cellular_status_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* cellular_status)
 {
-    return mavlink_msg_cellular_status_pack_chan(system_id, component_id, chan, msg, cellular_status->status, cellular_status->failure_reason, cellular_status->type, cellular_status->quality, cellular_status->mcc, cellular_status->mnc, cellular_status->lac);
+    return mavlink_msg_cellular_status_pack_chan(system_id, component_id, chan, msg, ((mavlink_cellular_status_t*)cellular_status)->status, ((mavlink_cellular_status_t*)cellular_status)->failure_reason, ((mavlink_cellular_status_t*)cellular_status)->type, ((mavlink_cellular_status_t*)cellular_status)->quality, ((mavlink_cellular_status_t*)cellular_status)->mcc, ((mavlink_cellular_status_t*)cellular_status)->mnc, ((mavlink_cellular_status_t*)cellular_status)->lac);
 }
 
 /**

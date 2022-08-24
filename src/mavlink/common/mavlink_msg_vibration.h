@@ -168,9 +168,9 @@ static inline uint16_t mavlink_msg_vibration_encode(uint8_t system_id, uint8_t c
  * @param msg The MAVLink message to compress the data into
  * @param vibration C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_vibration_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_vibration_t* vibration)
+static inline uint16_t mavlink_msg_vibration_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* vibration)
 {
-    return mavlink_msg_vibration_pack_chan(system_id, component_id, chan, msg, vibration->time_usec, vibration->vibration_x, vibration->vibration_y, vibration->vibration_z, vibration->clipping_0, vibration->clipping_1, vibration->clipping_2);
+    return mavlink_msg_vibration_pack_chan(system_id, component_id, chan, msg, ((mavlink_vibration_t*)vibration)->time_usec, ((mavlink_vibration_t*)vibration)->vibration_x, ((mavlink_vibration_t*)vibration)->vibration_y, ((mavlink_vibration_t*)vibration)->vibration_z, ((mavlink_vibration_t*)vibration)->clipping_0, ((mavlink_vibration_t*)vibration)->clipping_1, ((mavlink_vibration_t*)vibration)->clipping_2);
 }
 
 /**

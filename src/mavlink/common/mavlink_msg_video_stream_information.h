@@ -210,9 +210,9 @@ static inline uint16_t mavlink_msg_video_stream_information_encode(uint8_t syste
  * @param msg The MAVLink message to compress the data into
  * @param video_stream_information C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_video_stream_information_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_video_stream_information_t* video_stream_information)
+static inline uint16_t mavlink_msg_video_stream_information_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* video_stream_information)
 {
-    return mavlink_msg_video_stream_information_pack_chan(system_id, component_id, chan, msg, video_stream_information->stream_id, video_stream_information->count, video_stream_information->type, video_stream_information->flags, video_stream_information->framerate, video_stream_information->resolution_h, video_stream_information->resolution_v, video_stream_information->bitrate, video_stream_information->rotation, video_stream_information->hfov, video_stream_information->name, video_stream_information->uri);
+    return mavlink_msg_video_stream_information_pack_chan(system_id, component_id, chan, msg, ((mavlink_video_stream_information_t*)video_stream_information)->stream_id, ((mavlink_video_stream_information_t*)video_stream_information)->count, ((mavlink_video_stream_information_t*)video_stream_information)->type, ((mavlink_video_stream_information_t*)video_stream_information)->flags, ((mavlink_video_stream_information_t*)video_stream_information)->framerate, ((mavlink_video_stream_information_t*)video_stream_information)->resolution_h, ((mavlink_video_stream_information_t*)video_stream_information)->resolution_v, ((mavlink_video_stream_information_t*)video_stream_information)->bitrate, ((mavlink_video_stream_information_t*)video_stream_information)->rotation, ((mavlink_video_stream_information_t*)video_stream_information)->hfov, ((mavlink_video_stream_information_t*)video_stream_information)->name, ((mavlink_video_stream_information_t*)video_stream_information)->uri);
 }
 
 /**

@@ -204,9 +204,9 @@ static inline uint16_t mavlink_msg_command_long_encode(uint8_t system_id, uint8_
  * @param msg The MAVLink message to compress the data into
  * @param command_long C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_command_long_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_command_long_t* command_long)
+static inline uint16_t mavlink_msg_command_long_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* command_long)
 {
-    return mavlink_msg_command_long_pack_chan(system_id, component_id, chan, msg, command_long->target_system, command_long->target_component, command_long->command, command_long->confirmation, command_long->param1, command_long->param2, command_long->param3, command_long->param4, command_long->param5, command_long->param6, command_long->param7);
+    return mavlink_msg_command_long_pack_chan(system_id, component_id, chan, msg, ((mavlink_command_long_t*)command_long)->target_system, ((mavlink_command_long_t*)command_long)->target_component, ((mavlink_command_long_t*)command_long)->command, ((mavlink_command_long_t*)command_long)->confirmation, ((mavlink_command_long_t*)command_long)->param1, ((mavlink_command_long_t*)command_long)->param2, ((mavlink_command_long_t*)command_long)->param3, ((mavlink_command_long_t*)command_long)->param4, ((mavlink_command_long_t*)command_long)->param5, ((mavlink_command_long_t*)command_long)->param6, ((mavlink_command_long_t*)command_long)->param7);
 }
 
 /**

@@ -195,9 +195,9 @@ static inline uint16_t mavlink_msg_manual_control_encode(uint8_t system_id, uint
  * @param msg The MAVLink message to compress the data into
  * @param manual_control C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_manual_control_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_manual_control_t* manual_control)
+static inline uint16_t mavlink_msg_manual_control_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* manual_control)
 {
-    return mavlink_msg_manual_control_pack_chan(system_id, component_id, chan, msg, manual_control->target, manual_control->x, manual_control->y, manual_control->z, manual_control->r, manual_control->buttons, manual_control->buttons2, manual_control->enabled_extensions, manual_control->s, manual_control->t);
+    return mavlink_msg_manual_control_pack_chan(system_id, component_id, chan, msg, ((mavlink_manual_control_t*)manual_control)->target, ((mavlink_manual_control_t*)manual_control)->x, ((mavlink_manual_control_t*)manual_control)->y, ((mavlink_manual_control_t*)manual_control)->z, ((mavlink_manual_control_t*)manual_control)->r, ((mavlink_manual_control_t*)manual_control)->buttons, ((mavlink_manual_control_t*)manual_control)->buttons2, ((mavlink_manual_control_t*)manual_control)->enabled_extensions, ((mavlink_manual_control_t*)manual_control)->s, ((mavlink_manual_control_t*)manual_control)->t);
 }
 
 /**

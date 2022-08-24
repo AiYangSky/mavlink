@@ -148,9 +148,9 @@ static inline uint16_t mavlink_msg_esc_status_encode(uint8_t system_id, uint8_t 
  * @param msg The MAVLink message to compress the data into
  * @param esc_status C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_esc_status_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_esc_status_t* esc_status)
+static inline uint16_t mavlink_msg_esc_status_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* esc_status)
 {
-    return mavlink_msg_esc_status_pack_chan(system_id, component_id, chan, msg, esc_status->index, esc_status->time_usec, esc_status->rpm, esc_status->voltage, esc_status->current);
+    return mavlink_msg_esc_status_pack_chan(system_id, component_id, chan, msg, ((mavlink_esc_status_t*)esc_status)->index, ((mavlink_esc_status_t*)esc_status)->time_usec, ((mavlink_esc_status_t*)esc_status)->rpm, ((mavlink_esc_status_t*)esc_status)->voltage, ((mavlink_esc_status_t*)esc_status)->current);
 }
 
 /**

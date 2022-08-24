@@ -3,7 +3,7 @@
  * @Author         : Aiyangsky
  * @Date           : 2022-08-22 01:37:50
  * @LastEditors    : Aiyangsky
- * @LastEditTime   : 2022-08-22 01:51:36
+ * @LastEditTime   : 2022-08-22 13:03:39
  * @FilePath       : \mavlink\src\Microservices\Mavlink_Joystick.h
  */
 
@@ -16,3 +16,4 @@
 void Mavlink_Joystick_init(void (*joystick_Send)(mavlink_manual_control_t *));
 
 #endif
+

@@ -173,9 +173,9 @@ static inline uint16_t mavlink_msg_serial_control_encode(uint8_t system_id, uint
  * @param msg The MAVLink message to compress the data into
  * @param serial_control C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_serial_control_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_serial_control_t* serial_control)
+static inline uint16_t mavlink_msg_serial_control_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* serial_control)
 {
-    return mavlink_msg_serial_control_pack_chan(system_id, component_id, chan, msg, serial_control->device, serial_control->flags, serial_control->timeout, serial_control->baudrate, serial_control->count, serial_control->data, serial_control->target_system, serial_control->target_component);
+    return mavlink_msg_serial_control_pack_chan(system_id, component_id, chan, msg, ((mavlink_serial_control_t*)serial_control)->device, ((mavlink_serial_control_t*)serial_control)->flags, ((mavlink_serial_control_t*)serial_control)->timeout, ((mavlink_serial_control_t*)serial_control)->baudrate, ((mavlink_serial_control_t*)serial_control)->count, ((mavlink_serial_control_t*)serial_control)->data, ((mavlink_serial_control_t*)serial_control)->target_system, ((mavlink_serial_control_t*)serial_control)->target_component);
 }
 
 /**

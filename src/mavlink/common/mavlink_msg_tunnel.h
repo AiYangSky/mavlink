@@ -146,9 +146,9 @@ static inline uint16_t mavlink_msg_tunnel_encode(uint8_t system_id, uint8_t comp
  * @param msg The MAVLink message to compress the data into
  * @param tunnel C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_tunnel_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_tunnel_t* tunnel)
+static inline uint16_t mavlink_msg_tunnel_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* tunnel)
 {
-    return mavlink_msg_tunnel_pack_chan(system_id, component_id, chan, msg, tunnel->target_system, tunnel->target_component, tunnel->payload_type, tunnel->payload_length, tunnel->payload);
+    return mavlink_msg_tunnel_pack_chan(system_id, component_id, chan, msg, ((mavlink_tunnel_t*)tunnel)->target_system, ((mavlink_tunnel_t*)tunnel)->target_component, ((mavlink_tunnel_t*)tunnel)->payload_type, ((mavlink_tunnel_t*)tunnel)->payload_length, ((mavlink_tunnel_t*)tunnel)->payload);
 }
 
 /**

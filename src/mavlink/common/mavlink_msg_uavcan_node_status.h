@@ -159,9 +159,9 @@ static inline uint16_t mavlink_msg_uavcan_node_status_encode(uint8_t system_id, 
  * @param msg The MAVLink message to compress the data into
  * @param uavcan_node_status C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_uavcan_node_status_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_uavcan_node_status_t* uavcan_node_status)
+static inline uint16_t mavlink_msg_uavcan_node_status_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* uavcan_node_status)
 {
-    return mavlink_msg_uavcan_node_status_pack_chan(system_id, component_id, chan, msg, uavcan_node_status->time_usec, uavcan_node_status->uptime_sec, uavcan_node_status->health, uavcan_node_status->mode, uavcan_node_status->sub_mode, uavcan_node_status->vendor_specific_status_code);
+    return mavlink_msg_uavcan_node_status_pack_chan(system_id, component_id, chan, msg, ((mavlink_uavcan_node_status_t*)uavcan_node_status)->time_usec, ((mavlink_uavcan_node_status_t*)uavcan_node_status)->uptime_sec, ((mavlink_uavcan_node_status_t*)uavcan_node_status)->health, ((mavlink_uavcan_node_status_t*)uavcan_node_status)->mode, ((mavlink_uavcan_node_status_t*)uavcan_node_status)->sub_mode, ((mavlink_uavcan_node_status_t*)uavcan_node_status)->vendor_specific_status_code);
 }
 
 /**

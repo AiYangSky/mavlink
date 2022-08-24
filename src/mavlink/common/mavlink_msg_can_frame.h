@@ -155,9 +155,9 @@ static inline uint16_t mavlink_msg_can_frame_encode(uint8_t system_id, uint8_t c
  * @param msg The MAVLink message to compress the data into
  * @param can_frame C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_can_frame_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_can_frame_t* can_frame)
+static inline uint16_t mavlink_msg_can_frame_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* can_frame)
 {
-    return mavlink_msg_can_frame_pack_chan(system_id, component_id, chan, msg, can_frame->target_system, can_frame->target_component, can_frame->bus, can_frame->len, can_frame->id, can_frame->data);
+    return mavlink_msg_can_frame_pack_chan(system_id, component_id, chan, msg, ((mavlink_can_frame_t*)can_frame)->target_system, ((mavlink_can_frame_t*)can_frame)->target_component, ((mavlink_can_frame_t*)can_frame)->bus, ((mavlink_can_frame_t*)can_frame)->len, ((mavlink_can_frame_t*)can_frame)->id, ((mavlink_can_frame_t*)can_frame)->data);
 }
 
 /**

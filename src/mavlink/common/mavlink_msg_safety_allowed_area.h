@@ -168,9 +168,9 @@ static inline uint16_t mavlink_msg_safety_allowed_area_encode(uint8_t system_id,
  * @param msg The MAVLink message to compress the data into
  * @param safety_allowed_area C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_safety_allowed_area_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_safety_allowed_area_t* safety_allowed_area)
+static inline uint16_t mavlink_msg_safety_allowed_area_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* safety_allowed_area)
 {
-    return mavlink_msg_safety_allowed_area_pack_chan(system_id, component_id, chan, msg, safety_allowed_area->frame, safety_allowed_area->p1x, safety_allowed_area->p1y, safety_allowed_area->p1z, safety_allowed_area->p2x, safety_allowed_area->p2y, safety_allowed_area->p2z);
+    return mavlink_msg_safety_allowed_area_pack_chan(system_id, component_id, chan, msg, ((mavlink_safety_allowed_area_t*)safety_allowed_area)->frame, ((mavlink_safety_allowed_area_t*)safety_allowed_area)->p1x, ((mavlink_safety_allowed_area_t*)safety_allowed_area)->p1y, ((mavlink_safety_allowed_area_t*)safety_allowed_area)->p1z, ((mavlink_safety_allowed_area_t*)safety_allowed_area)->p2x, ((mavlink_safety_allowed_area_t*)safety_allowed_area)->p2y, ((mavlink_safety_allowed_area_t*)safety_allowed_area)->p2z);
 }
 
 /**

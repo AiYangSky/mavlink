@@ -159,9 +159,9 @@ static inline uint16_t mavlink_msg_orbit_execution_status_encode(uint8_t system_
  * @param msg The MAVLink message to compress the data into
  * @param orbit_execution_status C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_orbit_execution_status_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_orbit_execution_status_t* orbit_execution_status)
+static inline uint16_t mavlink_msg_orbit_execution_status_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* orbit_execution_status)
 {
-    return mavlink_msg_orbit_execution_status_pack_chan(system_id, component_id, chan, msg, orbit_execution_status->time_usec, orbit_execution_status->radius, orbit_execution_status->frame, orbit_execution_status->x, orbit_execution_status->y, orbit_execution_status->z);
+    return mavlink_msg_orbit_execution_status_pack_chan(system_id, component_id, chan, msg, ((mavlink_orbit_execution_status_t*)orbit_execution_status)->time_usec, ((mavlink_orbit_execution_status_t*)orbit_execution_status)->radius, ((mavlink_orbit_execution_status_t*)orbit_execution_status)->frame, ((mavlink_orbit_execution_status_t*)orbit_execution_status)->x, ((mavlink_orbit_execution_status_t*)orbit_execution_status)->y, ((mavlink_orbit_execution_status_t*)orbit_execution_status)->z);
 }
 
 /**

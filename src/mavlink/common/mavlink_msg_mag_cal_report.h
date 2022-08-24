@@ -267,9 +267,9 @@ static inline uint16_t mavlink_msg_mag_cal_report_encode(uint8_t system_id, uint
  * @param msg The MAVLink message to compress the data into
  * @param mag_cal_report C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_mag_cal_report_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_mag_cal_report_t* mag_cal_report)
+static inline uint16_t mavlink_msg_mag_cal_report_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* mag_cal_report)
 {
-    return mavlink_msg_mag_cal_report_pack_chan(system_id, component_id, chan, msg, mag_cal_report->compass_id, mag_cal_report->cal_mask, mag_cal_report->cal_status, mag_cal_report->autosaved, mag_cal_report->fitness, mag_cal_report->ofs_x, mag_cal_report->ofs_y, mag_cal_report->ofs_z, mag_cal_report->diag_x, mag_cal_report->diag_y, mag_cal_report->diag_z, mag_cal_report->offdiag_x, mag_cal_report->offdiag_y, mag_cal_report->offdiag_z, mag_cal_report->orientation_confidence, mag_cal_report->old_orientation, mag_cal_report->new_orientation, mag_cal_report->scale_factor);
+    return mavlink_msg_mag_cal_report_pack_chan(system_id, component_id, chan, msg, ((mavlink_mag_cal_report_t*)mag_cal_report)->compass_id, ((mavlink_mag_cal_report_t*)mag_cal_report)->cal_mask, ((mavlink_mag_cal_report_t*)mag_cal_report)->cal_status, ((mavlink_mag_cal_report_t*)mag_cal_report)->autosaved, ((mavlink_mag_cal_report_t*)mag_cal_report)->fitness, ((mavlink_mag_cal_report_t*)mag_cal_report)->ofs_x, ((mavlink_mag_cal_report_t*)mag_cal_report)->ofs_y, ((mavlink_mag_cal_report_t*)mag_cal_report)->ofs_z, ((mavlink_mag_cal_report_t*)mag_cal_report)->diag_x, ((mavlink_mag_cal_report_t*)mag_cal_report)->diag_y, ((mavlink_mag_cal_report_t*)mag_cal_report)->diag_z, ((mavlink_mag_cal_report_t*)mag_cal_report)->offdiag_x, ((mavlink_mag_cal_report_t*)mag_cal_report)->offdiag_y, ((mavlink_mag_cal_report_t*)mag_cal_report)->offdiag_z, ((mavlink_mag_cal_report_t*)mag_cal_report)->orientation_confidence, ((mavlink_mag_cal_report_t*)mag_cal_report)->old_orientation, ((mavlink_mag_cal_report_t*)mag_cal_report)->new_orientation, ((mavlink_mag_cal_report_t*)mag_cal_report)->scale_factor);
 }
 
 /**

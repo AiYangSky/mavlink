@@ -146,9 +146,9 @@ static inline uint16_t mavlink_msg_v2_extension_encode(uint8_t system_id, uint8_
  * @param msg The MAVLink message to compress the data into
  * @param v2_extension C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_v2_extension_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_v2_extension_t* v2_extension)
+static inline uint16_t mavlink_msg_v2_extension_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* v2_extension)
 {
-    return mavlink_msg_v2_extension_pack_chan(system_id, component_id, chan, msg, v2_extension->target_network, v2_extension->target_system, v2_extension->target_component, v2_extension->message_type, v2_extension->payload);
+    return mavlink_msg_v2_extension_pack_chan(system_id, component_id, chan, msg, ((mavlink_v2_extension_t*)v2_extension)->target_network, ((mavlink_v2_extension_t*)v2_extension)->target_system, ((mavlink_v2_extension_t*)v2_extension)->target_component, ((mavlink_v2_extension_t*)v2_extension)->message_type, ((mavlink_v2_extension_t*)v2_extension)->payload);
 }
 
 /**

@@ -168,9 +168,9 @@ static inline uint16_t mavlink_msg_camera_capture_status_encode(uint8_t system_i
  * @param msg The MAVLink message to compress the data into
  * @param camera_capture_status C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_camera_capture_status_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_camera_capture_status_t* camera_capture_status)
+static inline uint16_t mavlink_msg_camera_capture_status_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* camera_capture_status)
 {
-    return mavlink_msg_camera_capture_status_pack_chan(system_id, component_id, chan, msg, camera_capture_status->time_boot_ms, camera_capture_status->image_status, camera_capture_status->video_status, camera_capture_status->image_interval, camera_capture_status->recording_time_ms, camera_capture_status->available_capacity, camera_capture_status->image_count);
+    return mavlink_msg_camera_capture_status_pack_chan(system_id, component_id, chan, msg, ((mavlink_camera_capture_status_t*)camera_capture_status)->time_boot_ms, ((mavlink_camera_capture_status_t*)camera_capture_status)->image_status, ((mavlink_camera_capture_status_t*)camera_capture_status)->video_status, ((mavlink_camera_capture_status_t*)camera_capture_status)->image_interval, ((mavlink_camera_capture_status_t*)camera_capture_status)->recording_time_ms, ((mavlink_camera_capture_status_t*)camera_capture_status)->available_capacity, ((mavlink_camera_capture_status_t*)camera_capture_status)->image_count);
 }
 
 /**

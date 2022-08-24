@@ -3,7 +3,7 @@
  * @Author         : Aiyangsky
  * @Date           : 2022-08-20 19:37:17
  * @LastEditors    : Aiyangsky
- * @LastEditTime   : 2022-08-22 01:34:13
+ * @LastEditTime   : 2022-08-24 17:55:54
  * @FilePath       : \mavlink\src\Microservices\Mavlink_Parameters.h
  */
 #ifndef MAVLINK_PARAMETERS_H
@@ -11,15 +11,12 @@
 
 typedef struct
 {
-    unsigned short number;
     unsigned short curr_count;
-    unsigned char in_chan;
+    unsigned char req_sys;
+    unsigned char req_comp;
 
     // Timer
     void *timer;
-    void (*Os_Timer_creat)(void *, unsigned short, void *);
-    void (*Os_Timer_stop_and_reset)(void *);
-    unsigned char (*Os_Timer_curr)(void *);
 
     // Parameters storage
     unsigned short (*Get_numbers)(void);

@@ -249,9 +249,9 @@ static inline uint16_t mavlink_msg_hil_sensor_encode(uint8_t system_id, uint8_t 
  * @param msg The MAVLink message to compress the data into
  * @param hil_sensor C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_hil_sensor_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_hil_sensor_t* hil_sensor)
+static inline uint16_t mavlink_msg_hil_sensor_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* hil_sensor)
 {
-    return mavlink_msg_hil_sensor_pack_chan(system_id, component_id, chan, msg, hil_sensor->time_usec, hil_sensor->xacc, hil_sensor->yacc, hil_sensor->zacc, hil_sensor->xgyro, hil_sensor->ygyro, hil_sensor->zgyro, hil_sensor->xmag, hil_sensor->ymag, hil_sensor->zmag, hil_sensor->abs_pressure, hil_sensor->diff_pressure, hil_sensor->pressure_alt, hil_sensor->temperature, hil_sensor->fields_updated, hil_sensor->id);
+    return mavlink_msg_hil_sensor_pack_chan(system_id, component_id, chan, msg, ((mavlink_hil_sensor_t*)hil_sensor)->time_usec, ((mavlink_hil_sensor_t*)hil_sensor)->xacc, ((mavlink_hil_sensor_t*)hil_sensor)->yacc, ((mavlink_hil_sensor_t*)hil_sensor)->zacc, ((mavlink_hil_sensor_t*)hil_sensor)->xgyro, ((mavlink_hil_sensor_t*)hil_sensor)->ygyro, ((mavlink_hil_sensor_t*)hil_sensor)->zgyro, ((mavlink_hil_sensor_t*)hil_sensor)->xmag, ((mavlink_hil_sensor_t*)hil_sensor)->ymag, ((mavlink_hil_sensor_t*)hil_sensor)->zmag, ((mavlink_hil_sensor_t*)hil_sensor)->abs_pressure, ((mavlink_hil_sensor_t*)hil_sensor)->diff_pressure, ((mavlink_hil_sensor_t*)hil_sensor)->pressure_alt, ((mavlink_hil_sensor_t*)hil_sensor)->temperature, ((mavlink_hil_sensor_t*)hil_sensor)->fields_updated, ((mavlink_hil_sensor_t*)hil_sensor)->id);
 }
 
 /**

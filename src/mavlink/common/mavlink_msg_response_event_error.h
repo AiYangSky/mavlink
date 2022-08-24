@@ -150,9 +150,9 @@ static inline uint16_t mavlink_msg_response_event_error_encode(uint8_t system_id
  * @param msg The MAVLink message to compress the data into
  * @param response_event_error C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_response_event_error_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_response_event_error_t* response_event_error)
+static inline uint16_t mavlink_msg_response_event_error_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* response_event_error)
 {
-    return mavlink_msg_response_event_error_pack_chan(system_id, component_id, chan, msg, response_event_error->target_system, response_event_error->target_component, response_event_error->sequence, response_event_error->sequence_oldest_available, response_event_error->reason);
+    return mavlink_msg_response_event_error_pack_chan(system_id, component_id, chan, msg, ((mavlink_response_event_error_t*)response_event_error)->target_system, ((mavlink_response_event_error_t*)response_event_error)->target_component, ((mavlink_response_event_error_t*)response_event_error)->sequence, ((mavlink_response_event_error_t*)response_event_error)->sequence_oldest_available, ((mavlink_response_event_error_t*)response_event_error)->reason);
 }
 
 /**

@@ -267,9 +267,9 @@ static inline uint16_t mavlink_msg_efi_status_encode(uint8_t system_id, uint8_t 
  * @param msg The MAVLink message to compress the data into
  * @param efi_status C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_efi_status_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_efi_status_t* efi_status)
+static inline uint16_t mavlink_msg_efi_status_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* efi_status)
 {
-    return mavlink_msg_efi_status_pack_chan(system_id, component_id, chan, msg, efi_status->health, efi_status->ecu_index, efi_status->rpm, efi_status->fuel_consumed, efi_status->fuel_flow, efi_status->engine_load, efi_status->throttle_position, efi_status->spark_dwell_time, efi_status->barometric_pressure, efi_status->intake_manifold_pressure, efi_status->intake_manifold_temperature, efi_status->cylinder_head_temperature, efi_status->ignition_timing, efi_status->injection_time, efi_status->exhaust_gas_temperature, efi_status->throttle_out, efi_status->pt_compensation, efi_status->ignition_voltage);
+    return mavlink_msg_efi_status_pack_chan(system_id, component_id, chan, msg, ((mavlink_efi_status_t*)efi_status)->health, ((mavlink_efi_status_t*)efi_status)->ecu_index, ((mavlink_efi_status_t*)efi_status)->rpm, ((mavlink_efi_status_t*)efi_status)->fuel_consumed, ((mavlink_efi_status_t*)efi_status)->fuel_flow, ((mavlink_efi_status_t*)efi_status)->engine_load, ((mavlink_efi_status_t*)efi_status)->throttle_position, ((mavlink_efi_status_t*)efi_status)->spark_dwell_time, ((mavlink_efi_status_t*)efi_status)->barometric_pressure, ((mavlink_efi_status_t*)efi_status)->intake_manifold_pressure, ((mavlink_efi_status_t*)efi_status)->intake_manifold_temperature, ((mavlink_efi_status_t*)efi_status)->cylinder_head_temperature, ((mavlink_efi_status_t*)efi_status)->ignition_timing, ((mavlink_efi_status_t*)efi_status)->injection_time, ((mavlink_efi_status_t*)efi_status)->exhaust_gas_temperature, ((mavlink_efi_status_t*)efi_status)->throttle_out, ((mavlink_efi_status_t*)efi_status)->pt_compensation, ((mavlink_efi_status_t*)efi_status)->ignition_voltage);
 }
 
 /**

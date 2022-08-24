@@ -191,9 +191,9 @@ static inline uint16_t mavlink_msg_camera_fov_status_encode(uint8_t system_id, u
  * @param msg The MAVLink message to compress the data into
  * @param camera_fov_status C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_camera_fov_status_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_camera_fov_status_t* camera_fov_status)
+static inline uint16_t mavlink_msg_camera_fov_status_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* camera_fov_status)
 {
-    return mavlink_msg_camera_fov_status_pack_chan(system_id, component_id, chan, msg, camera_fov_status->time_boot_ms, camera_fov_status->lat_camera, camera_fov_status->lon_camera, camera_fov_status->alt_camera, camera_fov_status->lat_image, camera_fov_status->lon_image, camera_fov_status->alt_image, camera_fov_status->q, camera_fov_status->hfov, camera_fov_status->vfov);
+    return mavlink_msg_camera_fov_status_pack_chan(system_id, component_id, chan, msg, ((mavlink_camera_fov_status_t*)camera_fov_status)->time_boot_ms, ((mavlink_camera_fov_status_t*)camera_fov_status)->lat_camera, ((mavlink_camera_fov_status_t*)camera_fov_status)->lon_camera, ((mavlink_camera_fov_status_t*)camera_fov_status)->alt_camera, ((mavlink_camera_fov_status_t*)camera_fov_status)->lat_image, ((mavlink_camera_fov_status_t*)camera_fov_status)->lon_image, ((mavlink_camera_fov_status_t*)camera_fov_status)->alt_image, ((mavlink_camera_fov_status_t*)camera_fov_status)->q, ((mavlink_camera_fov_status_t*)camera_fov_status)->hfov, ((mavlink_camera_fov_status_t*)camera_fov_status)->vfov);
 }
 
 /**

@@ -137,9 +137,9 @@ static inline uint16_t mavlink_msg_file_transfer_protocol_encode(uint8_t system_
  * @param msg The MAVLink message to compress the data into
  * @param file_transfer_protocol C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_file_transfer_protocol_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_file_transfer_protocol_t* file_transfer_protocol)
+static inline uint16_t mavlink_msg_file_transfer_protocol_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* file_transfer_protocol)
 {
-    return mavlink_msg_file_transfer_protocol_pack_chan(system_id, component_id, chan, msg, file_transfer_protocol->target_network, file_transfer_protocol->target_system, file_transfer_protocol->target_component, file_transfer_protocol->payload);
+    return mavlink_msg_file_transfer_protocol_pack_chan(system_id, component_id, chan, msg, ((mavlink_file_transfer_protocol_t*)file_transfer_protocol)->target_network, ((mavlink_file_transfer_protocol_t*)file_transfer_protocol)->target_system, ((mavlink_file_transfer_protocol_t*)file_transfer_protocol)->target_component, ((mavlink_file_transfer_protocol_t*)file_transfer_protocol)->payload);
 }
 
 /**

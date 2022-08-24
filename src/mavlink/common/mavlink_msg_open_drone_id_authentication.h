@@ -183,9 +183,9 @@ static inline uint16_t mavlink_msg_open_drone_id_authentication_encode(uint8_t s
  * @param msg The MAVLink message to compress the data into
  * @param open_drone_id_authentication C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_open_drone_id_authentication_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_open_drone_id_authentication_t* open_drone_id_authentication)
+static inline uint16_t mavlink_msg_open_drone_id_authentication_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* open_drone_id_authentication)
 {
-    return mavlink_msg_open_drone_id_authentication_pack_chan(system_id, component_id, chan, msg, open_drone_id_authentication->target_system, open_drone_id_authentication->target_component, open_drone_id_authentication->id_or_mac, open_drone_id_authentication->authentication_type, open_drone_id_authentication->data_page, open_drone_id_authentication->last_page_index, open_drone_id_authentication->length, open_drone_id_authentication->timestamp, open_drone_id_authentication->authentication_data);
+    return mavlink_msg_open_drone_id_authentication_pack_chan(system_id, component_id, chan, msg, ((mavlink_open_drone_id_authentication_t*)open_drone_id_authentication)->target_system, ((mavlink_open_drone_id_authentication_t*)open_drone_id_authentication)->target_component, ((mavlink_open_drone_id_authentication_t*)open_drone_id_authentication)->id_or_mac, ((mavlink_open_drone_id_authentication_t*)open_drone_id_authentication)->authentication_type, ((mavlink_open_drone_id_authentication_t*)open_drone_id_authentication)->data_page, ((mavlink_open_drone_id_authentication_t*)open_drone_id_authentication)->last_page_index, ((mavlink_open_drone_id_authentication_t*)open_drone_id_authentication)->length, ((mavlink_open_drone_id_authentication_t*)open_drone_id_authentication)->timestamp, ((mavlink_open_drone_id_authentication_t*)open_drone_id_authentication)->authentication_data);
 }
 
 /**

@@ -128,9 +128,9 @@ static inline uint16_t mavlink_msg_named_value_int_encode(uint8_t system_id, uin
  * @param msg The MAVLink message to compress the data into
  * @param named_value_int C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_named_value_int_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_named_value_int_t* named_value_int)
+static inline uint16_t mavlink_msg_named_value_int_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* named_value_int)
 {
-    return mavlink_msg_named_value_int_pack_chan(system_id, component_id, chan, msg, named_value_int->time_boot_ms, named_value_int->name, named_value_int->value);
+    return mavlink_msg_named_value_int_pack_chan(system_id, component_id, chan, msg, ((mavlink_named_value_int_t*)named_value_int)->time_boot_ms, ((mavlink_named_value_int_t*)named_value_int)->name, ((mavlink_named_value_int_t*)named_value_int)->value);
 }
 
 /**

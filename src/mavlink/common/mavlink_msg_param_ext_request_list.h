@@ -123,9 +123,9 @@ static inline uint16_t mavlink_msg_param_ext_request_list_encode(uint8_t system_
  * @param msg The MAVLink message to compress the data into
  * @param param_ext_request_list C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_param_ext_request_list_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_param_ext_request_list_t* param_ext_request_list)
+static inline uint16_t mavlink_msg_param_ext_request_list_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* param_ext_request_list)
 {
-    return mavlink_msg_param_ext_request_list_pack_chan(system_id, component_id, chan, msg, param_ext_request_list->target_system, param_ext_request_list->target_component);
+    return mavlink_msg_param_ext_request_list_pack_chan(system_id, component_id, chan, msg, ((mavlink_param_ext_request_list_t*)param_ext_request_list)->target_system, ((mavlink_param_ext_request_list_t*)param_ext_request_list)->target_component);
 }
 
 /**

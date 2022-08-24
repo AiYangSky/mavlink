@@ -168,9 +168,9 @@ static inline uint16_t mavlink_msg_data_transmission_handshake_encode(uint8_t sy
  * @param msg The MAVLink message to compress the data into
  * @param data_transmission_handshake C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_data_transmission_handshake_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_data_transmission_handshake_t* data_transmission_handshake)
+static inline uint16_t mavlink_msg_data_transmission_handshake_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* data_transmission_handshake)
 {
-    return mavlink_msg_data_transmission_handshake_pack_chan(system_id, component_id, chan, msg, data_transmission_handshake->type, data_transmission_handshake->size, data_transmission_handshake->width, data_transmission_handshake->height, data_transmission_handshake->packets, data_transmission_handshake->payload, data_transmission_handshake->jpg_quality);
+    return mavlink_msg_data_transmission_handshake_pack_chan(system_id, component_id, chan, msg, ((mavlink_data_transmission_handshake_t*)data_transmission_handshake)->type, ((mavlink_data_transmission_handshake_t*)data_transmission_handshake)->size, ((mavlink_data_transmission_handshake_t*)data_transmission_handshake)->width, ((mavlink_data_transmission_handshake_t*)data_transmission_handshake)->height, ((mavlink_data_transmission_handshake_t*)data_transmission_handshake)->packets, ((mavlink_data_transmission_handshake_t*)data_transmission_handshake)->payload, ((mavlink_data_transmission_handshake_t*)data_transmission_handshake)->jpg_quality);
 }
 
 /**

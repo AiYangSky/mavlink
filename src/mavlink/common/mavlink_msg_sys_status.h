@@ -249,9 +249,9 @@ static inline uint16_t mavlink_msg_sys_status_encode(uint8_t system_id, uint8_t 
  * @param msg The MAVLink message to compress the data into
  * @param sys_status C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_sys_status_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_sys_status_t* sys_status)
+static inline uint16_t mavlink_msg_sys_status_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* sys_status)
 {
-    return mavlink_msg_sys_status_pack_chan(system_id, component_id, chan, msg, sys_status->onboard_control_sensors_present, sys_status->onboard_control_sensors_enabled, sys_status->onboard_control_sensors_health, sys_status->load, sys_status->voltage_battery, sys_status->current_battery, sys_status->battery_remaining, sys_status->drop_rate_comm, sys_status->errors_comm, sys_status->errors_count1, sys_status->errors_count2, sys_status->errors_count3, sys_status->errors_count4, sys_status->onboard_control_sensors_present_extended, sys_status->onboard_control_sensors_enabled_extended, sys_status->onboard_control_sensors_health_extended);
+    return mavlink_msg_sys_status_pack_chan(system_id, component_id, chan, msg, ((mavlink_sys_status_t*)sys_status)->onboard_control_sensors_present, ((mavlink_sys_status_t*)sys_status)->onboard_control_sensors_enabled, ((mavlink_sys_status_t*)sys_status)->onboard_control_sensors_health, ((mavlink_sys_status_t*)sys_status)->load, ((mavlink_sys_status_t*)sys_status)->voltage_battery, ((mavlink_sys_status_t*)sys_status)->current_battery, ((mavlink_sys_status_t*)sys_status)->battery_remaining, ((mavlink_sys_status_t*)sys_status)->drop_rate_comm, ((mavlink_sys_status_t*)sys_status)->errors_comm, ((mavlink_sys_status_t*)sys_status)->errors_count1, ((mavlink_sys_status_t*)sys_status)->errors_count2, ((mavlink_sys_status_t*)sys_status)->errors_count3, ((mavlink_sys_status_t*)sys_status)->errors_count4, ((mavlink_sys_status_t*)sys_status)->onboard_control_sensors_present_extended, ((mavlink_sys_status_t*)sys_status)->onboard_control_sensors_enabled_extended, ((mavlink_sys_status_t*)sys_status)->onboard_control_sensors_health_extended);
 }
 
 /**

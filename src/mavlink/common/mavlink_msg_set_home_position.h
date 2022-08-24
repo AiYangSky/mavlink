@@ -209,9 +209,9 @@ static inline uint16_t mavlink_msg_set_home_position_encode(uint8_t system_id, u
  * @param msg The MAVLink message to compress the data into
  * @param set_home_position C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_set_home_position_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_set_home_position_t* set_home_position)
+static inline uint16_t mavlink_msg_set_home_position_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* set_home_position)
 {
-    return mavlink_msg_set_home_position_pack_chan(system_id, component_id, chan, msg, set_home_position->target_system, set_home_position->latitude, set_home_position->longitude, set_home_position->altitude, set_home_position->x, set_home_position->y, set_home_position->z, set_home_position->q, set_home_position->approach_x, set_home_position->approach_y, set_home_position->approach_z, set_home_position->time_usec);
+    return mavlink_msg_set_home_position_pack_chan(system_id, component_id, chan, msg, ((mavlink_set_home_position_t*)set_home_position)->target_system, ((mavlink_set_home_position_t*)set_home_position)->latitude, ((mavlink_set_home_position_t*)set_home_position)->longitude, ((mavlink_set_home_position_t*)set_home_position)->altitude, ((mavlink_set_home_position_t*)set_home_position)->x, ((mavlink_set_home_position_t*)set_home_position)->y, ((mavlink_set_home_position_t*)set_home_position)->z, ((mavlink_set_home_position_t*)set_home_position)->q, ((mavlink_set_home_position_t*)set_home_position)->approach_x, ((mavlink_set_home_position_t*)set_home_position)->approach_y, ((mavlink_set_home_position_t*)set_home_position)->approach_z, ((mavlink_set_home_position_t*)set_home_position)->time_usec);
 }
 
 /**

@@ -147,9 +147,9 @@ static inline uint16_t mavlink_msg_resource_request_encode(uint8_t system_id, ui
  * @param msg The MAVLink message to compress the data into
  * @param resource_request C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_resource_request_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_resource_request_t* resource_request)
+static inline uint16_t mavlink_msg_resource_request_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* resource_request)
 {
-    return mavlink_msg_resource_request_pack_chan(system_id, component_id, chan, msg, resource_request->request_id, resource_request->uri_type, resource_request->uri, resource_request->transfer_type, resource_request->storage);
+    return mavlink_msg_resource_request_pack_chan(system_id, component_id, chan, msg, ((mavlink_resource_request_t*)resource_request)->request_id, ((mavlink_resource_request_t*)resource_request)->uri_type, ((mavlink_resource_request_t*)resource_request)->uri, ((mavlink_resource_request_t*)resource_request)->transfer_type, ((mavlink_resource_request_t*)resource_request)->storage);
 }
 
 /**

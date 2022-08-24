@@ -213,9 +213,9 @@ static inline uint16_t mavlink_msg_raw_imu_encode(uint8_t system_id, uint8_t com
  * @param msg The MAVLink message to compress the data into
  * @param raw_imu C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_raw_imu_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_raw_imu_t* raw_imu)
+static inline uint16_t mavlink_msg_raw_imu_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* raw_imu)
 {
-    return mavlink_msg_raw_imu_pack_chan(system_id, component_id, chan, msg, raw_imu->time_usec, raw_imu->xacc, raw_imu->yacc, raw_imu->zacc, raw_imu->xgyro, raw_imu->ygyro, raw_imu->zgyro, raw_imu->xmag, raw_imu->ymag, raw_imu->zmag, raw_imu->id, raw_imu->temperature);
+    return mavlink_msg_raw_imu_pack_chan(system_id, component_id, chan, msg, ((mavlink_raw_imu_t*)raw_imu)->time_usec, ((mavlink_raw_imu_t*)raw_imu)->xacc, ((mavlink_raw_imu_t*)raw_imu)->yacc, ((mavlink_raw_imu_t*)raw_imu)->zacc, ((mavlink_raw_imu_t*)raw_imu)->xgyro, ((mavlink_raw_imu_t*)raw_imu)->ygyro, ((mavlink_raw_imu_t*)raw_imu)->zgyro, ((mavlink_raw_imu_t*)raw_imu)->xmag, ((mavlink_raw_imu_t*)raw_imu)->ymag, ((mavlink_raw_imu_t*)raw_imu)->zmag, ((mavlink_raw_imu_t*)raw_imu)->id, ((mavlink_raw_imu_t*)raw_imu)->temperature);
 }
 
 /**

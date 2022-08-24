@@ -201,9 +201,9 @@ static inline uint16_t mavlink_msg_camera_image_captured_encode(uint8_t system_i
  * @param msg The MAVLink message to compress the data into
  * @param camera_image_captured C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_camera_image_captured_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_camera_image_captured_t* camera_image_captured)
+static inline uint16_t mavlink_msg_camera_image_captured_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* camera_image_captured)
 {
-    return mavlink_msg_camera_image_captured_pack_chan(system_id, component_id, chan, msg, camera_image_captured->time_boot_ms, camera_image_captured->time_utc, camera_image_captured->camera_id, camera_image_captured->lat, camera_image_captured->lon, camera_image_captured->alt, camera_image_captured->relative_alt, camera_image_captured->q, camera_image_captured->image_index, camera_image_captured->capture_result, camera_image_captured->file_url);
+    return mavlink_msg_camera_image_captured_pack_chan(system_id, component_id, chan, msg, ((mavlink_camera_image_captured_t*)camera_image_captured)->time_boot_ms, ((mavlink_camera_image_captured_t*)camera_image_captured)->time_utc, ((mavlink_camera_image_captured_t*)camera_image_captured)->camera_id, ((mavlink_camera_image_captured_t*)camera_image_captured)->lat, ((mavlink_camera_image_captured_t*)camera_image_captured)->lon, ((mavlink_camera_image_captured_t*)camera_image_captured)->alt, ((mavlink_camera_image_captured_t*)camera_image_captured)->relative_alt, ((mavlink_camera_image_captured_t*)camera_image_captured)->q, ((mavlink_camera_image_captured_t*)camera_image_captured)->image_index, ((mavlink_camera_image_captured_t*)camera_image_captured)->capture_result, ((mavlink_camera_image_captured_t*)camera_image_captured)->file_url);
 }
 
 /**

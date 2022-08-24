@@ -132,9 +132,9 @@ static inline uint16_t mavlink_msg_set_mode_encode(uint8_t system_id, uint8_t co
  * @param msg The MAVLink message to compress the data into
  * @param set_mode C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_set_mode_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_set_mode_t* set_mode)
+static inline uint16_t mavlink_msg_set_mode_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* set_mode)
 {
-    return mavlink_msg_set_mode_pack_chan(system_id, component_id, chan, msg, set_mode->target_system, set_mode->base_mode, set_mode->custom_mode);
+    return mavlink_msg_set_mode_pack_chan(system_id, component_id, chan, msg, ((mavlink_set_mode_t*)set_mode)->target_system, ((mavlink_set_mode_t*)set_mode)->base_mode, ((mavlink_set_mode_t*)set_mode)->custom_mode);
 }
 
 /**

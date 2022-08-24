@@ -204,9 +204,9 @@ static inline uint16_t mavlink_msg_scaled_imu2_encode(uint8_t system_id, uint8_t
  * @param msg The MAVLink message to compress the data into
  * @param scaled_imu2 C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_scaled_imu2_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_scaled_imu2_t* scaled_imu2)
+static inline uint16_t mavlink_msg_scaled_imu2_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* scaled_imu2)
 {
-    return mavlink_msg_scaled_imu2_pack_chan(system_id, component_id, chan, msg, scaled_imu2->time_boot_ms, scaled_imu2->xacc, scaled_imu2->yacc, scaled_imu2->zacc, scaled_imu2->xgyro, scaled_imu2->ygyro, scaled_imu2->zgyro, scaled_imu2->xmag, scaled_imu2->ymag, scaled_imu2->zmag, scaled_imu2->temperature);
+    return mavlink_msg_scaled_imu2_pack_chan(system_id, component_id, chan, msg, ((mavlink_scaled_imu2_t*)scaled_imu2)->time_boot_ms, ((mavlink_scaled_imu2_t*)scaled_imu2)->xacc, ((mavlink_scaled_imu2_t*)scaled_imu2)->yacc, ((mavlink_scaled_imu2_t*)scaled_imu2)->zacc, ((mavlink_scaled_imu2_t*)scaled_imu2)->xgyro, ((mavlink_scaled_imu2_t*)scaled_imu2)->ygyro, ((mavlink_scaled_imu2_t*)scaled_imu2)->zgyro, ((mavlink_scaled_imu2_t*)scaled_imu2)->xmag, ((mavlink_scaled_imu2_t*)scaled_imu2)->ymag, ((mavlink_scaled_imu2_t*)scaled_imu2)->zmag, ((mavlink_scaled_imu2_t*)scaled_imu2)->temperature);
 }
 
 /**

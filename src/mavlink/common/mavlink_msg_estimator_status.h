@@ -195,9 +195,9 @@ static inline uint16_t mavlink_msg_estimator_status_encode(uint8_t system_id, ui
  * @param msg The MAVLink message to compress the data into
  * @param estimator_status C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_estimator_status_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_estimator_status_t* estimator_status)
+static inline uint16_t mavlink_msg_estimator_status_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* estimator_status)
 {
-    return mavlink_msg_estimator_status_pack_chan(system_id, component_id, chan, msg, estimator_status->time_usec, estimator_status->flags, estimator_status->vel_ratio, estimator_status->pos_horiz_ratio, estimator_status->pos_vert_ratio, estimator_status->mag_ratio, estimator_status->hagl_ratio, estimator_status->tas_ratio, estimator_status->pos_horiz_accuracy, estimator_status->pos_vert_accuracy);
+    return mavlink_msg_estimator_status_pack_chan(system_id, component_id, chan, msg, ((mavlink_estimator_status_t*)estimator_status)->time_usec, ((mavlink_estimator_status_t*)estimator_status)->flags, ((mavlink_estimator_status_t*)estimator_status)->vel_ratio, ((mavlink_estimator_status_t*)estimator_status)->pos_horiz_ratio, ((mavlink_estimator_status_t*)estimator_status)->pos_vert_ratio, ((mavlink_estimator_status_t*)estimator_status)->mag_ratio, ((mavlink_estimator_status_t*)estimator_status)->hagl_ratio, ((mavlink_estimator_status_t*)estimator_status)->tas_ratio, ((mavlink_estimator_status_t*)estimator_status)->pos_horiz_accuracy, ((mavlink_estimator_status_t*)estimator_status)->pos_vert_accuracy);
 }
 
 /**

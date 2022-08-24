@@ -137,9 +137,9 @@ static inline uint16_t mavlink_msg_memory_vect_encode(uint8_t system_id, uint8_t
  * @param msg The MAVLink message to compress the data into
  * @param memory_vect C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_memory_vect_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_memory_vect_t* memory_vect)
+static inline uint16_t mavlink_msg_memory_vect_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* memory_vect)
 {
-    return mavlink_msg_memory_vect_pack_chan(system_id, component_id, chan, msg, memory_vect->address, memory_vect->ver, memory_vect->type, memory_vect->value);
+    return mavlink_msg_memory_vect_pack_chan(system_id, component_id, chan, msg, ((mavlink_memory_vect_t*)memory_vect)->address, ((mavlink_memory_vect_t*)memory_vect)->ver, ((mavlink_memory_vect_t*)memory_vect)->type, ((mavlink_memory_vect_t*)memory_vect)->value);
 }
 
 /**

@@ -137,9 +137,9 @@ static inline uint16_t mavlink_msg_gps_inject_data_encode(uint8_t system_id, uin
  * @param msg The MAVLink message to compress the data into
  * @param gps_inject_data C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_gps_inject_data_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_gps_inject_data_t* gps_inject_data)
+static inline uint16_t mavlink_msg_gps_inject_data_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* gps_inject_data)
 {
-    return mavlink_msg_gps_inject_data_pack_chan(system_id, component_id, chan, msg, gps_inject_data->target_system, gps_inject_data->target_component, gps_inject_data->len, gps_inject_data->data);
+    return mavlink_msg_gps_inject_data_pack_chan(system_id, component_id, chan, msg, ((mavlink_gps_inject_data_t*)gps_inject_data)->target_system, ((mavlink_gps_inject_data_t*)gps_inject_data)->target_component, ((mavlink_gps_inject_data_t*)gps_inject_data)->len, ((mavlink_gps_inject_data_t*)gps_inject_data)->data);
 }
 
 /**

@@ -213,9 +213,9 @@ static inline uint16_t mavlink_msg_hil_optical_flow_encode(uint8_t system_id, ui
  * @param msg The MAVLink message to compress the data into
  * @param hil_optical_flow C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_hil_optical_flow_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_hil_optical_flow_t* hil_optical_flow)
+static inline uint16_t mavlink_msg_hil_optical_flow_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* hil_optical_flow)
 {
-    return mavlink_msg_hil_optical_flow_pack_chan(system_id, component_id, chan, msg, hil_optical_flow->time_usec, hil_optical_flow->sensor_id, hil_optical_flow->integration_time_us, hil_optical_flow->integrated_x, hil_optical_flow->integrated_y, hil_optical_flow->integrated_xgyro, hil_optical_flow->integrated_ygyro, hil_optical_flow->integrated_zgyro, hil_optical_flow->temperature, hil_optical_flow->quality, hil_optical_flow->time_delta_distance_us, hil_optical_flow->distance);
+    return mavlink_msg_hil_optical_flow_pack_chan(system_id, component_id, chan, msg, ((mavlink_hil_optical_flow_t*)hil_optical_flow)->time_usec, ((mavlink_hil_optical_flow_t*)hil_optical_flow)->sensor_id, ((mavlink_hil_optical_flow_t*)hil_optical_flow)->integration_time_us, ((mavlink_hil_optical_flow_t*)hil_optical_flow)->integrated_x, ((mavlink_hil_optical_flow_t*)hil_optical_flow)->integrated_y, ((mavlink_hil_optical_flow_t*)hil_optical_flow)->integrated_xgyro, ((mavlink_hil_optical_flow_t*)hil_optical_flow)->integrated_ygyro, ((mavlink_hil_optical_flow_t*)hil_optical_flow)->integrated_zgyro, ((mavlink_hil_optical_flow_t*)hil_optical_flow)->temperature, ((mavlink_hil_optical_flow_t*)hil_optical_flow)->quality, ((mavlink_hil_optical_flow_t*)hil_optical_flow)->time_delta_distance_us, ((mavlink_hil_optical_flow_t*)hil_optical_flow)->distance);
 }
 
 /**

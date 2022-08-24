@@ -220,9 +220,9 @@ static inline uint16_t mavlink_msg_camera_information_encode(uint8_t system_id, 
  * @param msg The MAVLink message to compress the data into
  * @param camera_information C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_camera_information_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_camera_information_t* camera_information)
+static inline uint16_t mavlink_msg_camera_information_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* camera_information)
 {
-    return mavlink_msg_camera_information_pack_chan(system_id, component_id, chan, msg, camera_information->time_boot_ms, camera_information->vendor_name, camera_information->model_name, camera_information->firmware_version, camera_information->focal_length, camera_information->sensor_size_h, camera_information->sensor_size_v, camera_information->resolution_h, camera_information->resolution_v, camera_information->lens_id, camera_information->flags, camera_information->cam_definition_version, camera_information->cam_definition_uri);
+    return mavlink_msg_camera_information_pack_chan(system_id, component_id, chan, msg, ((mavlink_camera_information_t*)camera_information)->time_boot_ms, ((mavlink_camera_information_t*)camera_information)->vendor_name, ((mavlink_camera_information_t*)camera_information)->model_name, ((mavlink_camera_information_t*)camera_information)->firmware_version, ((mavlink_camera_information_t*)camera_information)->focal_length, ((mavlink_camera_information_t*)camera_information)->sensor_size_h, ((mavlink_camera_information_t*)camera_information)->sensor_size_v, ((mavlink_camera_information_t*)camera_information)->resolution_h, ((mavlink_camera_information_t*)camera_information)->resolution_v, ((mavlink_camera_information_t*)camera_information)->lens_id, ((mavlink_camera_information_t*)camera_information)->flags, ((mavlink_camera_information_t*)camera_information)->cam_definition_version, ((mavlink_camera_information_t*)camera_information)->cam_definition_uri);
 }
 
 /**

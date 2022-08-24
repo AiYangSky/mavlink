@@ -222,9 +222,9 @@ static inline uint16_t mavlink_msg_camera_tracking_geo_status_encode(uint8_t sys
  * @param msg The MAVLink message to compress the data into
  * @param camera_tracking_geo_status C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_camera_tracking_geo_status_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_camera_tracking_geo_status_t* camera_tracking_geo_status)
+static inline uint16_t mavlink_msg_camera_tracking_geo_status_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* camera_tracking_geo_status)
 {
-    return mavlink_msg_camera_tracking_geo_status_pack_chan(system_id, component_id, chan, msg, camera_tracking_geo_status->tracking_status, camera_tracking_geo_status->lat, camera_tracking_geo_status->lon, camera_tracking_geo_status->alt, camera_tracking_geo_status->h_acc, camera_tracking_geo_status->v_acc, camera_tracking_geo_status->vel_n, camera_tracking_geo_status->vel_e, camera_tracking_geo_status->vel_d, camera_tracking_geo_status->vel_acc, camera_tracking_geo_status->dist, camera_tracking_geo_status->hdg, camera_tracking_geo_status->hdg_acc);
+    return mavlink_msg_camera_tracking_geo_status_pack_chan(system_id, component_id, chan, msg, ((mavlink_camera_tracking_geo_status_t*)camera_tracking_geo_status)->tracking_status, ((mavlink_camera_tracking_geo_status_t*)camera_tracking_geo_status)->lat, ((mavlink_camera_tracking_geo_status_t*)camera_tracking_geo_status)->lon, ((mavlink_camera_tracking_geo_status_t*)camera_tracking_geo_status)->alt, ((mavlink_camera_tracking_geo_status_t*)camera_tracking_geo_status)->h_acc, ((mavlink_camera_tracking_geo_status_t*)camera_tracking_geo_status)->v_acc, ((mavlink_camera_tracking_geo_status_t*)camera_tracking_geo_status)->vel_n, ((mavlink_camera_tracking_geo_status_t*)camera_tracking_geo_status)->vel_e, ((mavlink_camera_tracking_geo_status_t*)camera_tracking_geo_status)->vel_d, ((mavlink_camera_tracking_geo_status_t*)camera_tracking_geo_status)->vel_acc, ((mavlink_camera_tracking_geo_status_t*)camera_tracking_geo_status)->dist, ((mavlink_camera_tracking_geo_status_t*)camera_tracking_geo_status)->hdg, ((mavlink_camera_tracking_geo_status_t*)camera_tracking_geo_status)->hdg_acc);
 }
 
 /**

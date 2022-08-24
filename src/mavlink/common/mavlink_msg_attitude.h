@@ -168,9 +168,9 @@ static inline uint16_t mavlink_msg_attitude_encode(uint8_t system_id, uint8_t co
  * @param msg The MAVLink message to compress the data into
  * @param attitude C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_attitude_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_attitude_t* attitude)
+static inline uint16_t mavlink_msg_attitude_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* attitude)
 {
-    return mavlink_msg_attitude_pack_chan(system_id, component_id, chan, msg, attitude->time_boot_ms, attitude->roll, attitude->pitch, attitude->yaw, attitude->rollspeed, attitude->pitchspeed, attitude->yawspeed);
+    return mavlink_msg_attitude_pack_chan(system_id, component_id, chan, msg, ((mavlink_attitude_t*)attitude)->time_boot_ms, ((mavlink_attitude_t*)attitude)->roll, ((mavlink_attitude_t*)attitude)->pitch, ((mavlink_attitude_t*)attitude)->yaw, ((mavlink_attitude_t*)attitude)->rollspeed, ((mavlink_attitude_t*)attitude)->pitchspeed, ((mavlink_attitude_t*)attitude)->yawspeed);
 }
 
 /**

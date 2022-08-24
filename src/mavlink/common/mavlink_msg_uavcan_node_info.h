@@ -183,9 +183,9 @@ static inline uint16_t mavlink_msg_uavcan_node_info_encode(uint8_t system_id, ui
  * @param msg The MAVLink message to compress the data into
  * @param uavcan_node_info C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_uavcan_node_info_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_uavcan_node_info_t* uavcan_node_info)
+static inline uint16_t mavlink_msg_uavcan_node_info_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* uavcan_node_info)
 {
-    return mavlink_msg_uavcan_node_info_pack_chan(system_id, component_id, chan, msg, uavcan_node_info->time_usec, uavcan_node_info->uptime_sec, uavcan_node_info->name, uavcan_node_info->hw_version_major, uavcan_node_info->hw_version_minor, uavcan_node_info->hw_unique_id, uavcan_node_info->sw_version_major, uavcan_node_info->sw_version_minor, uavcan_node_info->sw_vcs_commit);
+    return mavlink_msg_uavcan_node_info_pack_chan(system_id, component_id, chan, msg, ((mavlink_uavcan_node_info_t*)uavcan_node_info)->time_usec, ((mavlink_uavcan_node_info_t*)uavcan_node_info)->uptime_sec, ((mavlink_uavcan_node_info_t*)uavcan_node_info)->name, ((mavlink_uavcan_node_info_t*)uavcan_node_info)->hw_version_major, ((mavlink_uavcan_node_info_t*)uavcan_node_info)->hw_version_minor, ((mavlink_uavcan_node_info_t*)uavcan_node_info)->hw_unique_id, ((mavlink_uavcan_node_info_t*)uavcan_node_info)->sw_version_major, ((mavlink_uavcan_node_info_t*)uavcan_node_info)->sw_version_minor, ((mavlink_uavcan_node_info_t*)uavcan_node_info)->sw_vcs_commit);
 }
 
 /**

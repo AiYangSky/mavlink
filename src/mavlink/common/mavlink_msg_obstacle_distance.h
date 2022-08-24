@@ -182,9 +182,9 @@ static inline uint16_t mavlink_msg_obstacle_distance_encode(uint8_t system_id, u
  * @param msg The MAVLink message to compress the data into
  * @param obstacle_distance C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_obstacle_distance_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_obstacle_distance_t* obstacle_distance)
+static inline uint16_t mavlink_msg_obstacle_distance_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* obstacle_distance)
 {
-    return mavlink_msg_obstacle_distance_pack_chan(system_id, component_id, chan, msg, obstacle_distance->time_usec, obstacle_distance->sensor_type, obstacle_distance->distances, obstacle_distance->increment, obstacle_distance->min_distance, obstacle_distance->max_distance, obstacle_distance->increment_f, obstacle_distance->angle_offset, obstacle_distance->frame);
+    return mavlink_msg_obstacle_distance_pack_chan(system_id, component_id, chan, msg, ((mavlink_obstacle_distance_t*)obstacle_distance)->time_usec, ((mavlink_obstacle_distance_t*)obstacle_distance)->sensor_type, ((mavlink_obstacle_distance_t*)obstacle_distance)->distances, ((mavlink_obstacle_distance_t*)obstacle_distance)->increment, ((mavlink_obstacle_distance_t*)obstacle_distance)->min_distance, ((mavlink_obstacle_distance_t*)obstacle_distance)->max_distance, ((mavlink_obstacle_distance_t*)obstacle_distance)->increment_f, ((mavlink_obstacle_distance_t*)obstacle_distance)->angle_offset, ((mavlink_obstacle_distance_t*)obstacle_distance)->frame);
 }
 
 /**

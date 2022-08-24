@@ -177,9 +177,9 @@ static inline uint16_t mavlink_msg_nav_controller_output_encode(uint8_t system_i
  * @param msg The MAVLink message to compress the data into
  * @param nav_controller_output C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_nav_controller_output_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_nav_controller_output_t* nav_controller_output)
+static inline uint16_t mavlink_msg_nav_controller_output_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* nav_controller_output)
 {
-    return mavlink_msg_nav_controller_output_pack_chan(system_id, component_id, chan, msg, nav_controller_output->nav_roll, nav_controller_output->nav_pitch, nav_controller_output->nav_bearing, nav_controller_output->target_bearing, nav_controller_output->wp_dist, nav_controller_output->alt_error, nav_controller_output->aspd_error, nav_controller_output->xtrack_error);
+    return mavlink_msg_nav_controller_output_pack_chan(system_id, component_id, chan, msg, ((mavlink_nav_controller_output_t*)nav_controller_output)->nav_roll, ((mavlink_nav_controller_output_t*)nav_controller_output)->nav_pitch, ((mavlink_nav_controller_output_t*)nav_controller_output)->nav_bearing, ((mavlink_nav_controller_output_t*)nav_controller_output)->target_bearing, ((mavlink_nav_controller_output_t*)nav_controller_output)->wp_dist, ((mavlink_nav_controller_output_t*)nav_controller_output)->alt_error, ((mavlink_nav_controller_output_t*)nav_controller_output)->aspd_error, ((mavlink_nav_controller_output_t*)nav_controller_output)->xtrack_error);
 }
 
 /**

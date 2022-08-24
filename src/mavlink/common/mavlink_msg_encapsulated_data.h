@@ -119,9 +119,9 @@ static inline uint16_t mavlink_msg_encapsulated_data_encode(uint8_t system_id, u
  * @param msg The MAVLink message to compress the data into
  * @param encapsulated_data C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_encapsulated_data_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_encapsulated_data_t* encapsulated_data)
+static inline uint16_t mavlink_msg_encapsulated_data_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* encapsulated_data)
 {
-    return mavlink_msg_encapsulated_data_pack_chan(system_id, component_id, chan, msg, encapsulated_data->seqnr, encapsulated_data->data);
+    return mavlink_msg_encapsulated_data_pack_chan(system_id, component_id, chan, msg, ((mavlink_encapsulated_data_t*)encapsulated_data)->seqnr, ((mavlink_encapsulated_data_t*)encapsulated_data)->data);
 }
 
 /**

@@ -132,9 +132,9 @@ static inline uint16_t mavlink_msg_hygrometer_sensor_encode(uint8_t system_id, u
  * @param msg The MAVLink message to compress the data into
  * @param hygrometer_sensor C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_hygrometer_sensor_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_hygrometer_sensor_t* hygrometer_sensor)
+static inline uint16_t mavlink_msg_hygrometer_sensor_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* hygrometer_sensor)
 {
-    return mavlink_msg_hygrometer_sensor_pack_chan(system_id, component_id, chan, msg, hygrometer_sensor->id, hygrometer_sensor->temperature, hygrometer_sensor->humidity);
+    return mavlink_msg_hygrometer_sensor_pack_chan(system_id, component_id, chan, msg, ((mavlink_hygrometer_sensor_t*)hygrometer_sensor)->id, ((mavlink_hygrometer_sensor_t*)hygrometer_sensor)->temperature, ((mavlink_hygrometer_sensor_t*)hygrometer_sensor)->humidity);
 }
 
 /**

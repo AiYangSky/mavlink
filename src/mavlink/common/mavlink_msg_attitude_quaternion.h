@@ -182,9 +182,9 @@ static inline uint16_t mavlink_msg_attitude_quaternion_encode(uint8_t system_id,
  * @param msg The MAVLink message to compress the data into
  * @param attitude_quaternion C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_attitude_quaternion_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_attitude_quaternion_t* attitude_quaternion)
+static inline uint16_t mavlink_msg_attitude_quaternion_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* attitude_quaternion)
 {
-    return mavlink_msg_attitude_quaternion_pack_chan(system_id, component_id, chan, msg, attitude_quaternion->time_boot_ms, attitude_quaternion->q1, attitude_quaternion->q2, attitude_quaternion->q3, attitude_quaternion->q4, attitude_quaternion->rollspeed, attitude_quaternion->pitchspeed, attitude_quaternion->yawspeed, attitude_quaternion->repr_offset_q);
+    return mavlink_msg_attitude_quaternion_pack_chan(system_id, component_id, chan, msg, ((mavlink_attitude_quaternion_t*)attitude_quaternion)->time_boot_ms, ((mavlink_attitude_quaternion_t*)attitude_quaternion)->q1, ((mavlink_attitude_quaternion_t*)attitude_quaternion)->q2, ((mavlink_attitude_quaternion_t*)attitude_quaternion)->q3, ((mavlink_attitude_quaternion_t*)attitude_quaternion)->q4, ((mavlink_attitude_quaternion_t*)attitude_quaternion)->rollspeed, ((mavlink_attitude_quaternion_t*)attitude_quaternion)->pitchspeed, ((mavlink_attitude_quaternion_t*)attitude_quaternion)->yawspeed, ((mavlink_attitude_quaternion_t*)attitude_quaternion)->repr_offset_q);
 }
 
 /**

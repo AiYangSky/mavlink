@@ -240,9 +240,9 @@ static inline uint16_t mavlink_msg_mission_item_encode(uint8_t system_id, uint8_
  * @param msg The MAVLink message to compress the data into
  * @param mission_item C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_mission_item_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_mission_item_t* mission_item)
+static inline uint16_t mavlink_msg_mission_item_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* mission_item)
 {
-    return mavlink_msg_mission_item_pack_chan(system_id, component_id, chan, msg, mission_item->target_system, mission_item->target_component, mission_item->seq, mission_item->frame, mission_item->command, mission_item->current, mission_item->autocontinue, mission_item->param1, mission_item->param2, mission_item->param3, mission_item->param4, mission_item->x, mission_item->y, mission_item->z, mission_item->mission_type);
+    return mavlink_msg_mission_item_pack_chan(system_id, component_id, chan, msg, ((mavlink_mission_item_t*)mission_item)->target_system, ((mavlink_mission_item_t*)mission_item)->target_component, ((mavlink_mission_item_t*)mission_item)->seq, ((mavlink_mission_item_t*)mission_item)->frame, ((mavlink_mission_item_t*)mission_item)->command, ((mavlink_mission_item_t*)mission_item)->current, ((mavlink_mission_item_t*)mission_item)->autocontinue, ((mavlink_mission_item_t*)mission_item)->param1, ((mavlink_mission_item_t*)mission_item)->param2, ((mavlink_mission_item_t*)mission_item)->param3, ((mavlink_mission_item_t*)mission_item)->param4, ((mavlink_mission_item_t*)mission_item)->x, ((mavlink_mission_item_t*)mission_item)->y, ((mavlink_mission_item_t*)mission_item)->z, ((mavlink_mission_item_t*)mission_item)->mission_type);
 }
 
 /**

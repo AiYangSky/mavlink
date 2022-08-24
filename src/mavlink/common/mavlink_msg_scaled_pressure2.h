@@ -150,9 +150,9 @@ static inline uint16_t mavlink_msg_scaled_pressure2_encode(uint8_t system_id, ui
  * @param msg The MAVLink message to compress the data into
  * @param scaled_pressure2 C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_scaled_pressure2_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_scaled_pressure2_t* scaled_pressure2)
+static inline uint16_t mavlink_msg_scaled_pressure2_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* scaled_pressure2)
 {
-    return mavlink_msg_scaled_pressure2_pack_chan(system_id, component_id, chan, msg, scaled_pressure2->time_boot_ms, scaled_pressure2->press_abs, scaled_pressure2->press_diff, scaled_pressure2->temperature, scaled_pressure2->temperature_press_diff);
+    return mavlink_msg_scaled_pressure2_pack_chan(system_id, component_id, chan, msg, ((mavlink_scaled_pressure2_t*)scaled_pressure2)->time_boot_ms, ((mavlink_scaled_pressure2_t*)scaled_pressure2)->press_abs, ((mavlink_scaled_pressure2_t*)scaled_pressure2)->press_diff, ((mavlink_scaled_pressure2_t*)scaled_pressure2)->temperature, ((mavlink_scaled_pressure2_t*)scaled_pressure2)->temperature_press_diff);
 }
 
 /**

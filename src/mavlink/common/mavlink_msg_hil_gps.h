@@ -240,9 +240,9 @@ static inline uint16_t mavlink_msg_hil_gps_encode(uint8_t system_id, uint8_t com
  * @param msg The MAVLink message to compress the data into
  * @param hil_gps C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_hil_gps_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_hil_gps_t* hil_gps)
+static inline uint16_t mavlink_msg_hil_gps_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* hil_gps)
 {
-    return mavlink_msg_hil_gps_pack_chan(system_id, component_id, chan, msg, hil_gps->time_usec, hil_gps->fix_type, hil_gps->lat, hil_gps->lon, hil_gps->alt, hil_gps->eph, hil_gps->epv, hil_gps->vel, hil_gps->vn, hil_gps->ve, hil_gps->vd, hil_gps->cog, hil_gps->satellites_visible, hil_gps->id, hil_gps->yaw);
+    return mavlink_msg_hil_gps_pack_chan(system_id, component_id, chan, msg, ((mavlink_hil_gps_t*)hil_gps)->time_usec, ((mavlink_hil_gps_t*)hil_gps)->fix_type, ((mavlink_hil_gps_t*)hil_gps)->lat, ((mavlink_hil_gps_t*)hil_gps)->lon, ((mavlink_hil_gps_t*)hil_gps)->alt, ((mavlink_hil_gps_t*)hil_gps)->eph, ((mavlink_hil_gps_t*)hil_gps)->epv, ((mavlink_hil_gps_t*)hil_gps)->vel, ((mavlink_hil_gps_t*)hil_gps)->vn, ((mavlink_hil_gps_t*)hil_gps)->ve, ((mavlink_hil_gps_t*)hil_gps)->vd, ((mavlink_hil_gps_t*)hil_gps)->cog, ((mavlink_hil_gps_t*)hil_gps)->satellites_visible, ((mavlink_hil_gps_t*)hil_gps)->id, ((mavlink_hil_gps_t*)hil_gps)->yaw);
 }
 
 /**

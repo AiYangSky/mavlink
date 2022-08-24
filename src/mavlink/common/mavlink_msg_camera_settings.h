@@ -141,9 +141,9 @@ static inline uint16_t mavlink_msg_camera_settings_encode(uint8_t system_id, uin
  * @param msg The MAVLink message to compress the data into
  * @param camera_settings C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_camera_settings_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_camera_settings_t* camera_settings)
+static inline uint16_t mavlink_msg_camera_settings_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* camera_settings)
 {
-    return mavlink_msg_camera_settings_pack_chan(system_id, component_id, chan, msg, camera_settings->time_boot_ms, camera_settings->mode_id, camera_settings->zoomLevel, camera_settings->focusLevel);
+    return mavlink_msg_camera_settings_pack_chan(system_id, component_id, chan, msg, ((mavlink_camera_settings_t*)camera_settings)->time_boot_ms, ((mavlink_camera_settings_t*)camera_settings)->mode_id, ((mavlink_camera_settings_t*)camera_settings)->zoomLevel, ((mavlink_camera_settings_t*)camera_settings)->focusLevel);
 }
 
 /**

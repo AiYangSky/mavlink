@@ -209,9 +209,9 @@ static inline uint16_t mavlink_msg_distance_sensor_encode(uint8_t system_id, uin
  * @param msg The MAVLink message to compress the data into
  * @param distance_sensor C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_distance_sensor_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_distance_sensor_t* distance_sensor)
+static inline uint16_t mavlink_msg_distance_sensor_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* distance_sensor)
 {
-    return mavlink_msg_distance_sensor_pack_chan(system_id, component_id, chan, msg, distance_sensor->time_boot_ms, distance_sensor->min_distance, distance_sensor->max_distance, distance_sensor->current_distance, distance_sensor->type, distance_sensor->id, distance_sensor->orientation, distance_sensor->covariance, distance_sensor->horizontal_fov, distance_sensor->vertical_fov, distance_sensor->quaternion, distance_sensor->signal_quality);
+    return mavlink_msg_distance_sensor_pack_chan(system_id, component_id, chan, msg, ((mavlink_distance_sensor_t*)distance_sensor)->time_boot_ms, ((mavlink_distance_sensor_t*)distance_sensor)->min_distance, ((mavlink_distance_sensor_t*)distance_sensor)->max_distance, ((mavlink_distance_sensor_t*)distance_sensor)->current_distance, ((mavlink_distance_sensor_t*)distance_sensor)->type, ((mavlink_distance_sensor_t*)distance_sensor)->id, ((mavlink_distance_sensor_t*)distance_sensor)->orientation, ((mavlink_distance_sensor_t*)distance_sensor)->covariance, ((mavlink_distance_sensor_t*)distance_sensor)->horizontal_fov, ((mavlink_distance_sensor_t*)distance_sensor)->vertical_fov, ((mavlink_distance_sensor_t*)distance_sensor)->quaternion, ((mavlink_distance_sensor_t*)distance_sensor)->signal_quality);
 }
 
 /**

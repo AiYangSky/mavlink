@@ -123,9 +123,9 @@ static inline uint16_t mavlink_msg_current_event_sequence_encode(uint8_t system_
  * @param msg The MAVLink message to compress the data into
  * @param current_event_sequence C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_current_event_sequence_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_current_event_sequence_t* current_event_sequence)
+static inline uint16_t mavlink_msg_current_event_sequence_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* current_event_sequence)
 {
-    return mavlink_msg_current_event_sequence_pack_chan(system_id, component_id, chan, msg, current_event_sequence->sequence, current_event_sequence->flags);
+    return mavlink_msg_current_event_sequence_pack_chan(system_id, component_id, chan, msg, ((mavlink_current_event_sequence_t*)current_event_sequence)->sequence, ((mavlink_current_event_sequence_t*)current_event_sequence)->flags);
 }
 
 /**

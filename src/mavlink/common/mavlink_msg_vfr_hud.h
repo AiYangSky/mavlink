@@ -159,9 +159,9 @@ static inline uint16_t mavlink_msg_vfr_hud_encode(uint8_t system_id, uint8_t com
  * @param msg The MAVLink message to compress the data into
  * @param vfr_hud C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_vfr_hud_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_vfr_hud_t* vfr_hud)
+static inline uint16_t mavlink_msg_vfr_hud_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* vfr_hud)
 {
-    return mavlink_msg_vfr_hud_pack_chan(system_id, component_id, chan, msg, vfr_hud->airspeed, vfr_hud->groundspeed, vfr_hud->heading, vfr_hud->throttle, vfr_hud->alt, vfr_hud->climb);
+    return mavlink_msg_vfr_hud_pack_chan(system_id, component_id, chan, msg, ((mavlink_vfr_hud_t*)vfr_hud)->airspeed, ((mavlink_vfr_hud_t*)vfr_hud)->groundspeed, ((mavlink_vfr_hud_t*)vfr_hud)->heading, ((mavlink_vfr_hud_t*)vfr_hud)->throttle, ((mavlink_vfr_hud_t*)vfr_hud)->alt, ((mavlink_vfr_hud_t*)vfr_hud)->climb);
 }
 
 /**

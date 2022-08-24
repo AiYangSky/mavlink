@@ -123,9 +123,9 @@ static inline uint16_t mavlink_msg_message_interval_encode(uint8_t system_id, ui
  * @param msg The MAVLink message to compress the data into
  * @param message_interval C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_message_interval_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_message_interval_t* message_interval)
+static inline uint16_t mavlink_msg_message_interval_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* message_interval)
 {
-    return mavlink_msg_message_interval_pack_chan(system_id, component_id, chan, msg, message_interval->message_id, message_interval->interval_us);
+    return mavlink_msg_message_interval_pack_chan(system_id, component_id, chan, msg, ((mavlink_message_interval_t*)message_interval)->message_id, ((mavlink_message_interval_t*)message_interval)->interval_us);
 }
 
 /**

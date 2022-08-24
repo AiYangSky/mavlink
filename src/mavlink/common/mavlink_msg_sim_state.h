@@ -294,9 +294,9 @@ static inline uint16_t mavlink_msg_sim_state_encode(uint8_t system_id, uint8_t c
  * @param msg The MAVLink message to compress the data into
  * @param sim_state C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_sim_state_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_sim_state_t* sim_state)
+static inline uint16_t mavlink_msg_sim_state_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* sim_state)
 {
-    return mavlink_msg_sim_state_pack_chan(system_id, component_id, chan, msg, sim_state->q1, sim_state->q2, sim_state->q3, sim_state->q4, sim_state->roll, sim_state->pitch, sim_state->yaw, sim_state->xacc, sim_state->yacc, sim_state->zacc, sim_state->xgyro, sim_state->ygyro, sim_state->zgyro, sim_state->lat, sim_state->lon, sim_state->alt, sim_state->std_dev_horz, sim_state->std_dev_vert, sim_state->vn, sim_state->ve, sim_state->vd);
+    return mavlink_msg_sim_state_pack_chan(system_id, component_id, chan, msg, ((mavlink_sim_state_t*)sim_state)->q1, ((mavlink_sim_state_t*)sim_state)->q2, ((mavlink_sim_state_t*)sim_state)->q3, ((mavlink_sim_state_t*)sim_state)->q4, ((mavlink_sim_state_t*)sim_state)->roll, ((mavlink_sim_state_t*)sim_state)->pitch, ((mavlink_sim_state_t*)sim_state)->yaw, ((mavlink_sim_state_t*)sim_state)->xacc, ((mavlink_sim_state_t*)sim_state)->yacc, ((mavlink_sim_state_t*)sim_state)->zacc, ((mavlink_sim_state_t*)sim_state)->xgyro, ((mavlink_sim_state_t*)sim_state)->ygyro, ((mavlink_sim_state_t*)sim_state)->zgyro, ((mavlink_sim_state_t*)sim_state)->lat, ((mavlink_sim_state_t*)sim_state)->lon, ((mavlink_sim_state_t*)sim_state)->alt, ((mavlink_sim_state_t*)sim_state)->std_dev_horz, ((mavlink_sim_state_t*)sim_state)->std_dev_vert, ((mavlink_sim_state_t*)sim_state)->vn, ((mavlink_sim_state_t*)sim_state)->ve, ((mavlink_sim_state_t*)sim_state)->vd);
 }
 
 /**

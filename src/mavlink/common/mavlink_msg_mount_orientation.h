@@ -150,9 +150,9 @@ static inline uint16_t mavlink_msg_mount_orientation_encode(uint8_t system_id, u
  * @param msg The MAVLink message to compress the data into
  * @param mount_orientation C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_mount_orientation_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_mount_orientation_t* mount_orientation)
+static inline uint16_t mavlink_msg_mount_orientation_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* mount_orientation)
 {
-    return mavlink_msg_mount_orientation_pack_chan(system_id, component_id, chan, msg, mount_orientation->time_boot_ms, mount_orientation->roll, mount_orientation->pitch, mount_orientation->yaw, mount_orientation->yaw_absolute);
+    return mavlink_msg_mount_orientation_pack_chan(system_id, component_id, chan, msg, ((mavlink_mount_orientation_t*)mount_orientation)->time_boot_ms, ((mavlink_mount_orientation_t*)mount_orientation)->roll, ((mavlink_mount_orientation_t*)mount_orientation)->pitch, ((mavlink_mount_orientation_t*)mount_orientation)->yaw, ((mavlink_mount_orientation_t*)mount_orientation)->yaw_absolute);
 }
 
 /**

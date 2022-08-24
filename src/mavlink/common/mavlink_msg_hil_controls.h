@@ -204,9 +204,9 @@ static inline uint16_t mavlink_msg_hil_controls_encode(uint8_t system_id, uint8_
  * @param msg The MAVLink message to compress the data into
  * @param hil_controls C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_hil_controls_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_hil_controls_t* hil_controls)
+static inline uint16_t mavlink_msg_hil_controls_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* hil_controls)
 {
-    return mavlink_msg_hil_controls_pack_chan(system_id, component_id, chan, msg, hil_controls->time_usec, hil_controls->roll_ailerons, hil_controls->pitch_elevator, hil_controls->yaw_rudder, hil_controls->throttle, hil_controls->aux1, hil_controls->aux2, hil_controls->aux3, hil_controls->aux4, hil_controls->mode, hil_controls->nav_mode);
+    return mavlink_msg_hil_controls_pack_chan(system_id, component_id, chan, msg, ((mavlink_hil_controls_t*)hil_controls)->time_usec, ((mavlink_hil_controls_t*)hil_controls)->roll_ailerons, ((mavlink_hil_controls_t*)hil_controls)->pitch_elevator, ((mavlink_hil_controls_t*)hil_controls)->yaw_rudder, ((mavlink_hil_controls_t*)hil_controls)->throttle, ((mavlink_hil_controls_t*)hil_controls)->aux1, ((mavlink_hil_controls_t*)hil_controls)->aux2, ((mavlink_hil_controls_t*)hil_controls)->aux3, ((mavlink_hil_controls_t*)hil_controls)->aux4, ((mavlink_hil_controls_t*)hil_controls)->mode, ((mavlink_hil_controls_t*)hil_controls)->nav_mode);
 }
 
 /**

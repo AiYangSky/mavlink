@@ -138,9 +138,9 @@ static inline uint16_t mavlink_msg_param_ext_ack_encode(uint8_t system_id, uint8
  * @param msg The MAVLink message to compress the data into
  * @param param_ext_ack C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_param_ext_ack_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_param_ext_ack_t* param_ext_ack)
+static inline uint16_t mavlink_msg_param_ext_ack_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* param_ext_ack)
 {
-    return mavlink_msg_param_ext_ack_pack_chan(system_id, component_id, chan, msg, param_ext_ack->param_id, param_ext_ack->param_value, param_ext_ack->param_type, param_ext_ack->param_result);
+    return mavlink_msg_param_ext_ack_pack_chan(system_id, component_id, chan, msg, ((mavlink_param_ext_ack_t*)param_ext_ack)->param_id, ((mavlink_param_ext_ack_t*)param_ext_ack)->param_value, ((mavlink_param_ext_ack_t*)param_ext_ack)->param_type, ((mavlink_param_ext_ack_t*)param_ext_ack)->param_result);
 }
 
 /**

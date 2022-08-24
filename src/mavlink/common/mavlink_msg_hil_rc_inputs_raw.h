@@ -231,9 +231,9 @@ static inline uint16_t mavlink_msg_hil_rc_inputs_raw_encode(uint8_t system_id, u
  * @param msg The MAVLink message to compress the data into
  * @param hil_rc_inputs_raw C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_hil_rc_inputs_raw_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_hil_rc_inputs_raw_t* hil_rc_inputs_raw)
+static inline uint16_t mavlink_msg_hil_rc_inputs_raw_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* hil_rc_inputs_raw)
 {
-    return mavlink_msg_hil_rc_inputs_raw_pack_chan(system_id, component_id, chan, msg, hil_rc_inputs_raw->time_usec, hil_rc_inputs_raw->chan1_raw, hil_rc_inputs_raw->chan2_raw, hil_rc_inputs_raw->chan3_raw, hil_rc_inputs_raw->chan4_raw, hil_rc_inputs_raw->chan5_raw, hil_rc_inputs_raw->chan6_raw, hil_rc_inputs_raw->chan7_raw, hil_rc_inputs_raw->chan8_raw, hil_rc_inputs_raw->chan9_raw, hil_rc_inputs_raw->chan10_raw, hil_rc_inputs_raw->chan11_raw, hil_rc_inputs_raw->chan12_raw, hil_rc_inputs_raw->rssi);
+    return mavlink_msg_hil_rc_inputs_raw_pack_chan(system_id, component_id, chan, msg, ((mavlink_hil_rc_inputs_raw_t*)hil_rc_inputs_raw)->time_usec, ((mavlink_hil_rc_inputs_raw_t*)hil_rc_inputs_raw)->chan1_raw, ((mavlink_hil_rc_inputs_raw_t*)hil_rc_inputs_raw)->chan2_raw, ((mavlink_hil_rc_inputs_raw_t*)hil_rc_inputs_raw)->chan3_raw, ((mavlink_hil_rc_inputs_raw_t*)hil_rc_inputs_raw)->chan4_raw, ((mavlink_hil_rc_inputs_raw_t*)hil_rc_inputs_raw)->chan5_raw, ((mavlink_hil_rc_inputs_raw_t*)hil_rc_inputs_raw)->chan6_raw, ((mavlink_hil_rc_inputs_raw_t*)hil_rc_inputs_raw)->chan7_raw, ((mavlink_hil_rc_inputs_raw_t*)hil_rc_inputs_raw)->chan8_raw, ((mavlink_hil_rc_inputs_raw_t*)hil_rc_inputs_raw)->chan9_raw, ((mavlink_hil_rc_inputs_raw_t*)hil_rc_inputs_raw)->chan10_raw, ((mavlink_hil_rc_inputs_raw_t*)hil_rc_inputs_raw)->chan11_raw, ((mavlink_hil_rc_inputs_raw_t*)hil_rc_inputs_raw)->chan12_raw, ((mavlink_hil_rc_inputs_raw_t*)hil_rc_inputs_raw)->rssi);
 }
 
 /**

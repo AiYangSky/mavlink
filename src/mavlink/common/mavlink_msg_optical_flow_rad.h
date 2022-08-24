@@ -213,9 +213,9 @@ static inline uint16_t mavlink_msg_optical_flow_rad_encode(uint8_t system_id, ui
  * @param msg The MAVLink message to compress the data into
  * @param optical_flow_rad C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_optical_flow_rad_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_optical_flow_rad_t* optical_flow_rad)
+static inline uint16_t mavlink_msg_optical_flow_rad_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* optical_flow_rad)
 {
-    return mavlink_msg_optical_flow_rad_pack_chan(system_id, component_id, chan, msg, optical_flow_rad->time_usec, optical_flow_rad->sensor_id, optical_flow_rad->integration_time_us, optical_flow_rad->integrated_x, optical_flow_rad->integrated_y, optical_flow_rad->integrated_xgyro, optical_flow_rad->integrated_ygyro, optical_flow_rad->integrated_zgyro, optical_flow_rad->temperature, optical_flow_rad->quality, optical_flow_rad->time_delta_distance_us, optical_flow_rad->distance);
+    return mavlink_msg_optical_flow_rad_pack_chan(system_id, component_id, chan, msg, ((mavlink_optical_flow_rad_t*)optical_flow_rad)->time_usec, ((mavlink_optical_flow_rad_t*)optical_flow_rad)->sensor_id, ((mavlink_optical_flow_rad_t*)optical_flow_rad)->integration_time_us, ((mavlink_optical_flow_rad_t*)optical_flow_rad)->integrated_x, ((mavlink_optical_flow_rad_t*)optical_flow_rad)->integrated_y, ((mavlink_optical_flow_rad_t*)optical_flow_rad)->integrated_xgyro, ((mavlink_optical_flow_rad_t*)optical_flow_rad)->integrated_ygyro, ((mavlink_optical_flow_rad_t*)optical_flow_rad)->integrated_zgyro, ((mavlink_optical_flow_rad_t*)optical_flow_rad)->temperature, ((mavlink_optical_flow_rad_t*)optical_flow_rad)->quality, ((mavlink_optical_flow_rad_t*)optical_flow_rad)->time_delta_distance_us, ((mavlink_optical_flow_rad_t*)optical_flow_rad)->distance);
 }
 
 /**

@@ -123,9 +123,9 @@ static inline uint16_t mavlink_msg_raw_rpm_encode(uint8_t system_id, uint8_t com
  * @param msg The MAVLink message to compress the data into
  * @param raw_rpm C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_raw_rpm_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_raw_rpm_t* raw_rpm)
+static inline uint16_t mavlink_msg_raw_rpm_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* raw_rpm)
 {
-    return mavlink_msg_raw_rpm_pack_chan(system_id, component_id, chan, msg, raw_rpm->index, raw_rpm->frequency);
+    return mavlink_msg_raw_rpm_pack_chan(system_id, component_id, chan, msg, ((mavlink_raw_rpm_t*)raw_rpm)->index, ((mavlink_raw_rpm_t*)raw_rpm)->frequency);
 }
 
 /**

@@ -173,9 +173,9 @@ static inline uint16_t mavlink_msg_vicon_position_estimate_encode(uint8_t system
  * @param msg The MAVLink message to compress the data into
  * @param vicon_position_estimate C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_vicon_position_estimate_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_vicon_position_estimate_t* vicon_position_estimate)
+static inline uint16_t mavlink_msg_vicon_position_estimate_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* vicon_position_estimate)
 {
-    return mavlink_msg_vicon_position_estimate_pack_chan(system_id, component_id, chan, msg, vicon_position_estimate->usec, vicon_position_estimate->x, vicon_position_estimate->y, vicon_position_estimate->z, vicon_position_estimate->roll, vicon_position_estimate->pitch, vicon_position_estimate->yaw, vicon_position_estimate->covariance);
+    return mavlink_msg_vicon_position_estimate_pack_chan(system_id, component_id, chan, msg, ((mavlink_vicon_position_estimate_t*)vicon_position_estimate)->usec, ((mavlink_vicon_position_estimate_t*)vicon_position_estimate)->x, ((mavlink_vicon_position_estimate_t*)vicon_position_estimate)->y, ((mavlink_vicon_position_estimate_t*)vicon_position_estimate)->z, ((mavlink_vicon_position_estimate_t*)vicon_position_estimate)->roll, ((mavlink_vicon_position_estimate_t*)vicon_position_estimate)->pitch, ((mavlink_vicon_position_estimate_t*)vicon_position_estimate)->yaw, ((mavlink_vicon_position_estimate_t*)vicon_position_estimate)->covariance);
 }
 
 /**

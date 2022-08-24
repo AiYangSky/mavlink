@@ -228,9 +228,9 @@ static inline uint16_t mavlink_msg_battery_status_encode(uint8_t system_id, uint
  * @param msg The MAVLink message to compress the data into
  * @param battery_status C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_battery_status_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_battery_status_t* battery_status)
+static inline uint16_t mavlink_msg_battery_status_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* battery_status)
 {
-    return mavlink_msg_battery_status_pack_chan(system_id, component_id, chan, msg, battery_status->id, battery_status->battery_function, battery_status->type, battery_status->temperature, battery_status->voltages, battery_status->current_battery, battery_status->current_consumed, battery_status->energy_consumed, battery_status->battery_remaining, battery_status->time_remaining, battery_status->charge_state, battery_status->voltages_ext, battery_status->mode, battery_status->fault_bitmask);
+    return mavlink_msg_battery_status_pack_chan(system_id, component_id, chan, msg, ((mavlink_battery_status_t*)battery_status)->id, ((mavlink_battery_status_t*)battery_status)->battery_function, ((mavlink_battery_status_t*)battery_status)->type, ((mavlink_battery_status_t*)battery_status)->temperature, ((mavlink_battery_status_t*)battery_status)->voltages, ((mavlink_battery_status_t*)battery_status)->current_battery, ((mavlink_battery_status_t*)battery_status)->current_consumed, ((mavlink_battery_status_t*)battery_status)->energy_consumed, ((mavlink_battery_status_t*)battery_status)->battery_remaining, ((mavlink_battery_status_t*)battery_status)->time_remaining, ((mavlink_battery_status_t*)battery_status)->charge_state, ((mavlink_battery_status_t*)battery_status)->voltages_ext, ((mavlink_battery_status_t*)battery_status)->mode, ((mavlink_battery_status_t*)battery_status)->fault_bitmask);
 }
 
 /**

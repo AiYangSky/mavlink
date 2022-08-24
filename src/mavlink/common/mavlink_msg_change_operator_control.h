@@ -137,9 +137,9 @@ static inline uint16_t mavlink_msg_change_operator_control_encode(uint8_t system
  * @param msg The MAVLink message to compress the data into
  * @param change_operator_control C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_change_operator_control_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_change_operator_control_t* change_operator_control)
+static inline uint16_t mavlink_msg_change_operator_control_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* change_operator_control)
 {
-    return mavlink_msg_change_operator_control_pack_chan(system_id, component_id, chan, msg, change_operator_control->target_system, change_operator_control->control_request, change_operator_control->version, change_operator_control->passkey);
+    return mavlink_msg_change_operator_control_pack_chan(system_id, component_id, chan, msg, ((mavlink_change_operator_control_t*)change_operator_control)->target_system, ((mavlink_change_operator_control_t*)change_operator_control)->control_request, ((mavlink_change_operator_control_t*)change_operator_control)->version, ((mavlink_change_operator_control_t*)change_operator_control)->passkey);
 }
 
 /**

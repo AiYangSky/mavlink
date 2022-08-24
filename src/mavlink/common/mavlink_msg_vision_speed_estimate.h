@@ -155,9 +155,9 @@ static inline uint16_t mavlink_msg_vision_speed_estimate_encode(uint8_t system_i
  * @param msg The MAVLink message to compress the data into
  * @param vision_speed_estimate C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_vision_speed_estimate_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_vision_speed_estimate_t* vision_speed_estimate)
+static inline uint16_t mavlink_msg_vision_speed_estimate_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* vision_speed_estimate)
 {
-    return mavlink_msg_vision_speed_estimate_pack_chan(system_id, component_id, chan, msg, vision_speed_estimate->usec, vision_speed_estimate->x, vision_speed_estimate->y, vision_speed_estimate->z, vision_speed_estimate->covariance, vision_speed_estimate->reset_counter);
+    return mavlink_msg_vision_speed_estimate_pack_chan(system_id, component_id, chan, msg, ((mavlink_vision_speed_estimate_t*)vision_speed_estimate)->usec, ((mavlink_vision_speed_estimate_t*)vision_speed_estimate)->x, ((mavlink_vision_speed_estimate_t*)vision_speed_estimate)->y, ((mavlink_vision_speed_estimate_t*)vision_speed_estimate)->z, ((mavlink_vision_speed_estimate_t*)vision_speed_estimate)->covariance, ((mavlink_vision_speed_estimate_t*)vision_speed_estimate)->reset_counter);
 }
 
 /**

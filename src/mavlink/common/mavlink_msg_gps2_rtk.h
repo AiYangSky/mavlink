@@ -222,9 +222,9 @@ static inline uint16_t mavlink_msg_gps2_rtk_encode(uint8_t system_id, uint8_t co
  * @param msg The MAVLink message to compress the data into
  * @param gps2_rtk C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_gps2_rtk_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_gps2_rtk_t* gps2_rtk)
+static inline uint16_t mavlink_msg_gps2_rtk_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* gps2_rtk)
 {
-    return mavlink_msg_gps2_rtk_pack_chan(system_id, component_id, chan, msg, gps2_rtk->time_last_baseline_ms, gps2_rtk->rtk_receiver_id, gps2_rtk->wn, gps2_rtk->tow, gps2_rtk->rtk_health, gps2_rtk->rtk_rate, gps2_rtk->nsats, gps2_rtk->baseline_coords_type, gps2_rtk->baseline_a_mm, gps2_rtk->baseline_b_mm, gps2_rtk->baseline_c_mm, gps2_rtk->accuracy, gps2_rtk->iar_num_hypotheses);
+    return mavlink_msg_gps2_rtk_pack_chan(system_id, component_id, chan, msg, ((mavlink_gps2_rtk_t*)gps2_rtk)->time_last_baseline_ms, ((mavlink_gps2_rtk_t*)gps2_rtk)->rtk_receiver_id, ((mavlink_gps2_rtk_t*)gps2_rtk)->wn, ((mavlink_gps2_rtk_t*)gps2_rtk)->tow, ((mavlink_gps2_rtk_t*)gps2_rtk)->rtk_health, ((mavlink_gps2_rtk_t*)gps2_rtk)->rtk_rate, ((mavlink_gps2_rtk_t*)gps2_rtk)->nsats, ((mavlink_gps2_rtk_t*)gps2_rtk)->baseline_coords_type, ((mavlink_gps2_rtk_t*)gps2_rtk)->baseline_a_mm, ((mavlink_gps2_rtk_t*)gps2_rtk)->baseline_b_mm, ((mavlink_gps2_rtk_t*)gps2_rtk)->baseline_c_mm, ((mavlink_gps2_rtk_t*)gps2_rtk)->accuracy, ((mavlink_gps2_rtk_t*)gps2_rtk)->iar_num_hypotheses);
 }
 
 /**

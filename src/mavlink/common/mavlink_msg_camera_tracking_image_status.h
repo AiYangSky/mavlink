@@ -195,9 +195,9 @@ static inline uint16_t mavlink_msg_camera_tracking_image_status_encode(uint8_t s
  * @param msg The MAVLink message to compress the data into
  * @param camera_tracking_image_status C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_camera_tracking_image_status_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_camera_tracking_image_status_t* camera_tracking_image_status)
+static inline uint16_t mavlink_msg_camera_tracking_image_status_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* camera_tracking_image_status)
 {
-    return mavlink_msg_camera_tracking_image_status_pack_chan(system_id, component_id, chan, msg, camera_tracking_image_status->tracking_status, camera_tracking_image_status->tracking_mode, camera_tracking_image_status->target_data, camera_tracking_image_status->point_x, camera_tracking_image_status->point_y, camera_tracking_image_status->radius, camera_tracking_image_status->rec_top_x, camera_tracking_image_status->rec_top_y, camera_tracking_image_status->rec_bottom_x, camera_tracking_image_status->rec_bottom_y);
+    return mavlink_msg_camera_tracking_image_status_pack_chan(system_id, component_id, chan, msg, ((mavlink_camera_tracking_image_status_t*)camera_tracking_image_status)->tracking_status, ((mavlink_camera_tracking_image_status_t*)camera_tracking_image_status)->tracking_mode, ((mavlink_camera_tracking_image_status_t*)camera_tracking_image_status)->target_data, ((mavlink_camera_tracking_image_status_t*)camera_tracking_image_status)->point_x, ((mavlink_camera_tracking_image_status_t*)camera_tracking_image_status)->point_y, ((mavlink_camera_tracking_image_status_t*)camera_tracking_image_status)->radius, ((mavlink_camera_tracking_image_status_t*)camera_tracking_image_status)->rec_top_x, ((mavlink_camera_tracking_image_status_t*)camera_tracking_image_status)->rec_top_y, ((mavlink_camera_tracking_image_status_t*)camera_tracking_image_status)->rec_bottom_x, ((mavlink_camera_tracking_image_status_t*)camera_tracking_image_status)->rec_bottom_y);
 }
 
 /**
