@@ -3,7 +3,7 @@
  * @Author         : Aiyangsky
  * @Date           : 2022-08-12 12:11:18
  * @LastEditors    : Aiyangsky
- * @LastEditTime   : 2022-08-25 01:02:45
+ * @LastEditTime   : 2022-08-28 00:29:31
  * @FilePath       : \mavlink\src\route\mavlink_route.c
  */
 
@@ -130,7 +130,12 @@ bool Mavlink_Route_send(unsigned char tar_sysid, unsigned char tar_compid, const
             }
         }
     }
-
+#if DEBUG
+    if (mavlink_route.tx_message.msgid != 0)
+    {
+        printf("mavlink sent frame id: %d\n", mavlink_route.tx_message.msgid);
+    }
+#endif
     mavlink_route.Mutex_Put(mavlink_route.mutex);
 
     return ret;
@@ -228,9 +233,9 @@ static void Mavlink_Route_check(unsigned char in_chan, const mavlink_message_t *
 
     if (i < MAX_MAVLINK_ROUTE && i == mavlink_route.route_nums)
     {
-        mavlink_route.route_list[i].chan == in_chan;
-        mavlink_route.route_list[i].sysid == message->sysid;
-        mavlink_route.route_list[i].compid == message->compid;
+        mavlink_route.route_list[i].chan = in_chan;
+        mavlink_route.route_list[i].sysid = message->sysid;
+        mavlink_route.route_list[i].compid = message->compid;
         if (message->msgid == MAVLINK_MSG_ID_HEARTBEAT)
         {
             mavlink_route.route_list[i].type = mavlink_msg_heartbeat_get_type(message);
@@ -250,7 +255,7 @@ static bool Mavlink_Route_process(unsigned char in_chan, const mavlink_message_t
 {
     short tar_sysid = -1;
     short tar_compid = -1;
-    mavlink_msg_entry_t *msg_entry;
+    mavlink_msg_entry_t *msg_entry = NULL;
     unsigned char i;
     unsigned short len_temp;
     bool ret = true;
@@ -329,7 +334,7 @@ static bool Mavlink_Route_process(unsigned char in_chan, const mavlink_message_t
     {
         for (i = 0; i < MAVLINK_COMM_NUM_BUFFERS; i++)
         {
-            if (i = in_chan)
+            if (i == in_chan)
             {
                 continue;
             }
@@ -422,6 +427,12 @@ void Mavlink_Rec_Handle(void)
 
             if (ret)
             {
+#if DEBUG
+                if (mavlink_route.message_temp.msgid != 0)
+                {
+                    printf("mavlink got msg id: %d\n", mavlink_route.message_temp.msgid);
+                }
+#endif
                 //处理数据
                 Mavlink_Process_Handle(ret, i, &mavlink_route.message_temp);
             }

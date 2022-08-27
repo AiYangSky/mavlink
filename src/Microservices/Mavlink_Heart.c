@@ -3,7 +3,7 @@
  * @Author         : Aiyangsky
  * @Date           : 2022-08-11 20:01:11
  * @LastEditors    : Aiyangsky
- * @LastEditTime   : 2022-08-24 16:04:20
+ * @LastEditTime   : 2022-08-25 22:19:49
  * @FilePath       : \mavlink\src\Microservices\Mavlink_Heart.c
  */
 
@@ -15,17 +15,20 @@
 
 __attribute__((weak)) unsigned char Get_Base_mode(void)
 {
+    return 0;
 }
 
 __attribute__((weak)) unsigned char Get_Custom_mode(void)
 {
+    return 0;
 }
 
 __attribute__((weak)) unsigned char Get_SYS_Mode(void)
 {
+    return 0;
 }
 
-void Mavlink_Hreat(unsigned char chan)
+void Mavlink_Hreat(void)
 {
     static mavlink_heartbeat_t heartbeat;
 

@@ -3,7 +3,7 @@
  * @Author         : Aiyangsky
  * @Date           : 2022-08-12 12:11:31
  * @LastEditors    : Aiyangsky
- * @LastEditTime   : 2022-08-25 01:29:17
+ * @LastEditTime   : 2022-08-27 04:26:18
  * @FilePath       : \mavlink\src\route\mavlink_route.h
  */
 
@@ -13,69 +13,69 @@
 #ifndef __MAVLINK_ROUTE_H
 #define __MAVLINK_ROUTE_H
 
-#define MAX_MAVLINK_ROUTE 16
+#define MAX_MAVLINK_ROUTE 50
 #define MAX_MAVLINK_PROCESS 50
 
-typedef struct
-{
-    unsigned char index;
-    // Callback function of link the hardware implementation
-    bool (*Get_byte)(unsigned char *);
-    unsigned short (*Send_bytes)(unsigned char *, unsigned short);
-} MAVLINK_ROUTE_CHAN_T;
+    typedef struct
+    {
+        unsigned char index;
+        // Callback function of link the hardware implementation
+        bool (*Get_byte)(unsigned char *);
+        unsigned short (*Send_bytes)(unsigned char *, unsigned short);
+    } MAVLINK_ROUTE_CHAN_T;
 
-typedef struct
-{
-    unsigned char type;
-    unsigned char chan;
-    unsigned char sysid;
-    unsigned char compid;
-} MAVLINK_ROUTE_LIST_T;
+    typedef struct
+    {
+        unsigned char type;
+        unsigned char chan;
+        unsigned char sysid;
+        unsigned char compid;
+    } MAVLINK_ROUTE_LIST_T;
 
-typedef struct
-{
-    unsigned char sysid;
-    unsigned char compid;
+    typedef struct
+    {
+        unsigned char sysid;
+        unsigned char compid;
 
-    MAVLINK_ROUTE_CHAN_T chan_cb[MAVLINK_COMM_NUM_BUFFERS];
-    
-    unsigned char route_nums;
-    MAVLINK_ROUTE_LIST_T route_list[MAX_MAVLINK_ROUTE];
+        MAVLINK_ROUTE_CHAN_T chan_cb[MAVLINK_COMM_NUM_BUFFERS];
 
-    //buffer
-    mavlink_status_t status_temp;
-    mavlink_message_t message_temp;
-    mavlink_message_t tx_message;
-    unsigned char buf_temp[MAVLINK_MAX_PACKET_LEN];
+        unsigned char route_nums;
+        MAVLINK_ROUTE_LIST_T route_list[MAX_MAVLINK_ROUTE];
 
-    //hock funtions list
-    void (*Process[MAX_MAVLINK_PROCESS])(unsigned char, const mavlink_message_t *);
+        // buffer
+        mavlink_status_t status_temp;
+        mavlink_message_t message_temp;
+        mavlink_message_t tx_message;
+        unsigned char buf_temp[MAVLINK_MAX_PACKET_LEN];
 
-    //mutex
-    void *mutex;
-    void (*Mutex_Get)(void *);
-    void (*Mutex_Put)(void *);
+        // hock funtions list
+        void (*Process[MAX_MAVLINK_PROCESS])(unsigned char, const mavlink_message_t *);
 
-    //timer
-    void (*Os_Timer_activate)(void *);
-    void (*Os_Timer_stop_and_reset)(void *);
-} MAVLINK_ROUTE_CB_T;
+        // mutex
+        void *mutex;
+        void (*Mutex_Get)(void *);
+        void (*Mutex_Put)(void *);
 
-extern MAVLINK_ROUTE_CB_T mavlink_route;
+        // timer
+        void (*Os_Timer_activate)(void *);
+        void (*Os_Timer_stop_and_reset)(void *);
+    } MAVLINK_ROUTE_CB_T;
 
-void Mavlink_Route_init(unsigned char sysid, unsigned char compid);
-void Mavlink_Route_Chan_Set(unsigned char chan,
-                            bool (*Get_byte)(unsigned char *),
-                            unsigned short (*Send_bytes)(unsigned char *, unsigned short));
-void Mavlink_Route_Mutex_Set(void *mutex,
-                             void (*Mutex_Get)(void *), void (*Mutex_Put)(void *));
-void Mavlink_Route_timer_Set(void (*Os_Timer_activate)(void *),
-                             void (*Os_Timer_stop_and_reset)(void *));
-bool Mavlink_Route_send(unsigned char tar_sysid, unsigned char tar_compid, const void *msg,
-                        unsigned short (*Pack)(unsigned char, unsigned char, unsigned char, mavlink_message_t *, const void *));
-bool Mavlink_Register_process(void (*Process)(unsigned char, const mavlink_message_t *));
+    extern MAVLINK_ROUTE_CB_T mavlink_route;
 
-void Mavlink_Rec_Handle(void);
-void Mavlink_STATUSTEXT_send(MAV_SEVERITY status, unsigned short id, char *str);
+    void Mavlink_Route_init(unsigned char sysid, unsigned char compid);
+    void Mavlink_Route_Chan_Set(unsigned char chan,
+                                bool (*Get_byte)(unsigned char *),
+                                unsigned short (*Send_bytes)(unsigned char *, unsigned short));
+    void Mavlink_Route_Mutex_Set(void *mutex,
+                                 void (*Mutex_Get)(void *), void (*Mutex_Put)(void *));
+    void Mavlink_Route_timer_Set(void (*Os_Timer_activate)(void *),
+                                 void (*Os_Timer_stop_and_reset)(void *));
+    bool Mavlink_Route_send(unsigned char tar_sysid, unsigned char tar_compid, const void *msg,
+                            unsigned short (*Pack)(unsigned char, unsigned char, unsigned char, mavlink_message_t *, const void *));
+    bool Mavlink_Register_process(void (*Process)(unsigned char, const mavlink_message_t *));
+
+    void Mavlink_Rec_Handle(void);
+    void Mavlink_STATUSTEXT_send(MAV_SEVERITY status, unsigned short id, char *str);
 
 #endif //__MAVLINK_ROUTE_H

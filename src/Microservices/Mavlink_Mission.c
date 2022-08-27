@@ -3,7 +3,7 @@
  * @Author         : Aiyangsky
  * @Date           : 2022-08-18 21:57:28
  * @LastEditors    : Aiyangsky
- * @LastEditTime   : 2022-08-25 00:48:23
+ * @LastEditTime   : 2022-08-27 23:29:27
  * @FilePath       : \mavlink\src\Microservices\Mavlink_Mission.c
  */
 
@@ -61,8 +61,9 @@ static void Mavlink_Mission_req_int_send(unsigned char tar_sysid, unsigned char 
     mission_req_int_temp.target_system = tar_sysid;
     mission_req_int_temp.target_component = tar_compid;
 
-    Mavlink_Route_send(tar_compid, tar_compid, (void *)&mission_req_int_temp,
+    Mavlink_Route_send(tar_sysid, tar_compid, (void *)&mission_req_int_temp,
                        mavlink_msg_mission_request_int_encode_chan);
+
 }
 
 /**
@@ -416,7 +417,6 @@ static void Mavlink_Mission_process(unsigned char in_chan, const mavlink_message
     {
     // upload msgs
     case MAVLINK_MSG_ID_MISSION_COUNT: //空闲则 开启一次任务传输
-
         Mavlink_Mission_rec_count(in_chan, msg);
         break;
 

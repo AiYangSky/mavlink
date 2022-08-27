@@ -3,7 +3,7 @@
  * @Author         : Aiyangsky
  * @Date           : 2022-08-20 19:36:48
  * @LastEditors    : Aiyangsky
- * @LastEditTime   : 2022-08-25 00:15:49
+ * @LastEditTime   : 2022-08-27 18:35:06
  * @FilePath       : \mavlink\src\Microservices\Mavlink_Parameters.c
  */
 
@@ -41,6 +41,7 @@ static bool Mavlink_Parameters_value_send_by_index(unsigned char tar_sys, unsign
     memset((unsigned char *)&param_value_temp.param_value, 0, 4);
     param_value_temp.param_type = mavlink_params.Param_Get_by_index(index, param_value_temp.param_id,
                                                                     (void *)&param_value_temp.param_value);
+
     if (param_value_temp.param_type == 0)
     {
         return false;
