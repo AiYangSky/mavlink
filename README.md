@@ -27,18 +27,18 @@ $ cmake --build .build
     and add QT to system PATH(or set CMAKE_PREFIX_PATH in CMakeLists).
 
     And add the following libraries to the project:
-    [Parameters](https://github.com/AiYangSky/Parameters)
+* [Parameters](https://github.com/AiYangSky/Parameters)
     It implements a simple parameter management function.
 
 ## note
 
     The standard mavlink interface functions are modified for easier implementation:
 ```C
-    static inline uint16_t mavlink_msg_name_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_heartbeat_t* heartbeat)
+    static inline uint16_t mavlink_msg_name_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_name_t* msg_name)
 ```
     to
 ```C
-    static inline uint16_t mavlink_msg_heartbeat_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* heartbeat)
+    static inline uint16_t mavlink_msg_heartbeat_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const void* msg_name)
 ```
     This change was made by modifying the mavlink generator script.
     
